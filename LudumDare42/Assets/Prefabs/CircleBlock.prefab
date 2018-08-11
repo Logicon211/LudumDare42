@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786536805548402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1, y: 1.39, z: 0}
+  m_LocalPosition: {x: 37.51072, y: -17.31385, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,6 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   garbageSpawnYOffset: 5
+  health: 30
+  explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
 --- !u!212 &212702800886685604
 SpriteRenderer:
   m_ObjectHideFlags: 1
