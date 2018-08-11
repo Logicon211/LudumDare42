@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425373558792166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.15, y: -11.92, z: 0}
+  m_LocalPosition: {x: 21.411055, y: -9.090643, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -212,6 +212,7 @@ MonoBehaviour:
   garbageController: {fileID: 1958027917742884, guid: ef47ab27ddb472b4897cbc3134a1b41a,
     type: 2}
   animator: {fileID: 95244461216015096}
+  explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
 --- !u!212 &212619093811003274
 SpriteRenderer:
   m_ObjectHideFlags: 1

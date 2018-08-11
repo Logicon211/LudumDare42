@@ -10,6 +10,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	public GameObject projectile;
 	public GameObject garbageController;
 	public Animator animator;
+
+	public GameObject explosion;
 	
 	private AudioSource audio;
 	private Rigidbody2D enemyBody;
@@ -17,6 +19,9 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	private float currentCooldown;
 	private bool hasShot = false;
 	private GarbageSpawnController garbageScript;
+
+	private float currentHealth;
+	SpriteRenderer spriteRenderer;
 
 	void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
@@ -27,6 +32,9 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	// Use this for initialization
 	void Start () {
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
+
+		currentHealth = health;
 	}
 	
 	// Update is called once per frame
@@ -38,6 +46,15 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 				currentCooldown = shootCooldown;
 				hasShot = false;
 			}
+		}
+
+		//Get Redder as you take more damage:
+		if (currentHealth < health) {
+			if(currentHealth < 0f) {
+				currentHealth = 0f;
+			}
+			float healthPercentage = currentHealth/health;
+			spriteRenderer.color = new Color(1f, healthPercentage, healthPercentage);
 		}
 	}
 
@@ -69,8 +86,9 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
-		health -= damageTaken;
-		if (health <= 0f) {
+		currentHealth -= damageTaken;
+		if (currentHealth <= 0f) {
+			Instantiate(explosion, transform.position, Quaternion.identity);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
 			Destroy(gameObject);
 		}

@@ -15,12 +15,14 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	public GameObject garbageController;
 
 	private float attacking = 0f;
+	private float currentHealth;
 
 	GameObject player;
 
 	Rigidbody2D RB;
 	Animator animator;
 	AudioSource AS;
+	SpriteRenderer spriteRenderer;
 	GarbageSpawnController garbageScript;
 	// Use this for initialization
 	void Start () {
@@ -29,6 +31,9 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 		animator = GetComponent<Animator>();
 		AS = GetComponent<AudioSource>();
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
+
+		currentHealth = health;
 		// groundCheck1 = transform.Find ("groundCheck1");
 		
 	}
@@ -64,6 +69,15 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 				
 			}
 		}
+
+		//Get Redder as you take more damage:
+		if (currentHealth < health) {
+			if(currentHealth < 0f) {
+				currentHealth = 0f;
+			}
+			float healthPercentage = currentHealth/health;
+			spriteRenderer.color = new Color(1f, healthPercentage, healthPercentage);
+		}
 	}
 
 	public void finishPunch() {
@@ -74,8 +88,9 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
 		// Damages enemy and handles death shit
-		health -= damageTaken;
-		if (health <= 0f) {
+		currentHealth -= damageTaken;
+		if (currentHealth <= 0f) {
+			Instantiate(explosion, transform.position, Quaternion.identity);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
 			Destroy(gameObject);
 		}
