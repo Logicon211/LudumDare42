@@ -56,7 +56,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		}
 	}
 
-	// Shoots a bullet towards the given x and y
+	// Shoots bullet at target x and y
 	public void Shoot(float tarX, float tarY) {
 		if (!hasShot) {
 			animator.SetTrigger("shootTrigger");
@@ -67,10 +67,11 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		}
 	}
 
+	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
 		health -= damageTaken;
 		if (health <= 0f) {
-			//garbageScript spawn garbage at location
+			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
 			Destroy(gameObject);
 		}
 	}

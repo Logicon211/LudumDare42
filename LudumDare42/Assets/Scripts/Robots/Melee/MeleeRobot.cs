@@ -71,9 +71,12 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 		Instantiate(hitEffect, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 0.1f), Quaternion.identity);
 	}
 
+	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
+		// Damages enemy and handles death shit
 		health -= damageTaken;
 		if (health <= 0f) {
+			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
 			Destroy(gameObject);
 		}
 	}

@@ -206,8 +206,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSmoothing: 0.05
+  health: 10
   shootCooldown: 5
   projectile: {fileID: 1057020670859960, guid: 3e32d88d611c48b459771b2f873fc8d0, type: 2}
+  garbageController: {fileID: 1958027917742884, guid: ef47ab27ddb472b4897cbc3134a1b41a,
+    type: 2}
   animator: {fileID: 95244461216015096}
 --- !u!212 &212619093811003274
 SpriteRenderer:
