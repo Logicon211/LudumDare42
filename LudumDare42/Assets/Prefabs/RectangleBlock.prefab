@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212651689837199176}
   - component: {fileID: 61942636970640068}
   - component: {fileID: 50933976320987636}
+  - component: {fileID: 114490823858322708}
   m_Layer: 0
   m_Name: RectangleBlock
   m_TagString: Untagged
@@ -87,6 +88,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.85, y: 0.84}
   m_EdgeRadius: 0
+--- !u!114 &114490823858322708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1893990355607914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3efb594d61d3274e858ca7c7191c160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageSpawnYOffset: 5
 --- !u!212 &212651689837199176
 SpriteRenderer:
   m_ObjectHideFlags: 1
