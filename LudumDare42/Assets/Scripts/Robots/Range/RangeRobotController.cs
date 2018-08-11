@@ -8,6 +8,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	[SerializeField] private float health = 10f;
 	[SerializeField] private float shootCooldown = 5f;
 	public GameObject projectile;
+	public GameObject garbageController;
 	public Animator animator;
 	
 	private AudioSource audio;
@@ -15,8 +16,9 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	private Vector3 velocity = Vector3.zero;
 	private float currentCooldown;
 	private bool hasShot = false;
+	private GarbageSpawnController garbageScript;
 
-	private void Awake() {
+	void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
 		audio = GetComponent<AudioSource>();
 		currentCooldown = shootCooldown;
@@ -24,7 +26,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	// Use this for initialization
 	void Start () {
-		
+		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
 	}
 	
 	// Update is called once per frame
@@ -68,7 +70,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	public void Damage(float damageTaken) {
 		health -= damageTaken;
 		if (health <= 0f) {
-			
+			//garbageScript spawn garbage at location
+			Destroy(gameObject);
 		}
 	}
 }
