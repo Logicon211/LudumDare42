@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserPowerUp : PowerUp {
+public class SpeedPowerUp : PowerUp {
 
 	public override void GivePowerUp() {
-		controller.SetPowerUp(1);
+		controller.SetPowerUp(5);
 	}
 }
