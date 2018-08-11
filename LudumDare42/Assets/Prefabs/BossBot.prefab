@@ -158,13 +158,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  attackCooldown: 1
-  attackRange: 10
+  extendCooldown: 1
+  extendRange: 20
   ballRadius: 20
-  ballSpinSpeed: 120
+  ballSpinSpeed: 200
+  rightBallSpinOffset: 100
   ballExtendSpeed: 20
   spikeBall: {fileID: 1396573463121552, guid: 4902ec218ef23df46948ae3b6f73b2d7, type: 2}
   chainMaterial: {fileID: 2100000, guid: a019dd9da3040f84994f0c4ec06b997d, type: 2}
+  timeBetweenExtending: 0
 --- !u!212 &212648699677240342
 SpriteRenderer:
   m_ObjectHideFlags: 1

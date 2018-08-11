@@ -5,11 +5,12 @@ using UnityEngine;
 public class FirstBossRobot : MonoBehaviour {
 
 	public float speed = 1f;
-	public float attackCooldown = 1f;
-	public float attackRange = 5f;
+	public float extendCooldown = 1f;
+	public float extendRange = 5f;
 
 	public float ballRadius = 5;
 	public float ballSpinSpeed = 20f;
+	public float rightBallSpinOffset = 5f;
 	public float ballExtendSpeed = 1f;
 
 	public GameObject spikeBall;
@@ -17,6 +18,10 @@ public class FirstBossRobot : MonoBehaviour {
 
 	private float attacking = 0f;
 
+	public float timeBetweenExtending = 0f;
+
+	private bool extending;
+	public float currentBallRadius;
 
 	GameObject player;
 
@@ -35,6 +40,11 @@ public class FirstBossRobot : MonoBehaviour {
 		rightArm = transform.Find("RightArm").gameObject;
 		leftSpikeBall = Instantiate(spikeBall, leftArm.transform.position, Quaternion.identity); //transform.Find("SpikeBallLeft").gameObject;
 		rightSpikeBall =Instantiate(spikeBall, leftArm.transform.position, Quaternion.identity); // transform.Find("SpikeBallRight").gameObject;
+
+		// Set initial value so he waits to extend the first time;
+		timeBetweenExtending = 5f;
+		extending = false;
+		currentBallRadius = ballRadius;
 		
 	}
 	
@@ -65,12 +75,29 @@ public class FirstBossRobot : MonoBehaviour {
 				
 			// }
 
+
+			//Time between extending and not extending;
+			float radius = ballRadius;
+			if (timeBetweenExtending <= 0f) {
+				timeBetweenExtending = extendCooldown;
+
+				if (extending) {
+					extending = false;
+					currentBallRadius = ballRadius;
+				} else {
+					extending = true;
+					currentBallRadius = ballRadius + extendRange;
+				}
+			} else {
+				timeBetweenExtending -= Time.deltaTime;
+			}
+
 			leftSpikeBall.transform.RotateAround (leftArm.transform.position, Vector3.forward, ballSpinSpeed * Time.deltaTime);
-			var desiredPosition = (leftSpikeBall.transform.position - leftArm.transform.position).normalized * ballRadius + leftArm.transform.position;
+			var desiredPosition = (leftSpikeBall.transform.position - leftArm.transform.position).normalized * currentBallRadius + leftArm.transform.position;
 			leftSpikeBall.transform.position = Vector3.MoveTowards(leftSpikeBall.transform.position, desiredPosition, Time.deltaTime * ballExtendSpeed);
 
-			rightSpikeBall.transform.RotateAround (rightArm.transform.position, Vector3.forward, ballSpinSpeed * Time.deltaTime);
-			desiredPosition = (rightSpikeBall.transform.position - rightArm.transform.position).normalized * ballRadius + rightArm.transform.position;
+			rightSpikeBall.transform.RotateAround (rightArm.transform.position, Vector3.forward, (ballSpinSpeed + rightBallSpinOffset) * Time.deltaTime);
+			desiredPosition = (rightSpikeBall.transform.position - rightArm.transform.position).normalized * currentBallRadius + rightArm.transform.position;
 			rightSpikeBall.transform.position = Vector3.MoveTowards(rightSpikeBall.transform.position, desiredPosition, Time.deltaTime * ballExtendSpeed);
 
 			//Draw lines
