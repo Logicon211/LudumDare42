@@ -23,6 +23,7 @@ private bool Dodging;
 private Vector2 DodgeDirection;
 private Vector2 NewPos;
 private float dodgeCooldown;
+Animator animator;
 
 
 	// Use this for initialization
@@ -32,6 +33,7 @@ private float dodgeCooldown;
         Dashing = false;
         Dodging = false;
 		NewPos = transform.position;
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -73,13 +75,11 @@ private float dodgeCooldown;
 			dashDirection = direction;
                 Dashing = true;
                 dashCooldown=0.3f;   //punchCharge;
-                Debug.Log(Dashing);
-            //PlayerRigidBody.velocity = 10*punchCharge * direction;
-            //Charge punch release
+                //Charge punch release
             //transform.
 
         }
-		Debug.Log (dashDirection);
+	
 
 
 
@@ -94,6 +94,12 @@ private float dodgeCooldown;
         if(!Dashing && !Dodging){
             NewPos = new Vector2(horizontalMove*playerspeed, verticalMove*playerspeed);
             PlayerRigidBody.velocity = playerspeed * NewPos;
+            if(horizontalMove != 0f || verticalMove != 0f){
+                animator.SetBool("isWalking", true);
+            }
+            else{
+                animator.SetBool("isWalking", false);
+            }
 
         }
         if(Dashing){
@@ -123,7 +129,6 @@ private float dodgeCooldown;
         if(RightClick == true){
             //charge punch attack
 			punchCharge += 2*Time.fixedDeltaTime;
-            //Debug.Log(punchCharge);
             playerspeed = 1.2f;
         }
 

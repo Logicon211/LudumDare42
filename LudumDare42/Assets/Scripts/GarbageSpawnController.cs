@@ -9,6 +9,10 @@ public class GarbageSpawnController : MonoBehaviour {
 	public float yMin = -1f;
 	public float yMax = 1f;
 
+	public const int CIRCLE_GARBAGE_INDEX = 0;
+	public const int SQUARE_GARBAGE_INDEX = 1;
+	public const int RECTANGLE_GARBAGE_INDEX = 2;
+
 	public GameObject[] garbageArray;
 
 	// Use this for initialization
@@ -32,11 +36,15 @@ public class GarbageSpawnController : MonoBehaviour {
 		SpawnAtLocation (garbageArray[garbageIndex], Random.Range(xMin, xMax), Random.Range (yMin, yMax));
 	}
 
-	public void SpawnAtRandomLocation (GameObject garbage) {
-		SpawnAtLocation (garbage, Random.Range (xMin, xMax), Random.Range (yMin, yMax));
+	public void SpawnAtRandomLocation (int garbageIndex) {
+		SpawnAtLocation (garbageArray[garbageIndex], Random.Range (xMin, xMax), Random.Range (yMin, yMax));
 	}
 
-	public void SpawnAtLocation (GameObject garbageToSpawn, float xPos, float yPos) {
+	public void SpawnAtLocation (int garbageIndex, float xPos, float yPos) {
+		SpawnAtLocation (garbageArray [garbageIndex], xPos, yPos);
+	}
+
+	private void SpawnAtLocation (GameObject garbageToSpawn, float xPos, float yPos) {
 		//Make sure x and y are within the bounds of the level
 		xPos = Mathf.Clamp(xPos, xMin, xMax);
 		yPos = Mathf.Clamp (yPos, yMin, yMax);
