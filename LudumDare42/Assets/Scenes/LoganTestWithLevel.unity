@@ -200,6 +200,21 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1936811478}
+    - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
+        type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
+        type: 2}
+      propertyPath: energySlider
+      value: 
+      objectReference: {fileID: 442833876}
+    - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
+        type: 2}
+      propertyPath: chargeSlider
+      value: 
+      objectReference: {fileID: 780650037}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2ce347350fac245bd1f127f88d29bb, type: 2}
   m_IsPrefabAsset: 0
@@ -2286,6 +2301,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &442833876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114850992399621812, guid: 45d70fa73f3abec42ae93f87a7183493,
+    type: 2}
+  m_PrefabInternal: {fileID: 780650036}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &650637357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2492,44 +2513,15 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 650637359}
-    - target: {fileID: 223587135901930168, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_SortingOrder
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 224047468843995868, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224047468843995868, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224047468843995868, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 224047468843995868, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224047468843995868, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224047468843995868, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 13
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d70fa73f3abec42ae93f87a7183493, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &780650037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114258663061878318, guid: 45d70fa73f3abec42ae93f87a7183493,
+    type: 2}
+  m_PrefabInternal: {fileID: 780650036}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1083726342
 Prefab:
   m_ObjectHideFlags: 0
@@ -3393,7 +3385,7 @@ Transform:
   m_PrefabInternal: {fileID: 165124457}
 --- !u!114 &1936811478 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114258663061878318, guid: 45d70fa73f3abec42ae93f87a7183493,
+  m_CorrespondingSourceObject: {fileID: 114668153404649152, guid: 45d70fa73f3abec42ae93f87a7183493,
     type: 2}
   m_PrefabInternal: {fileID: 780650036}
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
