@@ -20,8 +20,8 @@ private Vector2 dashDirection;
 private float dashCooldown;
 private bool SpacebarDown;
 private bool Dodging;
-private Vector3 DodgeDirection;
-private Vector3 NewPos;
+private Vector2 DodgeDirection;
+private Vector2 NewPos;
 private float dodgeCooldown;
 
 
@@ -31,6 +31,7 @@ private float dodgeCooldown;
         punchCharge =0f;
         Dashing = false;
         Dodging = false;
+		NewPos = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -45,10 +46,12 @@ private float dodgeCooldown;
         RightClickRelease = Input.GetButtonUp("Fire2");
         SpacebarDown = Input.GetButtonDown("Jump");
 
-    //Player rotation to mouse          
-    Vector3 mousePos = Input.mousePosition;
-    mousePos.z = -(transform.position.x - Camera.main.transform.position.x);
-    direction = Vector3.Normalize(Camera.main.ScreenToWorldPoint(mousePos) - transform.position);
+    	//Player rotation to mouse          
+    	Vector3 mousePos = Input.mousePosition;
+		mousePos.z = 0;
+		direction = Camera.main.ScreenToWorldPoint (mousePos) - transform.position;
+		direction.Normalize ();
+
 
     
 
@@ -59,14 +62,15 @@ private float dodgeCooldown;
         if(SpacebarDown == true && !Dodging){
             Dodging = true;
             dodgeCooldown = 0.25f;
-            DodgeDirection = NewPos;
+			DodgeDirection = NewPos;
+			DodgeDirection.Normalize ();
         }
 
         if(RightClickRelease == true){
             if(punchCharge > 3){
                 punchCharge =3f;
             }
-                dashDirection=direction;
+			dashDirection = direction;
                 Dashing = true;
                 dashCooldown=0.3f;   //punchCharge;
                 Debug.Log(Dashing);
@@ -75,6 +79,7 @@ private float dodgeCooldown;
             //transform.
 
         }
+		Debug.Log (dashDirection);
 
 
 
@@ -87,12 +92,13 @@ private float dodgeCooldown;
     private void FixedUpdate() {
         //Plater movement
         if(!Dashing && !Dodging){
-            NewPos = new Vector3(horizontalMove*playerspeed, verticalMove*playerspeed,0);
+            NewPos = new Vector2(horizontalMove*playerspeed, verticalMove*playerspeed);
             PlayerRigidBody.velocity = playerspeed * NewPos;
+
         }
         if(Dashing){
             PlayerRigidBody.velocity = 10*punchCharge * dashDirection;
-            dashCooldown -= Time.deltaTime;
+			dashCooldown -= Time.fixedDeltaTime;
             if(dashCooldown <= 0){
                 punchCharge=0;
                 Dashing=false;
@@ -101,8 +107,8 @@ private float dodgeCooldown;
         }
 
         if(Dodging){
-            PlayerRigidBody.velocity = 10 * DodgeDirection;
-            dodgeCooldown -= Time.deltaTime;
+            PlayerRigidBody.velocity = 20 * DodgeDirection;
+			dodgeCooldown -= Time.fixedDeltaTime;
             if(dodgeCooldown <= 0){
                 Dodging=false;
             }
@@ -116,8 +122,8 @@ private float dodgeCooldown;
 
         if(RightClick == true){
             //charge punch attack
-            punchCharge += 2*Time.deltaTime;
-            Debug.Log(punchCharge);
+			punchCharge += 2*Time.fixedDeltaTime;
+            //Debug.Log(punchCharge);
             playerspeed = 1.2f;
         }
 
