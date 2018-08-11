@@ -27,30 +27,34 @@ public class GarbageSpawnController : MonoBehaviour {
 		}
 	}
 
-	public void SpawnRandomGarbageAtLocation (float xPos, float yPos) {
+	public void SpawnRandomGarbageAtLocation (float xPos, float yPos, bool dropFromSky = true) {
 		int garbageIndex = Random.Range (0, garbageArray.Length);
+		SpawnAtLocation (garbageArray[garbageIndex], xPos, yPos, dropFromSky);
 	}
 	
-	public void SpawnRandomGarbageAtRandomLocation () {
+	public void SpawnRandomGarbageAtRandomLocation (bool dropFromSky = true) {
 		int garbageIndex = Random.Range (0, garbageArray.Length);
-		SpawnAtLocation (garbageArray[garbageIndex], Random.Range(xMin, xMax), Random.Range (yMin, yMax));
+		SpawnAtLocation (garbageArray[garbageIndex], Random.Range(xMin, xMax), Random.Range (yMin, yMax), dropFromSky);
 	}
 
-	public void SpawnAtRandomLocation (int garbageIndex) {
-		SpawnAtLocation (garbageArray[garbageIndex], Random.Range (xMin, xMax), Random.Range (yMin, yMax));
+	public void SpawnAtRandomLocation (int garbageIndex, bool dropFromSky = true) {
+		SpawnAtLocation (garbageArray[garbageIndex], Random.Range (xMin, xMax), Random.Range (yMin, yMax), dropFromSky);
 	}
 
-	public void SpawnAtLocation (int garbageIndex, float xPos, float yPos) {
-		SpawnAtLocation (garbageArray [garbageIndex], xPos, yPos);
+	public void SpawnAtLocation (int garbageIndex, float xPos, float yPos, bool dropFromSky = true) {
+		SpawnAtLocation (garbageArray [garbageIndex], xPos, yPos, dropFromSky);
 	}
 
-	private void SpawnAtLocation (GameObject garbageToSpawn, float xPos, float yPos) {
+	private void SpawnAtLocation (GameObject garbageToSpawn, float xPos, float yPos, bool dropFromSky = true) {
 		//Make sure x and y are within the bounds of the level
 		xPos = Mathf.Clamp(xPos, xMin, xMax);
 		yPos = Mathf.Clamp (yPos, yMin, yMax);
 
 		Vector2 position = new Vector2 (xPos, yPos);
 		Quaternion rotation = Quaternion.Euler (0f, 0f, Random.Range (0f, 360f));
+		garbageToSpawn.GetComponent<GarbageController> ().dropFromSky = dropFromSky; 
+		Debug.Log ("drop from sky: " + dropFromSky);
+		Debug.Log ("garbageToSpawn dropFromSky: " + garbageToSpawn.GetComponent<GarbageController> ().dropFromSky);
 		Instantiate (garbageToSpawn, position, rotation);
 	}
 }
