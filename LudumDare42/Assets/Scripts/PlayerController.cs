@@ -136,6 +136,20 @@ Animator animator;
 
     }
 
+    /*
+        Takes an int corresponding to the current powerup craig will get
+         0 - nothing
+         1 - Laser
+         2 - Shotgun
+         3 - Health
+         4 - Wrench?
+         5 - Speed Boost
+         6 - Shiny Teeth
+    */
+    public void SetPowerUp(int powerupValue) {
+        //Do Stuff
+    }
+
     
 
 }

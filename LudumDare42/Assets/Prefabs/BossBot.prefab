@@ -67,8 +67,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336681766880086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.74, y: 0.24, z: 4.3164062}
-  m_LocalScale: {x: 4.5313935, y: 4.5313935, z: 4.5313935}
+  m_LocalPosition: {x: -17.31, y: 10.22, z: 4.3164062}
+  m_LocalScale: {x: 2.7188363, y: 2.7188363, z: 2.7188363}
   m_Children:
   - {fileID: 4095629858451508}
   - {fileID: 4936455790063794}
@@ -157,15 +157,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4815f6c1a1012e140891f18ea32177c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   speed: 3
-  extendCooldown: 1
-  extendRange: 20
-  ballRadius: 20
+  extendCooldown: 5
+  extendRange: 12
+  ballRadius: 15
   ballSpinSpeed: 200
   rightBallSpinOffset: 100
   ballExtendSpeed: 20
   spikeBall: {fileID: 1396573463121552, guid: 4902ec218ef23df46948ae3b6f73b2d7, type: 2}
   chainMaterial: {fileID: 2100000, guid: a019dd9da3040f84994f0c4ec06b997d, type: 2}
+  garbageController: {fileID: 1958027917742884, guid: ef47ab27ddb472b4897cbc3134a1b41a,
+    type: 2}
+  explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
   timeBetweenExtending: 0
 --- !u!212 &212648699677240342
 SpriteRenderer:
