@@ -45,6 +45,9 @@ TagManager:
   - name: Level
     uniqueID: 3161532485
     locked: 0
+  - name: Garbage
+    uniqueID: 1913095267
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
