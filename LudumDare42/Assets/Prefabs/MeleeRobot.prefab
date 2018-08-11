@@ -217,9 +217,12 @@ MonoBehaviour:
   speed: 7
   attackCooldown: 1
   attackRange: 5
+  health: 10
   punchSound: {fileID: 8300000, guid: 4f11b51baa26ec34c979ed61696d60c2, type: 3}
   hitEffect: {fileID: 1410727943527182, guid: fd5f37cdce8bb924ca437ea0068f84af, type: 2}
   explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
+  garbageController: {fileID: 1958027917742884, guid: ef47ab27ddb472b4897cbc3134a1b41a,
+    type: 2}
 --- !u!212 &212417208103882724
 SpriteRenderer:
   m_ObjectHideFlags: 1

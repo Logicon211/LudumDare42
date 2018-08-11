@@ -5,8 +5,10 @@ using UnityEngine;
 public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
+	[SerializeField] private float health = 10f;
 	[SerializeField] private float shootCooldown = 5f;
 	public GameObject projectile;
+	public GameObject garbageController;
 	public Animator animator;
 	
 	private AudioSource audio;
@@ -14,8 +16,9 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	private Vector3 velocity = Vector3.zero;
 	private float currentCooldown;
 	private bool hasShot = false;
+	private GarbageSpawnController garbageScript;
 
-	private void Awake() {
+	void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
 		audio = GetComponent<AudioSource>();
 		currentCooldown = shootCooldown;
@@ -23,7 +26,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	// Use this for initialization
 	void Start () {
-		
+		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
 	}
 	
 	// Update is called once per frame
@@ -53,7 +56,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		}
 	}
 
-	// Shoots a bullet towards the given x and y
+	// Shoots bullet at target x and y
 	public void Shoot(float tarX, float tarY) {
 		if (!hasShot) {
 			animator.SetTrigger("shootTrigger");
@@ -64,7 +67,12 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		}
 	}
 
+	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
-		//Do Stuff
+		health -= damageTaken;
+		if (health <= 0f) {
+			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
+			Destroy(gameObject);
+		}
 	}
 }
