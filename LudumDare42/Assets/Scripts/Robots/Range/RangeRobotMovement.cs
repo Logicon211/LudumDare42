@@ -15,7 +15,6 @@ public class RangeRobotMovement : MonoBehaviour {
 	private bool move = false;
 	private bool shoot = false;
 	private Vector3 moveDir = Vector3.zero;
-	private Vector3 shootDir = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -40,14 +39,12 @@ public class RangeRobotMovement : MonoBehaviour {
 			moveDir = normal;	
 		}
 		if (shoot) {
-			shootDir = normal;	
+			controller.Shoot(normal.x * shootSpeed * Time.fixedDeltaTime, normal.y * shootSpeed * Time.fixedDeltaTime);
+			shoot = false;
 		}
 		controller.Move(moveDir.x * speed * Time.fixedDeltaTime, moveDir.y * speed * Time.fixedDeltaTime);
-		controller.Shoot(shootDir.x * shootSpeed * Time.fixedDeltaTime, shootDir.y * shootSpeed * Time.fixedDeltaTime);
 		controller.Rotate(normal);
 		moveDir = Vector3.zero;
-		shootDir = Vector3.zero;
 		move = false;
-		shoot = false;
 	}
 }

@@ -8,7 +8,8 @@ public class RangeRobotController : MonoBehaviour {
 	[SerializeField] private float shootCooldown = 5f;
 	public GameObject projectile;
 	public Animator animator;
-
+	
+	private AudioSource audio;
 	private Rigidbody2D enemyBody;
 	private Vector3 velocity = Vector3.zero;
 	private float currentCooldown;
@@ -16,6 +17,7 @@ public class RangeRobotController : MonoBehaviour {
 
 	private void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
+		audio = GetComponent<AudioSource>();
 		currentCooldown = shootCooldown;
 	}
 
@@ -55,6 +57,7 @@ public class RangeRobotController : MonoBehaviour {
 	public void Shoot(float tarX, float tarY) {
 		if (!hasShot) {
 			animator.SetTrigger("shootTrigger");
+			audio.Play(0);
 			GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(tarX * 10f, tarY * 10f);
 			hasShot = true;
