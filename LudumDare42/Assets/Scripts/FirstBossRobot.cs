@@ -115,7 +115,7 @@ public class FirstBossRobot : MonoBehaviour {
 			leftBallLR.startWidth = 1f;
 			leftBallLR.endWidth = 0.5f;
 			leftBallLR.SetPosition (0, new Vector3(leftSpikeBall.transform.position.x, leftSpikeBall.transform.position.y, 0f));
-			leftBallLR.SetPosition (1, new Vector3(leftArm.transform.position.x, leftArm.transform.position.y, 1f));
+			leftBallLR.SetPosition (1, new Vector3(leftArm.transform.position.x, leftArm.transform.position.y, 0f));
 
 			rightBallLR.enabled = true;
 			rightBallLR.positionCount = 2;
@@ -123,7 +123,7 @@ public class FirstBossRobot : MonoBehaviour {
 			rightBallLR.startWidth = 1f;
 			rightBallLR.endWidth = 0.5f;
 			rightBallLR.SetPosition (0, new Vector3(rightSpikeBall.transform.position.x, rightSpikeBall.transform.position.y, 0f));
-			rightBallLR.SetPosition (1, new Vector3(rightArm.transform.position.x, rightArm.transform.position.y, 1f));
+			rightBallLR.SetPosition (1, new Vector3(rightArm.transform.position.x, rightArm.transform.position.y, 0f));
 		}
 	}
 }
