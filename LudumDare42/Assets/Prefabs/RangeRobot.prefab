@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114401802345478954}
   - component: {fileID: 212619093811003274}
   - component: {fileID: 82329235933501372}
+  - component: {fileID: 61180723807492762}
   m_Layer: 0
   m_Name: RangeRobot
   m_TagString: Enemy
@@ -39,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425373558792166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.411055, y: -9.090643, z: 0}
+  m_LocalPosition: {x: 20.15, y: -11.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -65,6 +66,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &61180723807492762
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1425373558792166}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01571846, y: -0.17288494}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.5, y: 4.5}
+    newSize: {x: 4.5, y: 4.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.588417, y: 2.0795956}
+  m_EdgeRadius: 0
 --- !u!82 &82329235933501372
 AudioSource:
   m_ObjectHideFlags: 1
@@ -84,7 +110,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.90569687
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -193,7 +219,7 @@ MonoBehaviour:
   maxDistance: 20
   shootDistance: 40
   speed: 10
-  shootSpeed: 40
+  shootSpeed: 80
 --- !u!114 &114863531882567114
 MonoBehaviour:
   m_ObjectHideFlags: 1
