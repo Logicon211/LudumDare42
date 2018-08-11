@@ -202,11 +202,6 @@ Prefab:
       objectReference: {fileID: 1936811478}
     - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
         type: 2}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
-        type: 2}
       propertyPath: energySlider
       value: 
       objectReference: {fileID: 442833876}
@@ -255,6 +250,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4921488042739540, guid: e357cc7107051604bab2528e9e0e92da, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114109752002838548, guid: e357cc7107051604bab2528e9e0e92da,
+        type: 2}
+      propertyPath: dropFromSky
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2357,7 +2357,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.641074
+  orthographic size: 17
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
