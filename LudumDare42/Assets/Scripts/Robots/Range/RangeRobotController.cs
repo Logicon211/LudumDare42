@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeRobotController : MonoBehaviour {
+public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
 	[SerializeField] private float shootCooldown = 5f;
@@ -62,5 +62,9 @@ public class RangeRobotController : MonoBehaviour {
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(tarX * 10f, tarY * 10f);
 			hasShot = true;
 		}
+	}
+
+	public void Damage(float damageTaken) {
+		//Do Stuff
 	}
 }
