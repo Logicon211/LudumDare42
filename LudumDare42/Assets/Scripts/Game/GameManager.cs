@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour {
 	public static GameManager instance = null;
 
 	private List<GameObject> objects = new List<GameObject>();
+	private string[] tagsToLookFor = {"Player", "Enemy", "Garbage"};
+	private bool paused = false;
 
 	private void Awake() {
 		//Check if instance already exists
@@ -22,9 +25,9 @@ public class GameManager : MonoBehaviour {
 				//Sets this to not be destroyed when reloading scene
 				DontDestroyOnLoad(gameObject);
 				//Get a component reference to the attached BoardManager script
-				boardScript = GetComponent<BoardManager>();
+				//boardScript = GetComponent<BoardManager>();
 				//Call the InitGame function to initialize the first level 
-				InitGame();
+				//InitGame();
 	}
 
 	// Use this for initialization
@@ -35,10 +38,24 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown(KeyCode.Z) && !paused)
+        {
+			Debug.Log("ASDFASDFASDFASDFGASDF");
+            SceneManager.LoadScene("ChadsSceneForTestingSceneTransitionWithoutLosingShit", LoadSceneMode.Additive);
+			paused = true;
+        }
+		if (Input.GetKeyDown(KeyCode.X) && paused)
+        {
+            paused = false;
+    		SceneManager.UnloadSceneAsync("ChadsSceneForTestingSceneTransitionWithoutLosingShit");
+        }
 	}
 
 	void SaveLevelState() {
-
+		for (int i = 0; i < tagsToLookFor.Length; i++) {
+			foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tagsToLookFor[i])) {
+				objects.Add(obj);
+			}
+		}
 	}
 }
