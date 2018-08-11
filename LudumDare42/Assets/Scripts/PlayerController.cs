@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamageable<float> {
 
@@ -17,7 +18,11 @@ public GameObject hitEffect;
 
 public float health = 100f;
 public float energy = 0f;
+public float maxPunchCharge = 3f;
 
+public Slider healthSlider;
+public Slider energySlider;
+public Slider chargeSlider;
 
 private bool LeftClick;
 private bool RightClick;
@@ -90,8 +95,8 @@ private GameObject punchCollider;
         }
 
         if(RightClickRelease == true){
-            if(punchCharge > 3){
-                punchCharge =3f;
+            if(punchCharge > maxPunchCharge){
+                punchCharge = maxPunchCharge;
             }
 			dashDirection = direction;
                 Dashing = true;
@@ -147,7 +152,16 @@ private GameObject punchCollider;
 			punchCharge += 2*Time.fixedDeltaTime;
             playerspeed = 1.2f;
             animator.SetBool("PunchCharge", true);
+
+            chargeSlider.gameObject.SetActive(true);
+            chargeSlider.value = (punchCharge / maxPunchCharge) * 100;
+        } else {
+            chargeSlider.gameObject.SetActive(false);
         }
+
+        //Update Health Slider
+        healthSlider.value = health;
+        energySlider.value = energy;
 
 	}
 
@@ -169,12 +183,6 @@ private GameObject punchCollider;
                 damagable.Damage(punchDamage);
             }
         }
-        Debug.Log("FINISH PUNCH");
-        punching = false;
-        animator.SetBool("Punching", false);
-    }
-
-    public void ResetPunchState() {
         punching = false;
         animator.SetBool("Punching", false);
     }
