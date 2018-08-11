@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour, IDamageable<float> {
 
 private Rigidbody2D PlayerRigidBody;
 private Vector3 velocity=Vector3.zero;
@@ -189,7 +189,9 @@ private GameObject punchCollider;
     public void SetPowerUp(int powerupValue) {
         //Do Stuff
     }
-
+    public void Damage(float damageTaken) {
+        health -= damageTaken;
+    }
     
 
 }
