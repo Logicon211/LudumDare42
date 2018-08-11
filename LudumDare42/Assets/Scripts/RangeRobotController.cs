@@ -7,6 +7,7 @@ public class RangeRobotController : MonoBehaviour {
 	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
 	[SerializeField] private float shootCooldown = 5f;
 	public GameObject projectile;
+	public Animator animator;
 
 	private Rigidbody2D enemyBody;
 	private Vector3 velocity = Vector3.zero;
@@ -44,13 +45,16 @@ public class RangeRobotController : MonoBehaviour {
 	}
 
 	// Rotates the enemy to face the player
-	public void Rotate() {
-
+	public void Rotate(Vector3 direction) {
+		if (direction != Vector3.zero) {
+			transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+		}
 	}
 
 	// Shoots a bullet towards the given x and y
 	public void Shoot(float tarX, float tarY) {
 		if (!hasShot) {
+			animator.SetTrigger("shootTrigger");
 			GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(tarX * 10f, tarY * 10f);
 			hasShot = true;
