@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GarbageController : MonoBehaviour {
+public class GarbageController : MonoBehaviour, IDamageable<float> {
 
 	public float spawnYOffset = 5f;
 	public float dropSpeed = 1f;
 
 	public Material shadowMaterial;
+
+	public float health = 30f;
+
+	public GameObject explosion;
 
 	private SpriteRenderer casterRenderer;
 	private SpriteRenderer shadowRenderer;
@@ -15,10 +19,14 @@ public class GarbageController : MonoBehaviour {
 	private GameObject shadowObject;
 	private bool isDropping;
 
+	private float currentHealth;
+
 	// Use this for initialization
 	void Start () {
 		//InitShadow ();
 		//StartGarbageDrop ();
+
+		currentHealth = health;
 	}
 
 	// Update is called once per frame
@@ -57,6 +65,15 @@ public class GarbageController : MonoBehaviour {
 		if (yPos <= shadowObject.transform.position.y) {
 			Object.Destroy (shadowObject);
 			//TODO: init collider and rigid body
+		}
+	}
+
+	public void Damage(float damageTaken) {
+		// Damages enemy and handles death shit
+		currentHealth -= damageTaken;
+		if (currentHealth <= 0f) {
+			Instantiate(explosion, transform.position, Quaternion.identity);
+			Destroy(gameObject);
 		}
 	}
 

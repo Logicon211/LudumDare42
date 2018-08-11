@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 50799355703052656}
   - component: {fileID: 58218717710479114}
   m_Layer: 0
-  m_Name: CraigWalk_1
+  m_Name: ChadsBetterCraigForTestingPleaseDontChangeBrodieWillGetMadAtMe
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
