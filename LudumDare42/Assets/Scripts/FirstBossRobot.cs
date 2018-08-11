@@ -2,28 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeRobot : MonoBehaviour {
+public class FirstBossRobot : MonoBehaviour {
 
 	public float speed = 1f;
 	public float attackCooldown = 1f;
 	public float attackRange = 5f;
 
-	public AudioClip punchSound;
-	public AudioClip punchConnectSound;
-
 	private float attacking = 0f;
+
 
 	GameObject player;
 
 	Rigidbody2D RB;
 	Animator animator;
-	AudioSource AS;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
 		RB = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
-		AS = GetComponent<AudioSource>();
 		// groundCheck1 = transform.Find ("groundCheck1");
 		
 	}
@@ -48,9 +44,7 @@ public class MeleeRobot : MonoBehaviour {
 				if(attacking <= 0f) {
 					animator.SetTrigger("Attack");
 					attacking = attackCooldown;
-					AS.PlayOneShot(punchSound);
 				} else {
-
 					attacking -= Time.deltaTime;
 					if (attacking <= 0f) {
 						attacking = 0f;
@@ -59,10 +53,5 @@ public class MeleeRobot : MonoBehaviour {
 				
 			}
 		}
-	}
-
-	public void finishPunch() {
-		//TODO: Check player distance and if they're still close, finish the punch, make the noise and do damage
-		AS.PlayOneShot(punchConnectSound);
 	}
 }
