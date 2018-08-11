@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamageable<float> {
 
@@ -18,6 +19,7 @@ public GameObject hitEffect;
 public float health = 100f;
 public float energy = 0f;
 
+public Slider healthSlider;
 
 private bool LeftClick;
 private bool RightClick;
@@ -149,6 +151,9 @@ private GameObject punchCollider;
             animator.SetBool("PunchCharge", true);
         }
 
+        //Update Health Slider
+        healthSlider.value = health;
+
 	}
 
 
@@ -169,12 +174,6 @@ private GameObject punchCollider;
                 damagable.Damage(punchDamage);
             }
         }
-        Debug.Log("FINISH PUNCH");
-        punching = false;
-        animator.SetBool("Punching", false);
-    }
-
-    public void ResetPunchState() {
         punching = false;
         animator.SetBool("Punching", false);
     }

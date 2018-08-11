@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 50799355703052656}
   - component: {fileID: 58258317194008856}
   m_Layer: 0
-  m_Name: CraigWalk_0
+  m_Name: Craig
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   hitEffect: {fileID: 1410727943527182, guid: fd5f37cdce8bb924ca437ea0068f84af, type: 2}
   health: 100
   energy: 0
+  healthSlider: {fileID: 0}
 --- !u!212 &212706571129101480
 SpriteRenderer:
   m_ObjectHideFlags: 1
