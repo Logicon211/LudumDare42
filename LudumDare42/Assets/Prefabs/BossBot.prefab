@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4815f6c1a1012e140891f18ea32177c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   speed: 3
   extendCooldown: 5
   extendRange: 12
@@ -166,8 +167,10 @@ MonoBehaviour:
   ballExtendSpeed: 20
   spikeBall: {fileID: 1396573463121552, guid: 4902ec218ef23df46948ae3b6f73b2d7, type: 2}
   chainMaterial: {fileID: 2100000, guid: a019dd9da3040f84994f0c4ec06b997d, type: 2}
+  garbageController: {fileID: 1958027917742884, guid: ef47ab27ddb472b4897cbc3134a1b41a,
+    type: 2}
+  explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
   timeBetweenExtending: 0
-  currentBallRadius: 0
 --- !u!212 &212648699677240342
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstBossRobot : MonoBehaviour {
+public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
+
+	public float health = 100f;
 
 	public float speed = 1f;
 	public float extendCooldown = 1f;
@@ -15,26 +17,35 @@ public class FirstBossRobot : MonoBehaviour {
 
 	public GameObject spikeBall;
 	public Material chainMaterial;
+	public GameObject garbageController;
+
+	public GameObject explosion;
 
 	private float attacking = 0f;
 
 	public float timeBetweenExtending = 0f;
 
 	private bool extending;
-	public float currentBallRadius;
+	private float currentBallRadius;
+
+	private float currentHealth;
 
 	GameObject player;
 
 	Rigidbody2D RB;
 	Animator animator;
+	SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 
 	GameObject leftArm, rightArm, leftSpikeBall, rightSpikeBall;
+	GarbageSpawnController garbageScript;
 
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
 		RB = GetComponent<Rigidbody2D>();
+		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		// groundCheck1 = transform.Find ("groundCheck1");
 		leftArm = transform.Find("LeftArm").gameObject;
 		rightArm = transform.Find("RightArm").gameObject;
@@ -45,6 +56,8 @@ public class FirstBossRobot : MonoBehaviour {
 		timeBetweenExtending = 5f;
 		extending = false;
 		currentBallRadius = ballRadius;
+
+		currentHealth = health;
 		
 	}
 	
@@ -124,6 +137,27 @@ public class FirstBossRobot : MonoBehaviour {
 			rightBallLR.endWidth = 0.5f;
 			rightBallLR.SetPosition (0, new Vector3(rightSpikeBall.transform.position.x, rightSpikeBall.transform.position.y, 0f));
 			rightBallLR.SetPosition (1, new Vector3(rightArm.transform.position.x, rightArm.transform.position.y, 0f));
+
+
+			//Get Redder as you take more damage:
+			if (currentHealth < health) {
+				if(currentHealth < 0f) {
+					currentHealth = 0f;
+				}
+				float healthPercentage = currentHealth/health;
+				spriteRenderer.color = new Color(1f, healthPercentage, healthPercentage);
+			}
+		}
+	}
+
+	// Damages enemy and handles death shit
+	public void Damage(float damageTaken) {
+		currentHealth -= damageTaken;
+		if (currentHealth <= 0f) {
+			GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
+			explosionEffect.transform.localScale = new Vector3(explosionEffect.transform.localScale.x*2,explosionEffect.transform.localScale.y*2,explosionEffect.transform.localScale.z*2);
+			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
+			Destroy(gameObject);
 		}
 	}
 }
