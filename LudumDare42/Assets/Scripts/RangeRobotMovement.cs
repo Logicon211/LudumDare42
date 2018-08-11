@@ -35,14 +35,16 @@ public class RangeRobotMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		Vector3 normal = (player.transform.position - transform.position).normalized;
 		if (move) {
-			moveDir = (player.transform.position - transform.position).normalized;	
+			moveDir = normal;	
 		}
 		if (shoot) {
-			shootDir = (player.transform.position - transform.position).normalized;	
+			shootDir = normal;	
 		}
 		controller.Move(moveDir.x * speed * Time.fixedDeltaTime, moveDir.y * speed * Time.fixedDeltaTime);
 		controller.Shoot(shootDir.x * shootSpeed * Time.fixedDeltaTime, shootDir.y * shootSpeed * Time.fixedDeltaTime);
+		controller.Rotate(normal);
 		moveDir = Vector3.zero;
 		shootDir = Vector3.zero;
 		move = false;
