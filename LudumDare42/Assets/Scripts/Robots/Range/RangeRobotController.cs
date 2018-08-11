@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	[Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;
+	[SerializeField] private float health = 10f;
 	[SerializeField] private float shootCooldown = 5f;
 	public GameObject projectile;
 	public Animator animator;
@@ -65,6 +66,9 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	}
 
 	public void Damage(float damageTaken) {
-		//Do Stuff
+		health -= damageTaken;
+		if (health <= 0f) {
+			
+		}
 	}
 }
