@@ -72,7 +72,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
-  - time: 0.33333334
+  - time: 0.25
     functionName: finishPunch
     data: 
     objectReferenceParameter: {fileID: 0}
