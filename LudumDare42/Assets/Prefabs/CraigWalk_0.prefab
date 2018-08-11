@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95488728110591628}
   - component: {fileID: 114692075978091928}
   - component: {fileID: 50799355703052656}
-  - component: {fileID: 58580896308789640}
+  - component: {fileID: 58258317194008856}
   m_Layer: 0
   m_Name: CraigWalk_0
   m_TagString: Player
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1814285342790134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7110415, y: 5.028925, z: 0}
+  m_LocalPosition: {x: -3.5126548, y: -2.7124538, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -57,14 +57,14 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58580896308789640
+--- !u!58 &58258317194008856
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,9 +76,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000011920929, y: 0.15239906}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.96890545
+  m_Radius: 1.8
 --- !u!95 &95488728110591628
 Animator:
   serializedVersion: 3
