@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1749158283953910}
+  m_IsPrefabAsset: 1
+--- !u!1 &1749158283953910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4259987192658120}
+  - component: {fileID: 114338222897396308}
+  m_Layer: 0
+  m_Name: PowerUpController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4259987192658120
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749158283953910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.797056, y: -2.9597628, z: -99.88257}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114338222897396308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749158283953910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9d17347acea6748b823d8e6d9ea04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupArray:
+  - {fileID: 1418502714045242, guid: 75afca46dd0a4bd4183de3e00273c904, type: 2}
+  - {fileID: 1418502714045242, guid: fbe1b393c55ea3044bed3d2de952fea4, type: 2}
+  - {fileID: 1418502714045242, guid: ae3600b887072b549a942cbb38711f89, type: 2}
+  - {fileID: 1418502714045242, guid: eb0afac35fc1c984da2a7bb3d82f96dc, type: 2}
+  - {fileID: 1418502714045242, guid: 668c8e058881408498094e344d1e0fa9, type: 2}
+  - {fileID: 1418502714045242, guid: 6187203397cbdde4098d5c1283b5f737, type: 2}
