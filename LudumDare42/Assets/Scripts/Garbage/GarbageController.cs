@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GarbageController : MonoBehaviour, IDamageable<float> {
 
-	public float spawnYOffset = 5f;
-	public float dropSpeed = 1f;
+	private float spawnYOffset = 5f;
+	private float dropSpeed = 15f;
 
 	public Material shadowMaterial;
 
@@ -56,27 +56,34 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 		float topOfCameraY = topOfCameraInWorldCoordinates.y;
 
 		//Spawn garbage above cameras max y value
-		transform.position = new Vector2 (transform.position.x, topOfCameraY + spawnYOffset); 
+		transform.position = new Vector2 (transform.position.x, topOfCameraY + spawnYOffset);
+		casterRenderer.sortingLayerName = "Falling Garbage";
 		isDropping = true;
 	}
 
 	private void InitShadow () {
 		shadowObject = new GameObject ();
-		shadowObject.transform.position = transform.position;
+		shadowObject.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+		shadowObject.transform.localScale = transform.localScale;
+		shadowObject.transform.rotation = transform.rotation;
 		casterRenderer = GetComponent<SpriteRenderer> ();
 		shadowRenderer = shadowObject.AddComponent<SpriteRenderer> ();
 		shadowRenderer.sprite = casterRenderer.sprite;
+
 		shadowRenderer.material = shadowMaterial;
+//		shadowRenderer.material.color = Color.black;
+//		shadowRenderer.material.color.a = 0.5f;
 		shadowRenderer.sortingLayerName = casterRenderer.sortingLayerName;
 		shadowRenderer.sortingOrder = casterRenderer.sortingOrder + 10;
 	}
 
 	private void DropGarbage () {
 		float yPos = Mathf.Max (shadowObject.transform.position.y, transform.position.y - (dropSpeed * Time.fixedDeltaTime));
-		transform.position = new Vector2 (transform.position.x, yPos);
+		transform.position = new Vector3 (transform.position.x, yPos, -2);
 		if (yPos <= shadowObject.transform.position.y) {
 			Destroy (shadowObject);
 			collider.enabled = true;
+			casterRenderer.sortingLayerName = "Garbage";
 			isDropping = false;
 		}
 	}
