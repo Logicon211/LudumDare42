@@ -102,25 +102,6 @@ private GameObject punchCollider;
 
         }
 	
-
-
-
-
-
-
-	}
-
-
-    private void FixedUpdate() {
-        if(punching){
-            punchCooldown -= Time.fixedDeltaTime;
-            if(punchCooldown <= 0){
-                punching = false;
-            }
-
-        }
-
-
         //PlaYer movement
         if(!Dashing && !Dodging){
             NewPos = new Vector2(horizontalMove*playerspeed, verticalMove*playerspeed);
@@ -158,7 +139,6 @@ private GameObject punchCollider;
             if(!punching){
                 animator.SetTrigger("Punch");
                 punching = true;
-                punchCooldown=0.55f;
             }
         }
 
@@ -169,7 +149,10 @@ private GameObject punchCollider;
             animator.SetBool("PunchCharge", true);
         }
 
+	}
 
+
+    private void FixedUpdate() {
 
     }
 
@@ -186,6 +169,11 @@ private GameObject punchCollider;
                 damagable.Damage(punchDamage);
             }
         }
+    }
+
+    public void FinishPunch() {
+        Debug.Log("FINISH PUNCH");
+        punching = false;
     }
 
     /*
