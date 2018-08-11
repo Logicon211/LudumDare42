@@ -8,7 +8,16 @@ private Rigidbody2D PlayerRigidBody;
 private Vector3 velocity=Vector3.zero;
 private float horizontalMove;
 private float verticalMove;
-public float playerspeed = 2f;
+
+public float defaultPlayerSpeed = 4f;
+public float playerspeed = 4f;
+
+public float punchDamage = 5f;
+public GameObject hitEffect;
+
+public float health = 100f;
+public float energy = 0f;
+
 
 private bool LeftClick;
 private bool RightClick;
@@ -27,8 +36,10 @@ Animator animator;
 private bool punchCharging;
 private Vector2 punchChargeDirection;
 private bool punching;
-private Vector2 punchDirecion;
 private float punchCooldown;
+private Vector2 punchDirecion;
+
+private GameObject punchCollider;
 
 
 	// Use this for initialization
@@ -39,6 +50,7 @@ private float punchCooldown;
         Dodging = false;
 		NewPos = transform.position;
         animator = GetComponent<Animator>();
+        punchCollider = transform.Find("punchCollider").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -64,6 +76,10 @@ private float punchCooldown;
 
         if (direction != Vector2.zero && !Dashing && !punching) {
             transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
+        } else if (Dashing || punching) {
+            PlayerRigidBody.freezeRotation = true;
+        } else {
+            PlayerRigidBody.freezeRotation = false;
         }
 
         if(SpacebarDown == true && !Dodging){
@@ -97,8 +113,6 @@ private float punchCooldown;
 
     private void FixedUpdate() {
         if(punching){
-            Debug.Log("punching: "+ punching);
-            Debug.Log("punchCooldown: "+punchCooldown);
             punchCooldown -= Time.fixedDeltaTime;
             if(punchCooldown <= 0){
                 punching = false;
@@ -120,18 +134,18 @@ private float punchCooldown;
 
         }
         if(Dashing){
-            PlayerRigidBody.velocity = 10*punchCharge * dashDirection;
+            PlayerRigidBody.velocity = 30*punchCharge * dashDirection;
 			dashCooldown -= Time.fixedDeltaTime;
             if(dashCooldown <= 0){
                 punchCharge=0;
                 Dashing=false;
-                playerspeed=2f;
+                playerspeed=defaultPlayerSpeed;
                 animator.SetBool("PunchCharge", false);
             }
         }
 
         if(Dodging){
-            PlayerRigidBody.velocity = 20 * DodgeDirection;
+            PlayerRigidBody.velocity = 35 * DodgeDirection;
 			dodgeCooldown -= Time.fixedDeltaTime;
             if(dodgeCooldown <= 0){
                 Dodging=false;
@@ -157,6 +171,21 @@ private float punchCooldown;
 
 
 
+    }
+
+    public void Punch() {
+        Collider2D[] contacts = new Collider2D[2];
+        ContactFilter2D filter = new ContactFilter2D();
+        punchCollider.GetComponent<Collider2D>().OverlapCollider(filter.NoFilter(), contacts);
+
+
+        foreach(Collider2D collision in contacts) {
+            if(collision != null && collision.gameObject.GetComponent<IDamageable<float>>() != null) {
+                Instantiate(hitEffect, new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z - 1f), Quaternion.identity);
+                IDamageable<float> damagable = collision.gameObject.GetComponent<IDamageable<float>>();
+                damagable.Damage(punchDamage);
+            }
+        }
     }
 
     /*
