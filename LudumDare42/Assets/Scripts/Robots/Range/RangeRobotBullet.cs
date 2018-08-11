@@ -6,6 +6,6 @@ public class RangeRobotBullet : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//Shiny Teeth
+		transform.Rotate(Vector3.forward * 1000f * Time.deltaTime);
 	}
 }
