@@ -81,8 +81,10 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	}
 
 	public void finishPunch() {
-		//TODO: Check player distance and if they're still close, finish the punch, make the noise and do damage
-		Instantiate(hitEffect, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 0.1f), Quaternion.identity);
+		if(Vector2.Distance(player.transform.position, transform.position) <= attackRange) {
+			//TODO: Do damage to player
+			Instantiate(hitEffect, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 0.1f), Quaternion.identity);
+		}
 	}
 
 	// Damages enemy and handles death shit
