@@ -8,18 +8,22 @@ public class MeleeRobot : MonoBehaviour {
 	public float attackCooldown = 1f;
 	public float attackRange = 5f;
 
-	private float attacking = 0f;
+	public AudioClip punchSound;
+	public AudioClip punchConnectSound;
 
+	private float attacking = 0f;
 
 	GameObject player;
 
 	Rigidbody2D RB;
 	Animator animator;
+	AudioSource AS;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
 		RB = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
+		AS = GetComponent<AudioSource>();
 		// groundCheck1 = transform.Find ("groundCheck1");
 		
 	}
@@ -44,7 +48,9 @@ public class MeleeRobot : MonoBehaviour {
 				if(attacking <= 0f) {
 					animator.SetTrigger("Attack");
 					attacking = attackCooldown;
+					AS.PlayOneShot(punchSound);
 				} else {
+
 					attacking -= Time.deltaTime;
 					if (attacking <= 0f) {
 						attacking = 0f;
@@ -53,9 +59,10 @@ public class MeleeRobot : MonoBehaviour {
 				
 			}
 		}
+	}
 
-		if(Input.GetMouseButtonDown(0)) {
-			animator.SetTrigger("Attack");
-		}
+	public void finishPunch() {
+		//TODO: Check player distance and if they're still close, finish the punch, make the noise and do damage
+		AS.PlayOneShot(punchConnectSound);
 	}
 }
