@@ -93,7 +93,7 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 		currentHealth -= damageTaken;
 		if (currentHealth <= 0f) {
 			Instantiate(explosion, transform.position, Quaternion.identity);
-			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
+			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
 			Destroy(gameObject);
 		}
 	}

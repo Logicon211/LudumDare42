@@ -8,6 +8,7 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 	private float dropSpeed = 15f;
 
 	public Material shadowMaterial;
+	public bool dropFromSky = true;
 
 	public float health = 30f;
 
@@ -31,9 +32,11 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 		currentHealth = health;
 		powerUpControllerGameObject = GameObject.FindWithTag ("PowerUpController");
 		powerUpController = powerUpControllerGameObject.GetComponent<PowerUpController> ();
-		collider = GetComponent<Collider2D> ();
-		InitShadow ();
-		StartGarbageDrop ();
+		if (dropFromSky) {
+			collider = GetComponent<Collider2D> ();
+			InitShadow ();
+			StartGarbageDrop ();
+		}
 	}
 
 	// Update is called once per frame
