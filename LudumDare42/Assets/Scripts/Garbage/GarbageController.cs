@@ -31,7 +31,6 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	void FixedUpdate () {
