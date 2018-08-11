@@ -13,23 +13,27 @@ private float verticalMove;
 public float defaultPlayerSpeed = 4f;
 public float playerspeed = 4f;
 
-public float punchDamage = 5f;
 public GameObject hitEffect;
 
 public float health = 100f;
 public float energy = 0f;
 public float maxPunchCharge = 3f;
+public float punchDamage = 5f;
+public float maxDashDamage = 20f;
+public float dashDamage = 0f;
+private float dashCooldownTime = 0.3f;
 
 public Slider healthSlider;
 public Slider energySlider;
 public Slider chargeSlider;
+
+public bool Dashing;
 
 private bool LeftClick;
 private bool RightClick;
 private bool RightClickRelease;
 private float punchCharge;
 Vector2 direction;
-private bool Dashing;
 private Vector2 dashDirection;
 private float dashCooldown;
 private bool SpacebarDown;
@@ -95,13 +99,10 @@ private GameObject punchCollider;
         }
 
         if(RightClickRelease == true){
-            if(punchCharge > maxPunchCharge){
-                punchCharge = maxPunchCharge;
-            }
 			dashDirection = direction;
-                Dashing = true;
-                dashCooldown=0.3f;   //punchCharge;
-                animator.SetTrigger("PunchUnleash");
+            Dashing = true;
+            dashCooldown=dashCooldownTime;   //punchCharge;
+            animator.SetTrigger("PunchUnleash");
                 //Charge punch release
             //transform.
 
@@ -122,11 +123,14 @@ private GameObject punchCollider;
         if(Dashing){
             PlayerRigidBody.velocity = 30*punchCharge * dashDirection;
 			dashCooldown -= Time.fixedDeltaTime;
+            PlayerRigidBody.mass = 100;
             if(dashCooldown <= 0){
+                PlayerRigidBody.mass = 1;
                 punchCharge=0;
                 Dashing=false;
                 playerspeed=defaultPlayerSpeed;
                 animator.SetBool("PunchCharge", false);
+                dashDamage = 0;
             }
         }
 
@@ -152,6 +156,13 @@ private GameObject punchCollider;
 			punchCharge += 2*Time.fixedDeltaTime;
             playerspeed = 1.2f;
             animator.SetBool("PunchCharge", true);
+
+            if(punchCharge > maxPunchCharge){
+                punchCharge = maxPunchCharge;
+            }
+
+            float punchPercentage = (punchCharge / maxPunchCharge);
+            dashDamage = maxDashDamage * punchPercentage;
 
             chargeSlider.gameObject.SetActive(true);
             chargeSlider.value = (punchCharge / maxPunchCharge) * 100;
