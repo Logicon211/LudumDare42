@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212184558284505932}
   - component: {fileID: 61933507641254398}
   - component: {fileID: 50874603217270106}
+  - component: {fileID: 114109752002838548}
   m_Layer: 0
   m_Name: SquareBlock
   m_TagString: Untagged
@@ -36,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1109124763923004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.69, y: 1.297, z: 0}
+  m_LocalPosition: {x: 38.2, y: -8.3, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,6 +88,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.79, y: 1.82}
   m_EdgeRadius: 0
+--- !u!114 &114109752002838548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1109124763923004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3efb594d61d3274e858ca7c7191c160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageSpawnYOffset: 5
+  health: 30
+  explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
 --- !u!212 &212184558284505932
 SpriteRenderer:
   m_ObjectHideFlags: 1

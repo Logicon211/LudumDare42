@@ -24,6 +24,11 @@ private Vector2 DodgeDirection;
 private Vector2 NewPos;
 private float dodgeCooldown;
 Animator animator;
+private bool punchCharging;
+private Vector2 punchChargeDirection;
+private bool punching;
+private Vector2 punchDirecion;
+private float punchCooldown;
 
 
 	// Use this for initialization
@@ -57,7 +62,7 @@ Animator animator;
 
     
 
-        if (direction != Vector2.zero && !Dashing) {
+        if (direction != Vector2.zero && !Dashing && !punching) {
             transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
         }
 
@@ -75,6 +80,7 @@ Animator animator;
 			dashDirection = direction;
                 Dashing = true;
                 dashCooldown=0.3f;   //punchCharge;
+                animator.SetTrigger("PunchUnleash");
                 //Charge punch release
             //transform.
 
@@ -90,7 +96,18 @@ Animator animator;
 
 
     private void FixedUpdate() {
-        //Plater movement
+        if(punching){
+            Debug.Log("punching: "+ punching);
+            Debug.Log("punchCooldown: "+punchCooldown);
+            punchCooldown -= Time.fixedDeltaTime;
+            if(punchCooldown <= 0){
+                punching = false;
+            }
+
+        }
+
+
+        //PlaYer movement
         if(!Dashing && !Dodging){
             NewPos = new Vector2(horizontalMove*playerspeed, verticalMove*playerspeed);
             PlayerRigidBody.velocity = playerspeed * NewPos;
@@ -109,6 +126,7 @@ Animator animator;
                 punchCharge=0;
                 Dashing=false;
                 playerspeed=2f;
+                animator.SetBool("PunchCharge", false);
             }
         }
 
@@ -123,13 +141,18 @@ Animator animator;
 
 
         if(LeftClick == true){
-            //punch attack!
+            if(!punching){
+                animator.SetTrigger("Punch");
+                punching = true;
+                punchCooldown=0.55f;
+            }
         }
 
         if(RightClick == true){
             //charge punch attack
 			punchCharge += 2*Time.fixedDeltaTime;
             playerspeed = 1.2f;
+            animator.SetBool("PunchCharge", true);
         }
 
 
