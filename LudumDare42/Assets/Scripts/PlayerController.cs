@@ -74,9 +74,9 @@ private GameObject punchCollider;
 
     
 
-        if (direction != Vector2.zero && !Dashing && !punching) {
+        if (direction != Vector2.zero && !Dashing) {
             transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
-        } else if (Dashing || punching) {
+        } else if (Dashing) {
             PlayerRigidBody.freezeRotation = true;
         } else {
             PlayerRigidBody.freezeRotation = false;
@@ -136,10 +136,10 @@ private GameObject punchCollider;
 
 
         if(LeftClick == true){
-            if(!punching){
-                animator.SetTrigger("Punch");
+            //if(!punching){
+                animator.SetBool("Punching", true);
                 punching = true;
-            }
+            //}
         }
 
         if(RightClick == true){
@@ -169,11 +169,14 @@ private GameObject punchCollider;
                 damagable.Damage(punchDamage);
             }
         }
-    }
-
-    public void FinishPunch() {
         Debug.Log("FINISH PUNCH");
         punching = false;
+        animator.SetBool("Punching", false);
+    }
+
+    public void ResetPunchState() {
+        punching = false;
+        animator.SetBool("Punching", false);
     }
 
     /*
