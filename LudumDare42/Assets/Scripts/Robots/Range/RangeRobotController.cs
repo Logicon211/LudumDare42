@@ -26,6 +26,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	private bool isDead = false;
 
+	private Transform shootPosition;
+
 	void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
 		audio = GetComponent<AudioSource>();
@@ -37,6 +39,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+		shootPosition = transform.Find("ShootPosition");
 		currentHealth = health;
 	}
 	
@@ -83,7 +86,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		if (!hasShot) {
 			animator.SetTrigger("shootTrigger");
 			audio.Play(0);
-			GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+			GameObject bullet = Instantiate(projectile, shootPosition.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(tarX * 10f, tarY * 10f);
 			hasShot = true;
 		}
