@@ -50,6 +50,7 @@ public class WasteWizard : MonoBehaviour {
 	public GameObject rightHandHalfGameObject;
 
 	private GameManager gameManager;
+	private float healthLoseLimit;
 
 	// Use this for initialization
 	void Start () {
@@ -68,7 +69,7 @@ public class WasteWizard : MonoBehaviour {
 		garbageBall.SetActive(false);
 		vulnMode = false;
 		maxHealth=100;
-		wizardHealth=100;
+		wizardHealth=5;
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -79,10 +80,10 @@ public class WasteWizard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-        // if(Input.GetKeyDown(KeyCode.Q))
-        // {
-        //     ChangePhase();
-        // }
+         if(Input.GetKeyDown(KeyCode.Q))
+         {
+             ChangePhase();
+         }
 
 		if (wizardHealth < maxHealth) {
 			if(wizardHealth < 0f) {
@@ -100,7 +101,7 @@ public class WasteWizard : MonoBehaviour {
 		if(firstphase){
 		if(castTimer < 0){
 			CastSpell();
-			castTimer -= TimerReset;
+			castTimer = TimerReset;
 			TimerReset -= 0.5f;
 		}
 
@@ -272,7 +273,7 @@ public class WasteWizard : MonoBehaviour {
 
 			if(castTimer < 0){
 				CastBossSpell();
-				castTimer -= TimerReset;
+				castTimer = TimerReset;
 				TimerReset -= 0.5f;
 		}
 
@@ -288,6 +289,7 @@ public class WasteWizard : MonoBehaviour {
 					if(movementCooldown < 0){
 						SpellStage=1;
 						VulnerableCooldown = 8f;
+						healthLoseLimit = wizardHealth - 35;
 						Debug.Log("Moved into vuln area");
 						leftHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
 						rightHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
@@ -297,7 +299,7 @@ public class WasteWizard : MonoBehaviour {
 				}
 				else if (SpellStage ==1){
 					VulnerableCooldown-=Time.fixedDeltaTime;
-					if(VulnerableCooldown < 0){
+					if(VulnerableCooldown < 0 || wizardHealth < healthLoseLimit){
 						wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
 						Debug.Log("vulnerability complete");
 						SpellStage =2;
@@ -589,15 +591,9 @@ public class WasteWizard : MonoBehaviour {
 		firstphase=false;
 		castTimer=10f;
 		TimerReset = 10f;
-		RightHandFist.enabled = true;
-		RightHandFull.enabled = false;
-		RightHandHalf.enabled = false;
-		LeftHandFist.enabled = true;
-		LeftHandFull.enabled = false;
-		LeftHandHalf.enabled = false;
-		RightHandFist.sortingOrder=3;
-		LeftHandFist.sortingOrder=3;
+
 		DuringCast =false;
+		StartCoroutine("VisibleHands");
 		AngerFaceSprite.sortingOrder=3;
 		NormalFaceSprite.sortingOrder=3;
 }
@@ -633,9 +629,52 @@ public class WasteWizard : MonoBehaviour {
 		if(wizardHealth <= 0){
 			gameManager.DecreaseBossCount();
 			//End of game?
+			wizardBody.velocity = new Vector2(0,-10);
+			StartCoroutine("explode",0);
+			StartCoroutine("explode",0.25);
+			StartCoroutine("explode",0.5);
+			StartCoroutine("explode",0.75);
+			StartCoroutine("explode",1);
+			StartCoroutine("explode",1.25);
+			StartCoroutine("explode",1.50);
+			StartCoroutine("explode",1.75);
+			StartCoroutine("explode",2);
+			StartCoroutine("explode",2.25);
+			StartCoroutine("explode",2.50);
+			StartCoroutine("explode",0);
+			StartCoroutine("explode",0.25);
+			StartCoroutine("explode",0.5);
+			StartCoroutine("explode",0.75);
+			StartCoroutine("explode",1);
+			StartCoroutine("explode",1.25);
+			StartCoroutine("explode",1.50);
+			StartCoroutine("explode",1.75);
+			StartCoroutine("explode",2);
+			StartCoroutine("explode",2.25);
+			StartCoroutine("explode",2.50);
+			StartCoroutine("explode",0);
+			StartCoroutine("explode",0.25);
+			StartCoroutine("explode",0.5);
+			StartCoroutine("explode",0.75);
+			StartCoroutine("explode",1);
+			StartCoroutine("explode",1.25);
+			StartCoroutine("explode",1.50);
+			StartCoroutine("explode",1.75);
+			StartCoroutine("explode",2);
+			StartCoroutine("explode",2.25);
+			StartCoroutine("explode",2.50);
+
 			Instantiate(explosionEffect, NormalFace.transform.position, Quaternion.identity);
-			Destroy(NormalFace);
-			Destroy(AngerFace);
+
+			
+			RightHandFist.enabled = true;
+			RightHandFull.enabled = false;
+			RightHandHalf.enabled = false;
+			LeftHandFist.enabled = true;
+			LeftHandFull.enabled = false;
+			LeftHandHalf.enabled = false;
+			LeftHandHalf.sortingOrder = 0;
+			RightHandHalf.sortingOrder = 0;
 		}
 
 	}
@@ -661,4 +700,28 @@ public class WasteWizard : MonoBehaviour {
 			fistCounter++;
 		
 	}
+
+
+IEnumerator VisibleHands() {			
+		yield return new  WaitForSeconds(6);  // or however long you want it to wait
+		RightHandFist.enabled = true;
+		RightHandFull.enabled = false;
+		RightHandHalf.enabled = false;
+		LeftHandFist.enabled = true;
+		LeftHandFull.enabled = false;
+		LeftHandHalf.enabled = false;
+		RightHandFist.sortingOrder=3;
+		LeftHandFist.sortingOrder=3;
+	}
+
+
+	IEnumerator explode(float WaitIn) {			
+		yield return new  WaitForSeconds(WaitIn);  // or however long you want it to wait
+			float Xdiff = Random.Range(-10,10);
+			float Ydiff = Random.Range(-10,10);
+			Vector3 explodePlace = new Vector3 (NormalFace.transform.position.x + Xdiff, NormalFace.transform.position.y + Ydiff, NormalFace.transform.position.z);
+			Instantiate(explosionEffect, explodePlace, Quaternion.identity);
+
+	}
+
 }
