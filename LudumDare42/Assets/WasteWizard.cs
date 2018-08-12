@@ -441,7 +441,8 @@ public class WasteWizard : MonoBehaviour {
 						else if(SpellStage ==2){
 							if(wizardHandsHolder.transform.position.y < 20){
 								Camera.main.GetComponent<Camera_controller>().CameraShake();
-								
+								float playerX = PlayerTransform.position.x;
+								float playerY = PlayerTransform.position.y;
 								garbageSpawner.SpawnAtLocation(1,playerX,playerY,true);
 								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
 								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
