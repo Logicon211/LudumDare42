@@ -14,7 +14,8 @@ public class WaveSpawnManager : MonoBehaviour {
 	private EnemySpawnController spawnController;
 
 	private void Awake() {
-		numOfLevels = spawnList.Length - 1;
+		numOfLevels = spawnList.GetLength(0) - 1;
+		Debug.Log("number of levels -1 " + numOfLevels);
 		spawnController = gameObject.GetComponent<EnemySpawnController>();
 	}
 

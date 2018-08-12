@@ -19,6 +19,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	private float currentCooldown;
 	private bool hasShot = false;
 	private GarbageSpawnController garbageScript;
+	private GameManager gameManager;
 
 	private float currentHealth;
 	SpriteRenderer spriteRenderer;
@@ -33,7 +34,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	void Start () {
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-
+		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 		currentHealth = health;
 	}
 	
@@ -90,6 +91,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		if (currentHealth <= 0f) {
 			Instantiate(explosion, transform.position, Quaternion.identity);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
+			gameManager.DecreaseEnemyCount();
 			Destroy(gameObject);
 		}
 	}

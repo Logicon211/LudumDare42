@@ -18,6 +18,8 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	private float attacking = 0f;
 	private float currentHealth;
 
+	private GameManager gameManager;
+
 	GameObject player;
 
 	Rigidbody2D RB;
@@ -32,6 +34,7 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 		animator = GetComponent<Animator>();
 		AS = GetComponent<AudioSource>();
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
+		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		currentHealth = health;
@@ -97,6 +100,7 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 		if (currentHealth <= 0f) {
 			Instantiate(explosion, transform.position, Quaternion.identity);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
+			gameManager.DecreaseEnemyCount();
 			Destroy(gameObject);
 		}
 	}
