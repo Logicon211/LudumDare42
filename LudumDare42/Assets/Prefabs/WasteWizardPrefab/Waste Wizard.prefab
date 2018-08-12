@@ -840,8 +840,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 9ccee61d47139c440b8c7be8ffb1f051, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -954,6 +954,11 @@ MonoBehaviour:
   garbageSpawner: {fileID: 0}
   garbageBall: {fileID: 1200724822182788}
   firstphase: 0
+  LeftHandSmash: {fileID: 0}
+  RightHandSmash: {fileID: 0}
+  CastFist: {fileID: 8300000, guid: 2ebf8b81d3abb6d41a520318ca6579b7, type: 3}
+  CastHailOfTrash: {fileID: 8300000, guid: 9ccee61d47139c440b8c7be8ffb1f051, type: 3}
+  CastGarbageBall: {fileID: 8300000, guid: f2e016486a5b3ed47b3f87a3b6009612, type: 3}
 --- !u!212 &212085115324334504
 SpriteRenderer:
   m_ObjectHideFlags: 1

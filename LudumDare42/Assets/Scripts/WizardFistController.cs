@@ -20,6 +20,7 @@ public class WizardFistController : MonoBehaviour {
 	private GameObject shadowObject;
 	private bool isDropping = false;
 	private bool isOnGround = false;
+	public GarbageSpawnController garbage;
 
 	private Vector2 shadowPosition;
 
@@ -101,6 +102,12 @@ public class WizardFistController : MonoBehaviour {
 	}
 
 	private void CheckCollisionWithPlayer () {
+			garbage.SpawnRandomGarbageAtRandomLocation(true);
+			garbage.SpawnRandomGarbageAtRandomLocation(true);
+			garbage.SpawnRandomGarbageAtRandomLocation(true);
+			garbage.SpawnRandomGarbageAtRandomLocation(true);
+
+			Camera.main.GetComponent<Camera_controller>().CameraShake();
 		Collider2D[] contacts = new Collider2D[5];
 		ContactFilter2D filter = new ContactFilter2D ();
 		collider.GetComponent<Collider2D> ().OverlapCollider (filter.NoFilter(), contacts);
