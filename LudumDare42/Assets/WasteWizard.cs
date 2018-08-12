@@ -258,6 +258,20 @@ public class WasteWizard : MonoBehaviour {
 				
 					//garbage ball
 					if(ChosenSpell <7){
+						
+						if(SpellStage==0){
+							wizardHands.velocity = new Vector2(0,-5);
+							LeftHandFist.sortingOrder=0;
+							RightHandFist.sortingOrder=0;
+							SpellStage=1;
+						}
+						else if (SpellStage ==1){
+							if(wizardHandsHolder.transform.position.y > 30){
+								wizardHands.velocity = new Vector2(0,-20);
+								Debug.Log("SpellStage 2");
+								SpellStage =2;
+							}
+						}
 
 					}
 

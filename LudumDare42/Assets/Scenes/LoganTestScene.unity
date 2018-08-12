@@ -256,6 +256,10 @@ Prefab:
       propertyPath: chargeSlider
       value: 
       objectReference: {fileID: 780650037}
+    - target: {fileID: 1948825268804008, guid: de2ce347350fac245bd1f127f88d29bb, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2ce347350fac245bd1f127f88d29bb, type: 2}
   m_IsPrefabAsset: 0
@@ -2446,11 +2450,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4055618782627546, guid: eb0afac35fc1c984da2a7bb3d82f96dc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 90.406845
+      value: 57
       objectReference: {fileID: 0}
     - target: {fileID: 4055618782627546, guid: eb0afac35fc1c984da2a7bb3d82f96dc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -30.019531
+      value: -8.8
       objectReference: {fileID: 0}
     - target: {fileID: 4055618782627546, guid: eb0afac35fc1c984da2a7bb3d82f96dc, type: 2}
       propertyPath: m_LocalPosition.z

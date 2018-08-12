@@ -23,6 +23,7 @@ public float maxDashDamage = 20f;
 public float dashDamage = 0f;
 public float dashCooldownTime = 0.3f;
 public float bulletVelocity = 10f;
+public float lazerDrain = 0.5f;
 
 public Slider healthSlider;
 public Slider energySlider;
@@ -37,6 +38,7 @@ private bool LeftClickDown;
 private bool LeftClick;
 private bool RightClick;
 private bool RightClickRelease;
+private bool RightClickDown;
 private float punchCharge;
 Vector2 direction;
 private Vector2 dashDirection;
@@ -55,10 +57,12 @@ private Vector2 punchDirecion;
 
 private bool usingShotgun = false;
 private bool usingLazer = false;
+private bool isShielded = false;
 
 private GameObject punchCollider;
 private AudioSource AS;
 private GameObject lazer;
+private GameObject shield;
 
 private Transform shootPosition;
 
@@ -78,6 +82,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         AS = GetComponent<AudioSource>();
         shootPosition = transform.Find("ShootPosition");
         lazer = transform.Find("Lazer").gameObject;
+        shield = transform.Find("Shield").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -91,6 +96,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         LeftClick = Input.GetButton("Fire1");
         RightClick = Input.GetButton("Fire2");
         RightClickRelease = Input.GetButtonUp("Fire2");
+        RightClickDown = Input.GetButtonDown("Fire2");
         SpacebarDown = Input.GetButtonDown("Jump");
 
     	//Player rotation to mouse          
@@ -121,7 +127,8 @@ private int LAZER_ANIMATION_LAYER = 2;
 			dashDirection = direction;
             Dashing = true;
             dashCooldown=dashCooldownTime;   //punchCharge;
-            animator.SetTrigger("PunchUnleash");
+            //animator.SetTrigger("PunchUnleash");
+            animator.SetBool("PunchUnleashed", true);
                 //Charge punch release
             //transform.
 
@@ -149,6 +156,7 @@ private int LAZER_ANIMATION_LAYER = 2;
                 Dashing=false;
                 playerspeed=defaultPlayerSpeed;
                 animator.SetBool("PunchCharge", false);
+                animator.SetBool("PunchUnleashed", false);
                 dashDamage = 0;
             }
         }
@@ -177,11 +185,22 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         if(LeftClick == true && usingLazer) {
             lazer.SetActive(true);
+            energy -= lazerDrain;
+
+            if(energy <= 0f) {
+                energy = 0f;
+                RunOutOfPickupEnergy();
+            }
         } else {
             lazer.SetActive(false);
         }
 
-        if(RightClick == true){
+        if(RightClickDown) {
+            //Reset charge on the first frame right click being down
+            punchCharge = 0f;
+        }
+
+        if(RightClick){
             //charge punch attack
 			punchCharge += 2*Time.fixedDeltaTime;
             playerspeed = 1.2f;
@@ -242,8 +261,14 @@ private int LAZER_ANIMATION_LAYER = 2;
         //Do Stuff
     }
     public void Damage(float damageTaken) {
-        health -= damageTaken;
-        AS.PlayOneShot(hurtSound);
+        if(!isShielded) {
+            health -= damageTaken;
+            AS.PlayOneShot(hurtSound);
+        } else {
+            isShielded = false;
+            //TODO: Play shield sound?
+            shield.SetActive(false);
+        }
     }
 
     public float GetHealth() {
@@ -278,6 +303,9 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         usingShotgun = false;
         usingLazer = true;
+
+        energySlider.maxValue = 100f;
+        energy = 100f;
     }
 
     public void PickupHealth() {
@@ -285,7 +313,8 @@ private int LAZER_ANIMATION_LAYER = 2;
     }
 
     public void PickupShield() {
-
+        isShielded = true;
+        shield.SetActive(true);
     }
 
     public void PickupSpeedBoost() {
