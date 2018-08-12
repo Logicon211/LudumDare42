@@ -339,7 +339,7 @@ Prefab:
         type: 2}
       propertyPath: sprite.Array.data[19]
       value: 
-      objectReference: {fileID: 21300000, guid: c36bf6f92a9cb8c449cd304492ec8cd8,
+      objectReference: {fileID: 21300000, guid: 8d12616a11534ef46b5c41a049ce3160,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
@@ -1633,7 +1633,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9711cc51380056e4caff2ff9b1683692, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.52
+  m_Volume: 0.441
   m_Pitch: 1
   Loop: 1
   Mute: 0
