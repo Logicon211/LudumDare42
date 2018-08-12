@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Finished Levels/LoadingScene.unity
     guid: 341d782ee9704674c8d0df66362204bf
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Finished Levels/GameOverScreen.unity
@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Finished Levels/VictoryScene.unity
     guid: 5bc1ed12e7f08d14fa251f33f6fe273c
+  - enabled: 1
+    path: Assets/Scenes/DontTouchTheseScenesPleaseMyCousinMadeThemAndHeWorkedReallyHardOnThem/ChadsCoolSceneDontTouchPleaseMyDadWillHitMeAgain.unity
+    guid: a496418f93344934e846a291e7102a8b
+  - enabled: 1
+    path: Assets/Scenes/DontTouchTheseScenesPleaseMyCousinMadeThemAndHeWorkedReallyHardOnThem/ChadsSceneForTestingSceneTransitionWithoutLosingShit.unity
+    guid: c24b39cfd22cbde44b945ca1a5ff869d
   m_configObjects: {}
