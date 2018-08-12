@@ -24,22 +24,25 @@ public class GameManager : MonoBehaviour {
 	private bool loss = false;
 
 	private int enemyCount = 0;
+	private int bossCount = 0;
 	private int currentLevel = 0;
 	private int maxLevel = 0;
 
 	private string[] cutscenes = {"Pre-BossScene", "SecondBossScene"};
 
+	private int nextCutsceneIndex = 0;
+
 	private void Awake() {
 		//Check if instance already exists
-		if (instance == null)
-			//if not, set instance to this
-			instance = this;
-		//If instance already exists and it's not this:
-		else if (instance != this)
-			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-			Destroy(gameObject);    
-		//Sets this to not be destroyed when reloading scene
-		DontDestroyOnLoad(gameObject);
+		// if (instance == null)
+		// 	//if not, set instance to this
+		// 	instance = this;
+		// //If instance already exists and it's not this:
+		// else if (instance != this)
+		// 	//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+		// 	Destroy(gameObject);    
+		// //Sets this to not be destroyed when reloading scene
+		// DontDestroyOnLoad(gameObject);
 		//Get a component reference to the attached BoardManager script
 		//boardScript = GetComponent<BoardManager>();
 		//Call the InitGame function to initialize the first level 
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour {
 
 		if(spawn){
 			enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+			bossCount = spawnManager.GetNumOfBossesOnLevel(currentLevel);
 			spawnManager.SpawnWave(currentLevel);
 		}
 	}
@@ -73,13 +77,15 @@ public class GameManager : MonoBehaviour {
 
 	// Logic for checking for a wave change
 	private void CheckForWaveChange() {
-		if (enemyCount == 0 && spawn) {
+		if (enemyCount <= 0 && bossCount <= 0 && spawn) {
 			currentTimeBetweenSpawns -= Time.deltaTime;
 			if (currentTimeBetweenSpawns <= 0f) {
 				currentLevel++;
 
 				if (currentLevel <= maxLevel) {
 					enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+					bossCount = spawnManager.GetNumOfBossesOnLevel(currentLevel);
+					
 					// Enemy count under 0 indicates a cutscene
 					if (enemyCount < 0) {
 						StartCutScene();
@@ -101,13 +107,16 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartCutScene() {
-		SceneManager.LoadScene(cutscenes[(enemyCount * -1) - 1], LoadSceneMode.Additive);
+		Debug.Log("START SCENE INDEX: " + nextCutsceneIndex);
+		SceneManager.LoadScene(cutscenes[nextCutsceneIndex], LoadSceneMode.Additive);
 		listener.enabled = false; // Disabling the main cameras audio listener so that we have exactly one listener
 		PauseGame();
 	}
 
 	public void StopCutScene() {
-		SceneManager.UnloadSceneAsync(cutscenes[(enemyCount * -1) - 1]);
+		Debug.Log("END SCENE INDEX: " + nextCutsceneIndex);
+		SceneManager.UnloadSceneAsync(cutscenes[nextCutsceneIndex]);
+		nextCutsceneIndex++;
 		listener.enabled = true;
 		SetEnemyCountToZero();
 		UnPauseGame();
@@ -145,6 +154,11 @@ public class GameManager : MonoBehaviour {
 			enemyCount--;
 	}
 
+	public void DecreaseBossCount() {
+		if (bossCount > 0)
+			bossCount--;
+	}
+
 	//Used By cutscenes to indicate they are done
 	public void SetEnemyCountToZero() {
 		enemyCount = 0;
@@ -164,15 +178,18 @@ public class GameManager : MonoBehaviour {
 	// 1 - intro screen
 	// 2 - start of gameplay
 	public void Reset() {
+		Debug.Log("RESET");
 		victory = false;
 		loss = false;
 		SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
 		currentLevel = 0;
 		enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+		bossCount = spawnManager.GetNumOfBossesOnLevel(currentLevel);
 		spawnManager.SpawnWave(currentLevel);
 	}
 
 	public void LoadScene(int sceneIndex) {
+		Debug.Log("SCENE INDEX " + sceneIndex);
 		if (sceneIndex == 0) {
 			SceneManager.LoadScene(sceneIndex);
 			Destroy(gameObject);
