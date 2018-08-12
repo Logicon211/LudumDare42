@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	public float cooldownBetweenSpawns = 4f;
+	private float currentTimeBetweenSpawns;
+
 	private GameObject player;
 	private PlayerController playerController;
 	public static GameManager instance = null;
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour {
 		//InitGame();
 		spawnManager = GetComponent<WaveSpawnManager>();
 		maxLevel = spawnManager.GetNumOfLevels();
+		currentTimeBetweenSpawns = cooldownBetweenSpawns;
 	}
 
 	// Use this for initialization
@@ -52,14 +56,8 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (enemyCount == 0) {
-			currentLevel++;
-			if (currentLevel <= maxLevel) {
-				enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
-				spawnManager.SpawnWave(currentLevel);
-			}
-		}
-
+		CheckForWaveChange();
+		CheckGameOver();
 		if (Input.GetKeyDown(KeyCode.Z) && !paused)
         {
             SceneManager.LoadScene("ChadsSceneForTestingSceneTransitionWithoutLosingShit", LoadSceneMode.Additive);
@@ -74,8 +72,24 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-	public void GameOver() {
-		SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
+	// Logic for checking for a wave change
+	private void CheckForWaveChange() {
+		if (enemyCount == 0) {
+			currentTimeBetweenSpawns -= Time.deltaTime;
+			if (currentTimeBetweenSpawns <= 0f) {
+				currentLevel++;
+				if (currentLevel <= maxLevel) {
+					enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+					spawnManager.SpawnWave(currentLevel);
+					currentTimeBetweenSpawns = cooldownBetweenSpawns;
+				}
+			}
+		}
+	}
+
+	public void CheckGameOver() {
+		if (playerController.GetHealth() <= 0f)
+			SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
 	}
 
 	public void Victory() {
