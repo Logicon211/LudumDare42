@@ -16,6 +16,8 @@ private float Offset;
  
  private Vector3 Center;
  private float ViewDistance;
+ private float shake;
+ private float shakeStrength;
 
 
 
@@ -27,6 +29,8 @@ private float Offset;
 		Height = 0.0f;
 		Offset = 0.0f;
  		ViewDistance = 0.0f;
+		 shake = 0;
+		 shakeStrength=3f;
 	}
 	
 	// Update is called once per frame
@@ -43,15 +47,25 @@ private float Offset;
 	float newX = playerX + mouseX /2;
 	float newY = playerY + mouseY / 2;
 
-	newX = Mathf.Clamp(newX, playerX-3, playerX+3);
+	newX = Mathf.Clamp(newX, playerX-4, playerX+4);
 	
-	newY = Mathf.Clamp(newY, playerY-3, playerY+3);
+	newY = Mathf.Clamp(newY, playerY-4, playerY+4);
 
      Center = new Vector3(newX, newY, -10);
      
 
 
      transform.position = Vector3.Lerp(transform.position, Center + new Vector3(0,Height,Offset), Time.deltaTime * Damping); 
+
+
+
+
+
+		if(shake != 0){
+		Camera.main.transform.localPosition += (Random.insideUnitSphere * shake);
+		transform.localPosition = new Vector3(transform.position.x,transform.position.y,-10);
+		shake = Mathf.MoveTowards(shake, 0, Time.deltaTime * shakeStrength);
+		}
 	}
 
     void LateUpdate () 
@@ -59,5 +73,9 @@ private float Offset;
         // Set the position of the camera's transform to be the same as the player's, but offset by the calculated offset distance.
         //transform.position = player.transform.position + offset;
     }
+
+	public void CameraShake(){
+		shake = shakeStrength;
+	}
 
 }
