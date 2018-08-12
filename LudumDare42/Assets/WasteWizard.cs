@@ -45,7 +45,7 @@ public class WasteWizard : MonoBehaviour {
 		LeftHandFist.enabled = false;
 		firstphase = true;
 		fistCounter =0;
-		garbageBall.SetActive(false);
+		//garbageBall.SetActive(false);
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -272,7 +272,7 @@ public class WasteWizard : MonoBehaviour {
 						}
 						else if (SpellStage ==1){
 							if(wizardHandsHolder.transform.position.y < -6){
-								garbageBall.SetActive(true);
+								//garbageBall.SetActive(true);
 								wizardHands.velocity = new Vector2(0,20);
 								Debug.Log("SpellStage 2");
 								SpellStage =2;
@@ -280,7 +280,7 @@ public class WasteWizard : MonoBehaviour {
 						}
 							else if(SpellStage ==2){
 								if(wizardHandsHolder.transform.position.y > 40){
-									garbageBall.SetActive(false);
+									//garbageBall.SetActive(false);
 									wizardHands.velocity = new Vector2(0,0);
 									SpellStage =3;
 									wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);

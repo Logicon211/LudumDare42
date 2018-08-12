@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - PowerUpController
   - Garbage
+  - Rocket
   layers:
   - Default
   - TransparentFX
@@ -55,4 +56,10 @@ TagManager:
     locked: 0
   - name: Falling Garbage
     uniqueID: 4287016455
+    locked: 0
+  - name: Fists
+    uniqueID: 267325641
+    locked: 0
+  - name: Falling Fists
+    uniqueID: 2917124279
     locked: 0

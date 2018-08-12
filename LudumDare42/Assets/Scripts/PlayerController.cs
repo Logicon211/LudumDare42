@@ -156,7 +156,6 @@ private int LAZER_ANIMATION_LAYER = 2;
         }
 	
         //PlaYer movement
-        Debug.Log("SPEED: " + playerspeed);
         if(!Dashing && !Dodging){
             NewPos = Vector3.Normalize(new Vector2(horizontalMove*playerspeed, verticalMove*playerspeed));
             PlayerRigidBody.velocity = playerspeed * NewPos;

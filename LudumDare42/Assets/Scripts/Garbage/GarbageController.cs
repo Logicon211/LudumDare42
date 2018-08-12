@@ -81,13 +81,10 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 		shadowObject.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
 		shadowObject.transform.localScale = transform.localScale;
 		shadowObject.transform.rotation = transform.rotation;
-		//casterRenderer = GetComponent<SpriteRenderer> ();
 		shadowRenderer = shadowObject.AddComponent<SpriteRenderer> ();
 		shadowRenderer.sprite = casterRenderer.sprite;
 
 		shadowRenderer.material = shadowMaterial;
-//		shadowRenderer.material.color = Color.black;
-//		shadowRenderer.material.color.a = 0.5f;
 		shadowRenderer.sortingLayerName = casterRenderer.sortingLayerName;
 		shadowRenderer.sortingOrder = casterRenderer.sortingOrder + 10;
 	}
