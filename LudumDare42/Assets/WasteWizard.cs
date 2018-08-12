@@ -24,9 +24,11 @@ public class WasteWizard : MonoBehaviour {
 	public SpriteRenderer RightHandFist;
 	public SpriteRenderer LeftHandFist;
 	public GarbageSpawnController garbageSpawner;
+	public GameObject garbageBall;
 	public bool firstphase;
 	private float ChosenSpell;
 	private int fistCounter;
+	private Transform PlayerTransform;
 
 
 	// Use this for initialization
@@ -43,6 +45,9 @@ public class WasteWizard : MonoBehaviour {
 		LeftHandFist.enabled = false;
 		firstphase = true;
 		fistCounter =0;
+		garbageBall.SetActive(false);
+		
+		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
 	}
 	
@@ -254,23 +259,62 @@ public class WasteWizard : MonoBehaviour {
 
 			if(DuringCast){
 				
-				float ChosenSpell = Random.Range(1f, 20f);
+				//float ChosenSpell = Random.Range(1f, 20f);
 				
 					//garbage ball
 					if(ChosenSpell <7){
 						
 						if(SpellStage==0){
-							wizardHands.velocity = new Vector2(0,-5);
+							wizardHands.velocity = new Vector2(0,-8);
 							LeftHandFist.sortingOrder=0;
 							RightHandFist.sortingOrder=0;
 							SpellStage=1;
 						}
 						else if (SpellStage ==1){
-							if(wizardHandsHolder.transform.position.y > 30){
-								wizardHands.velocity = new Vector2(0,-20);
+							if(wizardHandsHolder.transform.position.y < -6){
+								garbageBall.SetActive(true);
+								wizardHands.velocity = new Vector2(0,20);
 								Debug.Log("SpellStage 2");
 								SpellStage =2;
 							}
+						}
+							else if(SpellStage ==2){
+								if(wizardHandsHolder.transform.position.y > 40){
+									garbageBall.SetActive(false);
+									wizardHands.velocity = new Vector2(0,0);
+									SpellStage =3;
+									wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+									Debug.Log("SpellStage 3, garbage ball cast complete");
+
+									float playerX = PlayerTransform.position.x;
+									float playerY = PlayerTransform.position.y;
+									garbageSpawner.SpawnAtLocation(1,playerX,playerY,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX+10,playerY,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX+5f,playerY+5f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX,playerY+10f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX-5f,playerY+5f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX-10f,playerY,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX-5f,playerY-5f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX,playerY-10f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX+7.5f,playerY-7.5f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX+15,playerY,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX+7.5f,playerY+7.5f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX,playerY+15f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX-7.5f,playerY+7.5f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX-15f,playerY,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX-7.5f,playerY-7.5f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX,playerY-15f,true);
+									garbageSpawner.SpawnRandomGarbageAtLocation(playerX+7.5f,playerY-7.5f,true);
+									garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+									garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+									garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+									garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+									garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								
+									DuringCast = false;
+									NormalFace.SetActive(true);
+									AngerFace.SetActive(false);		
+								}
 						}
 
 					}
@@ -422,7 +466,8 @@ public class WasteWizard : MonoBehaviour {
 		DuringCast = true;
 		wizardBody.velocity = new Vector2(0f, 0f);
 		SpellStage = 0;
-		ChosenSpell = Random.Range(1f, 20f);
+	//	ChosenSpell = Random.Range(1f, 20f);
+		ChosenSpell = 5;
 		NormalFace.SetActive(false);
 		AngerFace.SetActive(true);	
 	}
