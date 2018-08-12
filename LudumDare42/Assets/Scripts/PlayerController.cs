@@ -21,12 +21,15 @@ public float maxPunchCharge = 3f;
 public float punchDamage = 5f;
 public float maxDashDamage = 20f;
 public float dashDamage = 0f;
-private float dashCooldownTime = 0.3f;
+public float dashCooldownTime = 0.3f;
+public float bulletVelocity = 10f;
 
 public Slider healthSlider;
 public Slider energySlider;
 public Slider chargeSlider;
+public GameObject bullet;
 public AudioClip hurtSound;
+public AudioClip shotgunSound;
 
 public bool Dashing;
 
@@ -49,9 +52,17 @@ private bool punching;
 private float punchCooldown;
 private Vector2 punchDirecion;
 
+private bool usingShotgun = false;
+private bool usingLazer = false;
+
 private GameObject punchCollider;
 private AudioSource AS;
 
+private Transform shootPosition;
+
+private int BASE_ANIMATION_LAYER = 0;
+private int SHOTGUN_ANIMATION_LAYER = 1;
+private int LAZER_ANIMATION_LAYER = 2;
 
 	// Use this for initialization
 	void Start () {
@@ -63,6 +74,7 @@ private AudioSource AS;
         animator = GetComponent<Animator>();
         punchCollider = transform.Find("punchCollider").gameObject;
         AS = GetComponent<AudioSource>();
+        shootPosition = transform.Find("ShootPosition");
 	}
 	
 	// Update is called once per frame
@@ -148,10 +160,15 @@ private AudioSource AS;
 
 
         if(LeftClick == true){
-            //if(!punching){
+            if(usingShotgun) {
+                ShootShotgun();
+                animator.SetTrigger("ShootGun");
+            } else if (usingLazer) {
+                
+            } else {
                 animator.SetBool("Punching", true);
                 punching = true;
-            //}
+            }
         }
 
         if(RightClick == true){
@@ -217,6 +234,81 @@ private AudioSource AS;
     public void Damage(float damageTaken) {
         health -= damageTaken;
         AS.PlayOneShot(hurtSound);
+    }
+
+    public void RunOutOfPickupEnergy() {
+        animator.SetLayerWeight(BASE_ANIMATION_LAYER, 100f);
+        animator.SetLayerWeight(SHOTGUN_ANIMATION_LAYER, 0f);
+        animator.SetLayerWeight(LAZER_ANIMATION_LAYER, 0f);
+
+        usingShotgun = false;
+        usingLazer = false;
+    }
+
+    public void PickupShotgun() {
+        animator.SetLayerWeight(BASE_ANIMATION_LAYER, 0f);
+        animator.SetLayerWeight(SHOTGUN_ANIMATION_LAYER, 100f);
+        animator.SetLayerWeight(LAZER_ANIMATION_LAYER, 0f);
+
+        usingShotgun = true;
+        usingLazer = false;
+    }
+
+    public void PickupLazer() {
+        animator.SetLayerWeight(BASE_ANIMATION_LAYER, 0f);
+        animator.SetLayerWeight(SHOTGUN_ANIMATION_LAYER, 0f);
+        animator.SetLayerWeight(LAZER_ANIMATION_LAYER, 100f);
+
+        usingShotgun = false;
+        usingLazer = true;
+    }
+
+    public void PickupHealth() {
+
+    }
+
+    public void PickupShield() {
+
+    }
+
+    public void PickupSpeedBoos() {
+
+    }
+
+    public void ShootShotgun() {
+        AS.PlayOneShot(shotgunSound);
+
+        Quaternion rotation = transform.rotation;
+        rotation *= Quaternion.Euler(Vector3.forward * 90);
+
+        GameObject projectileLaunched = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched2 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched3 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched4 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched5 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched6 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched7 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched8 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+        GameObject projectileLaunched9 = Instantiate (bullet, shootPosition.position, rotation) as GameObject;
+
+        projectileLaunched.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched2.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched3.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched4.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched5.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched6.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched7.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched8.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched9.transform.Rotate (0, 0, Random.Range (-15, 15));
+        projectileLaunched.GetComponent<Rigidbody2D> ().velocity = projectileLaunched.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched2.GetComponent<Rigidbody2D> ().velocity = projectileLaunched2.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched3.GetComponent<Rigidbody2D> ().velocity = projectileLaunched3.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched4.GetComponent<Rigidbody2D> ().velocity = projectileLaunched4.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched5.GetComponent<Rigidbody2D> ().velocity = projectileLaunched5.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched6.GetComponent<Rigidbody2D> ().velocity = projectileLaunched6.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched7.GetComponent<Rigidbody2D> ().velocity = projectileLaunched7.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched8.GetComponent<Rigidbody2D> ().velocity = projectileLaunched8.transform.right * (bulletVelocity + Random.Range (-2, 2));
+        projectileLaunched9.GetComponent<Rigidbody2D> ().velocity = projectileLaunched9.transform.right * (bulletVelocity + Random.Range (-2, 2));
     }
     
 

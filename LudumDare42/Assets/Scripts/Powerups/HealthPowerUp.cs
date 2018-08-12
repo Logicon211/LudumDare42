@@ -8,3 +8,4 @@ public class HealthPowerUp : PowerUp {
 		controller.SetPowerUp(3);
 	}
 }
+
