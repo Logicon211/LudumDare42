@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour {
 	private PlayerController playerController;
 	public static GameManager instance = null;
 
-	private List<GameObject> objects = new List<GameObject>();
-	private string[] tagsToLookFor = {"Player", "Enemy", "Garbage"};
 	private bool paused = false;
 
 	private void Awake() {
@@ -40,22 +38,28 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Z) && !paused)
         {
-			Debug.Log("ASDFASDFASDFASDFGASDF");
             SceneManager.LoadScene("ChadsSceneForTestingSceneTransitionWithoutLosingShit", LoadSceneMode.Additive);
-			paused = true;
+			PauseGame();
         }
 		if (Input.GetKeyDown(KeyCode.X) && paused)
         {
-            paused = false;
     		SceneManager.UnloadSceneAsync("ChadsSceneForTestingSceneTransitionWithoutLosingShit");
+			UnPauseGame();
         }
 	}
 
-	void SaveLevelState() {
-		for (int i = 0; i < tagsToLookFor.Length; i++) {
-			foreach (GameObject obj in GameObject.FindGameObjectsWithTag(tagsToLookFor[i])) {
-				objects.Add(obj);
-			}
-		}
+	public void EndGame() {
+		
 	}
+
+	public void PauseGame() {
+		paused = true;
+		Time.timeScale = 0;	
+	}
+
+	public void UnPauseGame() {
+		paused = false;
+		Time.timeScale = 1;
+	}
+
 }
