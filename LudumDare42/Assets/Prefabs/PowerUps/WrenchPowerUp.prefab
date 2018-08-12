@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61405764856813166}
   - component: {fileID: 114177419933152844}
   - component: {fileID: 82688462148354960}
+  - component: {fileID: 50034663368199772}
   m_Layer: 0
   m_Name: WrenchPowerUp
   m_TagString: Untagged
@@ -37,12 +38,32 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418502714045242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8143979, y: -3.8617792, z: 0}
+  m_LocalPosition: {x: 60.6684, y: -6.2086864, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50034663368199772
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418502714045242}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 4
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61405764856813166
 BoxCollider2D:
   m_ObjectHideFlags: 1

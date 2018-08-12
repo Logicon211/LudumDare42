@@ -14,6 +14,8 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 
 	public GameObject explosion;
 
+	public float powerupSpawnChance = 10f;
+
 	private GameObject powerUpControllerGameObject;
 	private PowerUpController powerUpController;
 
@@ -96,7 +98,12 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 		currentHealth -= damageTaken;
 		if (currentHealth <= 0f) {
 			Instantiate(explosion, transform.position, Quaternion.identity);
-			powerUpController.SpawnRandomPowerUpAtLocation (transform.position.x, transform.position.y);
+
+			float randomRoll = Random.Range(1f, 100f);
+			Debug.Log(randomRoll);
+			if(randomRoll <= powerupSpawnChance) {
+				powerUpController.SpawnRandomPowerUpAtLocation (transform.position.x, transform.position.y);
+			}
 			Destroy(gameObject);
 		}
 	}
