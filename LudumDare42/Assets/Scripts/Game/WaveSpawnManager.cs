@@ -7,7 +7,7 @@ public class WaveSpawnManager : MonoBehaviour {
 
 
 	//This is the spawn list we will use. each array in the array will be 
-	public int[,] spawnList = {{1, 1, 0}, {2, 1, 0}, {-1, 0, 0}, {0, 0, 1}, {1, 1, 0}, {0, 0, 2}, {-2, 0, 0}};
+	public int[,] spawnList = {{1, 1, 0}, {2, 1, 0}, {-1, 0, 0}, {0, 0, 1}, {1, 1, 0}, {-2, 0, 0}, {0, 0, 2}};
 	public int test;
 	
 	int numOfLevels;
@@ -35,6 +35,11 @@ public class WaveSpawnManager : MonoBehaviour {
 	
 	public int GetNumOfEnemiesOnLevel(int level) {
 		int total = spawnList[level, 0] + spawnList[level, 1];
+		return total;
+	}
+
+	public int GetNumOfBossesOnLevel(int level) {
+		int total = 0;
 		if(spawnList[level, 2] > 0) {
 			total++;
 		}
