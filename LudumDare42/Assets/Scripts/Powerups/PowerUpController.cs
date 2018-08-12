@@ -9,9 +9,21 @@ public class PowerUpController : MonoBehaviour {
 	private int arrayLength;
 	private AudioSource AS;
 
+	private GameObject player;
+	public Transform [] spawnLocations;
+
 	private void Awake() {
 		AS = GetComponent<AudioSource>();
 		arrayLength = powerupArray.Length - 1;
+	}
+
+	/// <summary>
+	/// Start is called on the frame when a script is enabled just before
+	/// any of the Update methods is called the first time.
+	/// </summary>
+	void Start()
+	{
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
 	public GameObject SpawnPowerUpAtLocation(int powerupIndex, float x, float y) {
@@ -37,5 +49,19 @@ public class PowerUpController : MonoBehaviour {
 			}
 		}
 		//AS.PlayOneShot(clip, 1);
+	}
+
+	public Vector2 PickSpawnPointFurthestFromPlayer() {
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag("Player");
+		}
+		Transform furthestPoint = null;
+		foreach(Transform point in spawnLocations) {
+			if(furthestPoint == null || Vector2.Distance(point.position, player.transform.position) > Vector2.Distance(furthestPoint.position, player.transform.position)) {
+				furthestPoint = point;
+			}
+		}
+
+		return new Vector2(furthestPoint.position.x, furthestPoint.position.y);
 	}
 }

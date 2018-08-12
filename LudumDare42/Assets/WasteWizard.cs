@@ -29,6 +29,7 @@ public class WasteWizard : MonoBehaviour {
 	public SpriteRenderer NormalFaceSprite;
 	public SpriteRenderer AngerFaceSprite;
 	public GarbageSpawnController garbageSpawner;
+	public GameObject powerUpController;
 	public GameObject garbageBall;
 	public bool firstphase;
 	private float ChosenSpell;
@@ -699,6 +700,12 @@ public class WasteWizard : MonoBehaviour {
 			Camera.main.GetComponent<Camera_controller>().CameraShake();
 			fistCounter++;
 		
+	}
+
+	public void SpawnPowerup() {
+		PowerUpController controller = powerUpController.GetComponent<PowerUpController>();
+		Vector2 powerUpLocation = controller.PickSpawnPointFurthestFromPlayer();
+		controller.SpawnRandomPowerUpAtLocation(powerUpLocation.x, powerUpLocation.y);
 	}
 
 

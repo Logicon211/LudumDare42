@@ -305,10 +305,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeSpeed: 1.5
   sprite:
-  - {fileID: 21300000, guid: d4b97f9a92866d84f97e1604c8732141, type: 3}
-  - {fileID: 21300000, guid: 20e2483ac4067be438092b81583548bf, type: 3}
-  - {fileID: 21300000, guid: 024bf46c6e324e0459b901ee75ab06ea, type: 3}
-  disableInputForSeconds: 1
+  - {fileID: 21300000, guid: d34793e0ae3e0de4fa605fdabe030b9d, type: 3}
+  - {fileID: 21300000, guid: a0db44aedbc1a5547af3af28c5a6df91, type: 3}
+  disableInputForSeconds: 0.6
   gui: {fileID: 0}
   audioSource: {fileID: 0}
   jingle: {fileID: 0}
