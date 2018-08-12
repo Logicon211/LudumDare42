@@ -61,6 +61,7 @@ public class WaveSpawnManager : MonoBehaviour {
 		} else if (spawnList[level, 2] == 2) {
 			//Waste Wizard boss mode
 			Debug.Log("START BOSS");
+			spawnController.FinalBossActivate();
 		}
 	}
 }

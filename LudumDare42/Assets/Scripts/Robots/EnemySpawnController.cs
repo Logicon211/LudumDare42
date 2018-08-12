@@ -57,6 +57,11 @@ public class EnemySpawnController : MonoBehaviour {
 
 	public void FinalBossActivate() {
 		//Activate
+		GameObject wizard = GameObject.Find("Waste Wizard");
+		if(wizard != null) {
+			WasteWizard wizardController = wizard.GetComponent<WasteWizard>();
+			wizardController.ChangePhase();
+		}
 	}
 
 	public Vector2 PickSpawnPointNotOnPlayer() {

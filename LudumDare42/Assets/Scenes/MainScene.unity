@@ -2766,6 +2766,11 @@ Prefab:
       propertyPath: garbageSpawner
       value: 
       objectReference: {fileID: 1083726343}
+    - target: {fileID: 114414605195373620, guid: 76a6d3f37766faa498231ac9b516173b,
+        type: 2}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76a6d3f37766faa498231ac9b516173b, type: 2}
   m_IsPrefabAsset: 0

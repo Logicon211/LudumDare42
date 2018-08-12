@@ -22,6 +22,7 @@ public class PowerUpController : MonoBehaviour {
 	}
 
 	public GameObject SpawnRandomPowerUpAtLocation(float x, float y) {
+		Random.seed = System.DateTime.Now.Millisecond;
 		int powerupIndex = Random.Range (0, arrayLength + 1);
 		return Instantiate(powerupArray[powerupIndex], new Vector2(x, y), Quaternion.identity);
 	}

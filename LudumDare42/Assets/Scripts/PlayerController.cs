@@ -144,12 +144,12 @@ private int LAZER_ANIMATION_LAYER = 2;
             PlayerRigidBody.freezeRotation = false;
         }
 
-        if(SpacebarDown == true && !Dodging){
-            Dodging = true;
-            dodgeCooldown = 0.25f;
-			DodgeDirection = NewPos;
-			DodgeDirection.Normalize ();
-        }
+        // if(SpacebarDown == true && !Dodging){
+        //     Dodging = true;
+        //     dodgeCooldown = 0.25f;
+		// 	DodgeDirection = NewPos;
+		// 	DodgeDirection.Normalize ();
+        // }
 
         if(RightClickRelease == true){
 			dashDirection = direction;
@@ -191,14 +191,14 @@ private int LAZER_ANIMATION_LAYER = 2;
             }
         }
 
-        if(Dodging){
-            PlayerRigidBody.velocity = 35 * DodgeDirection;
-			dodgeCooldown -= Time.fixedDeltaTime;
-            if(dodgeCooldown <= 0){
-                Dodging=false;
-            }
+        // if(Dodging){
+        //     PlayerRigidBody.velocity = 35 * DodgeDirection;
+		// 	dodgeCooldown -= Time.fixedDeltaTime;
+        //     if(dodgeCooldown <= 0){
+        //         Dodging=false;
+        //     }
 
-        }
+        // }
 
 
 		if(LeftClickDown && !RightClick && !Dashing  && !gameManager.IsPaused()){

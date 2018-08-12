@@ -127,7 +127,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4253692315625382, guid: d5aebe7870488f946853beed4c5d3d95, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2089
       objectReference: {fileID: 0}
     - target: {fileID: 4253692315625382, guid: d5aebe7870488f946853beed4c5d3d95, type: 2}
       propertyPath: m_LocalPosition.y
@@ -308,6 +308,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d4b97f9a92866d84f97e1604c8732141, type: 3}
   - {fileID: 21300000, guid: 20e2483ac4067be438092b81583548bf, type: 3}
   - {fileID: 21300000, guid: 024bf46c6e324e0459b901ee75ab06ea, type: 3}
+  disableInputForSeconds: 1
   gui: {fileID: 0}
   audioSource: {fileID: 0}
   jingle: {fileID: 0}
@@ -382,7 +383,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 814918722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43, y: -1.35, z: 0.25167346}
+  m_LocalPosition: {x: 2089.4302, y: -1.35, z: 0.25167346}
   m_LocalScale: {x: 603.0464, y: 343.60516, z: 10.3982}
   m_Children: []
   m_Father: {fileID: 0}
@@ -506,7 +507,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1206836190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.540766, y: -5.965317, z: 18.465988}
+  m_LocalPosition: {x: 2075.4592, y: -5.965317, z: 18.465988}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -521,7 +522,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4758907218183876, guid: 45b85a383e97c734fa42b98664f5964c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.9581738
+      value: 2089.958
       objectReference: {fileID: 0}
     - target: {fileID: 4758907218183876, guid: 45b85a383e97c734fa42b98664f5964c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -641,7 +642,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1647479845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11}
+  m_LocalPosition: {x: 2089, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
