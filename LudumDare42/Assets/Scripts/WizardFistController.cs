@@ -109,11 +109,6 @@ public class WizardFistController : MonoBehaviour {
 				PlayerController playerController = collision.gameObject.GetComponent<PlayerController> ();
 				if (playerController != null) {
 					playerController.Damage (30f);
-					Vector2 force = collision.gameObject.transform.position - transform.position;
-					force.Normalize ();
-					force *= 100f;
-					Debug.Log (force);
-					collision.gameObject.GetComponent<Rigidbody2D> ().AddForce (force);
 					return;
 				}
 			}
