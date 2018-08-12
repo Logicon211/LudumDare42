@@ -70,7 +70,7 @@ public class WasteWizard : MonoBehaviour {
 		garbageBall.SetActive(false);
 		vulnMode = false;
 		maxHealth=100;
-		wizardHealth=5;
+		wizardHealth=100;
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -204,6 +204,7 @@ public class WasteWizard : MonoBehaviour {
 			else if(SpellStage ==5){
 				if(wizardHandsHolder.transform.position.y < 20){
 					Camera.main.GetComponent<Camera_controller>().CameraShake();
+					SpawnPowerup();
 					
 					float playerX = PlayerTransform.position.x;
 					float playerY = PlayerTransform.position.y;
@@ -276,7 +277,7 @@ public class WasteWizard : MonoBehaviour {
 				CastBossSpell();
 				castTimer = TimerReset;
 				TimerReset -= 0.5f;
-		}
+			}
 
 
 			if(NumSpellsCast ==2){
@@ -351,7 +352,6 @@ public class WasteWizard : MonoBehaviour {
 				
 					//garbage ball
 					if(ChosenSpell <7){
-						
 						if(SpellStage==0){
 							wizardHands.velocity = new Vector2(0,-8);
 							LeftHandFist.sortingOrder=0;
@@ -370,6 +370,7 @@ public class WasteWizard : MonoBehaviour {
 						}
 							else if(SpellStage ==2){
 								if(wizardHandsHolder.transform.position.y > 50){
+									SpawnPowerup();
 									garbageBall.SetActive(false);
 									wizardHands.velocity = new Vector2(0,0);
 									SpellStage =3;
@@ -443,6 +444,7 @@ public class WasteWizard : MonoBehaviour {
 						}
 						else if(SpellStage ==2){
 							if(wizardHandsHolder.transform.position.y < 20){
+								SpawnPowerup();
 								Camera.main.GetComponent<Camera_controller>().CameraShake();
 								float playerX = PlayerTransform.position.x;
 								float playerY = PlayerTransform.position.y;
@@ -500,13 +502,13 @@ public class WasteWizard : MonoBehaviour {
 
 					//Fist
 					else if(ChosenSpell < 20){
-
 						if(SpellStage==0){
 							wizardHands.velocity = new Vector2(0,10);
 							SpellStage=1;
 						}
 						else if (SpellStage ==1){
 							if(wizardHandsHolder.transform.position.y > 40){
+								SpawnPowerup();
 								audiosource.clip = CastFist;
 								audiosource.Play();
 								Debug.Log("SpellStage 2");

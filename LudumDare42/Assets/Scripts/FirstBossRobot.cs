@@ -21,6 +21,12 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 
 	public GameObject explosion;
 
+	
+	public AudioClip itsGarbageDay;
+	public float quipTimer = 1f;
+
+	private AudioSource AS;
+
 	private float attacking = 0f;
 
 	public float timeBetweenExtending = 0f;
@@ -45,6 +51,7 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 	private bool isDead = false;
 
 	void Start () {
+		AS = GetComponent<AudioSource>();
 		player = GameObject.FindGameObjectWithTag("Player");
 		RB = GetComponent<Rigidbody2D>();
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
@@ -67,6 +74,11 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 	
 	// Update is called once per frame
 	void Update () {
+		quipTimer -= Time.deltaTime;
+		if(quipTimer <= 0) {
+			AS.PlayOneShot(itsGarbageDay);
+			quipTimer = 8f;
+		}
 		if (player != null) {
 			// float angle = Mathf.Atan2(player.transform.position.y, player.transform.position.x) * Mathf.Rad2Deg;
         	// transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

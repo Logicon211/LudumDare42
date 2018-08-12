@@ -33,6 +33,7 @@ public Slider chargeSlider;
 public GameObject bullet;
 public AudioClip hurtSound;
 public AudioClip shotgunSound;
+public AudioClip shieldHitSound;
 
 public bool Dashing;
 public GameObject gameControllerObject;
@@ -297,6 +298,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         } else {
             isShielded = false;
             //TODO: Play shield sound?
+            AS.PlayOneShot(shieldHitSound);
             shield.SetActive(false);
         }
     }
