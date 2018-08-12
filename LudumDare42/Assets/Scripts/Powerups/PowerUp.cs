@@ -23,7 +23,13 @@ public abstract class PowerUp : MonoBehaviour {
 	void Start()
 	{
 		RB = GetComponent<Rigidbody2D>();
-		RB.velocity = new Vector2(40f, 0f);
+
+		var x = Random.Range(-1f, 1f);
+		var y = Random.Range(-1f, 1f);
+		var direction = new Vector2(x, y);
+		direction = direction.normalized * 40f;
+		
+		RB.velocity = direction;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {

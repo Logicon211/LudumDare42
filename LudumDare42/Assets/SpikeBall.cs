@@ -26,6 +26,7 @@ public class SpikeBall : MonoBehaviour {
 		PlayerController player = other.gameObject.GetComponent<PlayerController>();
 		if(player != null) {
 			player.Damage(spikeBallDamage);
+			//TODO: Add a force to him maybe?
 		}
 	}
 }
