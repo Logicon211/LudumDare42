@@ -100,6 +100,7 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 			collider.enabled = true;
 			casterRenderer.sortingLayerName = "Garbage";
 			isDropping = false;
+			CheckCollisionWithPlayer ();
 		}
 	}
 
@@ -116,7 +117,22 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 			}
 			Destroy(gameObject);
 		}
+
 	}
 
+	public void CheckCollisionWithPlayer() {
+		Collider2D[] contacts = new Collider2D[5];
+		ContactFilter2D filter = new ContactFilter2D ();
+		collider.GetComponent<Collider2D> ().OverlapCollider (filter.NoFilter(), contacts);
+		foreach (Collider2D collision in contacts) {
+			if (collision != null) {
+				PlayerController playerController = collision.gameObject.GetComponent<PlayerController> ();
+				if (playerController != null) {
+					playerController.Damage (20f);
+					return;
+				}
+			}
+		}
+	}
 
 }
