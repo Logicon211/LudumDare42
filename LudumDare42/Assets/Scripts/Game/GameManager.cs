@@ -184,4 +184,8 @@ public class GameManager : MonoBehaviour {
 			SceneManager.LoadScene(sceneIndex);
 		}
 	}
+
+	public bool IsPaused () {
+		return paused;
+	}
 }
