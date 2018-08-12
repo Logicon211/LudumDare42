@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-	public void EndGame() {
-		
+	public void GameOver() {
+		SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
 	}
 
 	public void PauseGame() {
