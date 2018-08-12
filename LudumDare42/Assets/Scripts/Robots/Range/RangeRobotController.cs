@@ -12,6 +12,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	public Animator animator;
 
 	public GameObject explosion;
+	public GameObject poofEffect;
 	
 	private AudioSource audio;
 	private Rigidbody2D enemyBody;
@@ -41,6 +42,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 		shootPosition = transform.Find("ShootPosition");
 		currentHealth = health;
+
+		Instantiate(poofEffect, transform.position, Quaternion.identity);
 	}
 	
 	// Update is called once per frame
@@ -98,7 +101,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		if (currentHealth <= 0f && !isDead) {
 			isDead = true;
 			Instantiate(explosion, transform.position, Quaternion.identity);
-			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
+			garbageScript.SpawnAtLocation(GarbageSpawnController.CIRCLE_GARBAGE_INDEX, transform.position.x, transform.position.y, false);
 			gameManager.DecreaseEnemyCount();
 			Destroy(gameObject);
 		}
