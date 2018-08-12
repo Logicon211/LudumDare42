@@ -66,6 +66,7 @@ private GameObject punchCollider;
 private AudioSource AS;
 private GameObject lazer;
 private GameObject shield;
+private GameObject particles;
 
 private Transform shootPosition;
 
@@ -86,6 +87,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         shootPosition = transform.Find("ShootPosition");
         lazer = transform.Find("Lazer").gameObject;
         shield = transform.Find("Shield").gameObject;
+        particles = transform.Find("ParticleEffect").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -167,10 +169,12 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         }
         if(Dashing){
+            particles.SetActive(true);
             PlayerRigidBody.velocity = 30*punchCharge * dashDirection;
 			dashCooldown -= Time.fixedDeltaTime;
             PlayerRigidBody.mass = 100;
             if(dashCooldown <= 0){
+                particles.SetActive(false);
                 PlayerRigidBody.mass = 1;
                 punchCharge=0;
                 Dashing=false;
