@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthPowerUp : PowerUp {
 
 	public override void GivePowerUp() {
-		controller.SetPowerUp(3);
+		controller.PickupHealth();
 	}
 }
 

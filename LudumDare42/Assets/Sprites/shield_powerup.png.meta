@@ -1,14 +1,23 @@
 fileFormatVersion: 2
-guid: 8337d4f86ec9bca49828ef66db206e81
+guid: d135f2999a5bf76448f89e7129c6e76c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: BATTERY_0
-    21300002: BATTERY_1
-    21300004: BATTERY_2
-    21300006: BATTERY_3
-    21300008: BATTERY_4
-    21300010: BATTERY_5
-    21300012: BATTERY_6
+    21300000: shield_powerup_0
+    21300002: shield_powerup_1
+    21300004: shield_powerup_2
+    21300006: shield_powerup_3
+    21300008: shield_powerup_4
+    21300010: shield_powerup_5
+    21300012: shield_powerup_6
+    21300014: shield_powerup_7
+    21300016: shield_powerup_8
+    21300018: shield_powerup_9
+    21300020: shield_powerup_10
+    21300022: shield_powerup_11
+    21300024: shield_powerup_12
+    21300026: shield_powerup_13
+    21300028: shield_powerup_14
+    21300030: shield_powerup_15
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -113,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BATTERY_0
+      name: shield_powerup_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,13 +136,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9dca78be301ac6d418f7caff8b90f47b
+      spriteID: 953cf798ac679cd41ab7b9f0a9f47bc9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BATTERY_1
+      name: shield_powerup_1
       rect:
         serializedVersion: 2
         x: 200
@@ -147,13 +156,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ef7073132cadf7438dc292896cd4677
+      spriteID: 160a29756dfc51b43a261370eff492df
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BATTERY_2
+      name: shield_powerup_2
       rect:
         serializedVersion: 2
         x: 400
@@ -167,13 +176,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76d6567d190d12440894aab5bd8b2665
+      spriteID: e0d652708d72d4f46ab0c8828f0b0824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BATTERY_3
+      name: shield_powerup_3
       rect:
         serializedVersion: 2
         x: 600
@@ -187,13 +196,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56a522d0351a7124b92f345452cd0b22
+      spriteID: d7dfba463e0f8c9488a5bbdc039a5dbb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BATTERY_4
+      name: shield_powerup_4
       rect:
         serializedVersion: 2
         x: 800
@@ -207,13 +216,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7b7a03d954ad8c4ea70f69eb3c7d97c
+      spriteID: 7af0e13f342666f438708afe41f3a887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BATTERY_5
+      name: shield_powerup_5
       rect:
         serializedVersion: 2
         x: 1000
@@ -227,13 +236,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6c115d60fb7a714ea56d9b3ed484c97
+      spriteID: 4d39b6c8fca49754e8d91d7f6e2370df
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BATTERY_6
+      name: shield_powerup_6
       rect:
         serializedVersion: 2
         x: 1200
@@ -247,7 +256,187 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62bbf71763c76fe409f126a2ad2af953
+      spriteID: 83cfbe0c280877c4d9ef84aa37021bab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_7
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff422a2580ba8d4fb1b95a59ad124fc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b407edf2553f66f43bc347f9742fd207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_9
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8502907987a39864ab60ee2b457cfe20
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_10
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1cf85191618d8946b5263e6adf17d54
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_11
+      rect:
+        serializedVersion: 2
+        x: 2200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9642e6c38307c44fb4a17908b9aba65
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_12
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f4a5a7ebc5338b4f9c3af1ced84d140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_13
+      rect:
+        serializedVersion: 2
+        x: 2600
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a746673f2e450f748a21b54174d1007e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_14
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 784c1022a6722cb43aeac2ba5d60c873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_powerup_15
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0caf26182f213834ead0036888c091ab
       vertices: []
       indices: 
       edges: []
@@ -255,7 +444,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 50bf3d37186a58d4c8dfaa7229f441f3
+    spriteID: 2c6288e47f077dd43bb7cacee61561d9
     vertices: []
     indices: 
     edges: []

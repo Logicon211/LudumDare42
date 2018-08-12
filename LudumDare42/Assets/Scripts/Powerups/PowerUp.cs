@@ -11,6 +11,7 @@ public abstract class PowerUp : MonoBehaviour {
 	private PowerUpController p_controller;
 
 	private Rigidbody2D RB;
+	private BoxCollider2D powerupCollider;
 
 
 	private void Awake() {
@@ -25,6 +26,10 @@ public abstract class PowerUp : MonoBehaviour {
 	void Start()
 	{
 		RB = GetComponent<Rigidbody2D>();
+		powerupCollider = GetComponent<BoxCollider2D>();
+		powerupCollider.enabled = false;
+
+		Invoke("EnableCollider", 2);
 
 		var x = Random.Range(-1f, 1f);
 		var y = Random.Range(-1f, 1f);
@@ -45,6 +50,10 @@ public abstract class PowerUp : MonoBehaviour {
 
 	public void DestroyPowerUp() {
 		Destroy(gameObject);
+	}
+
+	public void EnableCollider() {
+		powerupCollider.enabled = true;
 	}
 
 	public abstract void GivePowerUp();

@@ -53,8 +53,8 @@ public class GarbageSpawnController : MonoBehaviour {
 		Vector2 position = new Vector2 (xPos, yPos);
 		Quaternion rotation = Quaternion.Euler (0f, 0f, Random.Range (0f, 360f));
 		garbageToSpawn.GetComponent<GarbageController> ().dropFromSky = dropFromSky; 
-		Debug.Log ("drop from sky: " + dropFromSky);
-		Debug.Log ("garbageToSpawn dropFromSky: " + garbageToSpawn.GetComponent<GarbageController> ().dropFromSky);
+		//Debug.Log ("drop from sky: " + dropFromSky);
+		//Debug.Log ("garbageToSpawn dropFromSky: " + garbageToSpawn.GetComponent<GarbageController> ().dropFromSky);
 		Instantiate (garbageToSpawn, position, rotation);
 	}
 }

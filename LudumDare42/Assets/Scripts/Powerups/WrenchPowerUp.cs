@@ -5,6 +5,6 @@ using UnityEngine;
 public class WrenchPowerUp : PowerUp {
 
 	public override void GivePowerUp() {
-		controller.SetPowerUp(4);
+		controller.PickupWrench();
 	}
 }

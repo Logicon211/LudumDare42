@@ -33,6 +33,7 @@ public AudioClip shotgunSound;
 
 public bool Dashing;
 
+private bool LeftClickDown;
 private bool LeftClick;
 private bool RightClick;
 private bool RightClickRelease;
@@ -57,6 +58,7 @@ private bool usingLazer = false;
 
 private GameObject punchCollider;
 private AudioSource AS;
+private GameObject lazer;
 
 private Transform shootPosition;
 
@@ -75,6 +77,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         punchCollider = transform.Find("punchCollider").gameObject;
         AS = GetComponent<AudioSource>();
         shootPosition = transform.Find("ShootPosition");
+        lazer = transform.Find("Lazer").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -84,7 +87,8 @@ private int LAZER_ANIMATION_LAYER = 2;
         horizontalMove = Input.GetAxisRaw("Horizontal");
         verticalMove = Input.GetAxisRaw("Vertical");
         //Get Action inputs
-        LeftClick = Input.GetButtonDown("Fire1");
+        LeftClickDown = Input.GetButtonDown("Fire1");
+        LeftClick = Input.GetButton("Fire1");
         RightClick = Input.GetButton("Fire2");
         RightClickRelease = Input.GetButtonUp("Fire2");
         SpacebarDown = Input.GetButtonDown("Jump");
@@ -159,16 +163,22 @@ private int LAZER_ANIMATION_LAYER = 2;
         }
 
 
-        if(LeftClick == true){
+        if(LeftClickDown == true){
             if(usingShotgun) {
                 ShootShotgun();
                 animator.SetTrigger("ShootGun");
             } else if (usingLazer) {
-                
+                //Hold for left click held down below
             } else {
                 animator.SetBool("Punching", true);
                 punching = true;
             }
+        }
+
+        if(LeftClick == true && usingLazer) {
+            lazer.SetActive(true);
+        } else {
+            lazer.SetActive(false);
         }
 
         if(RightClick == true){
@@ -256,6 +266,9 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         usingShotgun = true;
         usingLazer = false;
+
+        energySlider.maxValue = 3;
+        energy = 3;
     }
 
     public void PickupLazer() {
@@ -268,14 +281,18 @@ private int LAZER_ANIMATION_LAYER = 2;
     }
 
     public void PickupHealth() {
-
+        health += 20f;
     }
 
     public void PickupShield() {
 
     }
 
-    public void PickupSpeedBoos() {
+    public void PickupSpeedBoost() {
+
+    }
+
+    public void PickupWrench() {
 
     }
 
@@ -313,6 +330,11 @@ private int LAZER_ANIMATION_LAYER = 2;
         projectileLaunched7.GetComponent<Rigidbody2D> ().velocity = projectileLaunched7.transform.right * (bulletVelocity + Random.Range (-2, 2));
         projectileLaunched8.GetComponent<Rigidbody2D> ().velocity = projectileLaunched8.transform.right * (bulletVelocity + Random.Range (-2, 2));
         projectileLaunched9.GetComponent<Rigidbody2D> ().velocity = projectileLaunched9.transform.right * (bulletVelocity + Random.Range (-2, 2));
+
+        energy -= 1;
+        if(energy <= 0) {
+            RunOutOfPickupEnergy();
+        }
     }
     
 

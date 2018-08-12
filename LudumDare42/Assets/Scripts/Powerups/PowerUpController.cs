@@ -28,7 +28,8 @@ public class PowerUpController : MonoBehaviour {
 
 	public void PlayPickupSound(AudioClip[] clips) {
 		if(clips.Length > 0) {
-			int clipToPlay = Random.Range(0, clips.Length-1);
+			int clipToPlay = Random.Range(0, clips.Length);
+			Debug.Log(clipToPlay);
 			if(!AS.isPlaying) {
 				AS.clip = clips[clipToPlay];
 				AS.Play();

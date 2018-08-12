@@ -5,6 +5,6 @@ using UnityEngine;
 public class ShieldPowerUp : PowerUp {
 
 	public override void GivePowerUp() {
-		controller.SetPowerUp(6);
+		controller.PickupShield();
 	}
 }

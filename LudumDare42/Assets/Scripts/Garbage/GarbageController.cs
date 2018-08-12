@@ -28,9 +28,11 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 	private bool isDropping;
 
 	private float currentHealth;
+	private bool isDead = false;
 
 	// Use this for initialization
 	void Start () {
+		casterRenderer = GetComponent<SpriteRenderer> ();
 		currentHealth = health;
 		powerUpControllerGameObject = GameObject.FindWithTag ("PowerUpController");
 		powerUpController = powerUpControllerGameObject.GetComponent<PowerUpController> ();
@@ -43,6 +45,14 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 
 	// Update is called once per frame
 	void Update () {
+		//Get Redder as you take more damage:
+		if (currentHealth < health) {
+			if(currentHealth < 0f) {
+				currentHealth = 0f;
+			}
+			float healthPercentage = currentHealth/health;
+			casterRenderer.color = new Color(1f, healthPercentage, healthPercentage);
+		}
 	}
 
 	void FixedUpdate () {
@@ -71,7 +81,7 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 		shadowObject.transform.position = new Vector3(transform.position.x, transform.position.y, -1);
 		shadowObject.transform.localScale = transform.localScale;
 		shadowObject.transform.rotation = transform.rotation;
-		casterRenderer = GetComponent<SpriteRenderer> ();
+		//casterRenderer = GetComponent<SpriteRenderer> ();
 		shadowRenderer = shadowObject.AddComponent<SpriteRenderer> ();
 		shadowRenderer.sprite = casterRenderer.sprite;
 
@@ -96,11 +106,11 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 	public void Damage(float damageTaken) {
 		// Damages enemy and handles death
 		currentHealth -= damageTaken;
-		if (currentHealth <= 0f) {
+		if (currentHealth <= 0f && !isDead) {
+			isDead = true;
 			Instantiate(explosion, transform.position, Quaternion.identity);
 
 			float randomRoll = Random.Range(1f, 100f);
-			Debug.Log(randomRoll);
 			if(randomRoll <= powerupSpawnChance) {
 				powerUpController.SpawnRandomPowerUpAtLocation (transform.position.x, transform.position.y);
 			}
