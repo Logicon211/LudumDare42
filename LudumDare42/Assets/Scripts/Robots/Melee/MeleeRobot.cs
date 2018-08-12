@@ -8,6 +8,7 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	public float attackCooldown = 1f;
 	public float attackRange = 5f;
 	public float health = 10f;
+	public float attackDamage = 5f;
 
 	public AudioClip punchSound;
 	public GameObject hitEffect;
@@ -83,6 +84,8 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	public void finishPunch() {
 		if(Vector2.Distance(player.transform.position, transform.position) <= attackRange) {
 			//TODO: Do damage to player
+			PlayerController playerController = player.gameObject.GetComponent<PlayerController>();
+			playerController.Damage(attackDamage);
 			Instantiate(hitEffect, new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 0.1f), Quaternion.identity);
 		}
 	}

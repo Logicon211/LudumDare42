@@ -14,15 +14,16 @@ public class PowerUpController : MonoBehaviour {
 		arrayLength = powerupArray.Length - 1;
 	}
 
-	public void SpawnPowerUpAtLocation(int powerupIndex, float x, float y) {
+	public GameObject SpawnPowerUpAtLocation(int powerupIndex, float x, float y) {
 		if (powerupIndex <= arrayLength) {
-			Instantiate(powerupArray[powerupIndex], new Vector2(x, y), Quaternion.identity);
+			return Instantiate(powerupArray[powerupIndex], new Vector2(x, y), Quaternion.identity);
 		}
+		return null;
 	}
 
-	public void SpawnRandomPowerUpAtLocation(float x, float y) {
+	public GameObject SpawnRandomPowerUpAtLocation(float x, float y) {
 		int powerupIndex = Random.Range (0, arrayLength + 1);
-		Instantiate(powerupArray[powerupIndex], new Vector2(x, y), Quaternion.identity);
+		return Instantiate(powerupArray[powerupIndex], new Vector2(x, y), Quaternion.identity);
 	}
 
 	public void PlayPickupSound(AudioClip clip) {

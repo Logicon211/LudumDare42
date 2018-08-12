@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour, IDamageable<float> {
+public class PlayerController : MonoBehaviour {
 
 private Rigidbody2D PlayerRigidBody;
 private Vector3 velocity=Vector3.zero;
@@ -26,6 +26,7 @@ private float dashCooldownTime = 0.3f;
 public Slider healthSlider;
 public Slider energySlider;
 public Slider chargeSlider;
+public AudioClip hurtSound;
 
 public bool Dashing;
 
@@ -49,6 +50,7 @@ private float punchCooldown;
 private Vector2 punchDirecion;
 
 private GameObject punchCollider;
+private AudioSource AS;
 
 
 	// Use this for initialization
@@ -60,6 +62,7 @@ private GameObject punchCollider;
 		NewPos = transform.position;
         animator = GetComponent<Animator>();
         punchCollider = transform.Find("punchCollider").gameObject;
+        AS = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -213,6 +216,7 @@ private GameObject punchCollider;
     }
     public void Damage(float damageTaken) {
         health -= damageTaken;
+        AS.PlayOneShot(hurtSound);
     }
     
 
