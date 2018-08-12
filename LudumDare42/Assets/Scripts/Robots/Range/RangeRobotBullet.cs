@@ -17,7 +17,8 @@ public class RangeRobotBullet : MonoBehaviour {
 		if (other.gameObject.tag == "Player" ) {
 			other.gameObject.GetComponent<PlayerController>().Damage(damage);
 			Destroy(gameObject);
-		} else if(other.gameObject.GetComponent<IDamageable<float>>() != null) {
+		} 
+		else if (other.gameObject.tag == "Wall") {
 			garbageController.SpawnAtLocation(GarbageSpawnController.CIRCLE_GARBAGE_INDEX, transform.position.x, transform.position.y, false);
 			Destroy(gameObject);
 		}
