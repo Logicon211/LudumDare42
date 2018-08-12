@@ -1684,6 +1684,7 @@ MonoBehaviour:
   LeftHandHalf: {fileID: 212136729436171996}
   RightHandFist: {fileID: 212732570677783428}
   LeftHandFist: {fileID: 212835227592257904}
+  explosionEffect: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
   NormalFaceSprite: {fileID: 212418908591297420}
   AngerFaceSprite: {fileID: 212569625447124534}
   garbageSpawner: {fileID: 0}

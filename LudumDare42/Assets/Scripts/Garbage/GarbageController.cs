@@ -108,7 +108,8 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 			isDead = true;
 
 			Instantiate(explosion, transform.position, Quaternion.identity);
-
+			Random.seed = System.DateTime.Now.Millisecond;
+			
 			float randomRoll = Random.Range(1f, 100f);
 			if(randomRoll <= powerupSpawnChance) {
 				try{

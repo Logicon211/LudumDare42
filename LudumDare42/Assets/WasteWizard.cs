@@ -23,6 +23,8 @@ public class WasteWizard : MonoBehaviour {
 	public SpriteRenderer LeftHandHalf;
 	public SpriteRenderer RightHandFist;
 	public SpriteRenderer LeftHandFist;
+
+	public GameObject explosionEffect;
 	
 	public SpriteRenderer NormalFaceSprite;
 	public SpriteRenderer AngerFaceSprite;
@@ -39,12 +41,15 @@ public class WasteWizard : MonoBehaviour {
 	private bool handSwitch;
 	public GameObject LeftHandSmash;
 	public GameObject RightHandSmash;
+	private float maxHealth;
 	private float wizardHealth;
 	public AudioClip CastFist;
 	public AudioClip CastHailOfTrash;
 	public AudioClip CastGarbageBall;
 	public GameObject leftHandHalfGameObject;
 	public GameObject rightHandHalfGameObject;
+
+	private GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
@@ -62,9 +67,11 @@ public class WasteWizard : MonoBehaviour {
 		fistCounter =0;
 		garbageBall.SetActive(false);
 		vulnMode = false;
+		maxHealth=100;
 		wizardHealth=100;
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 		NumSpellsCast=0;
 
 	}
@@ -72,10 +79,21 @@ public class WasteWizard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            ChangePhase();
-        }
+        // if(Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     ChangePhase();
+        // }
+
+		if (wizardHealth < maxHealth) {
+			if(wizardHealth < 0f) {
+				wizardHealth = 0f;
+			}
+			if(NormalFaceSprite != null && AngerFaceSprite != null) {
+				float healthPercentage = wizardHealth/maxHealth;
+				NormalFaceSprite.color = new Color(1f, healthPercentage, healthPercentage);
+				AngerFaceSprite.color = new Color(1f, healthPercentage, healthPercentage);
+			}
+		}
 	}
 
 	void FixedUpdate() {
@@ -612,7 +630,11 @@ public class WasteWizard : MonoBehaviour {
 
 		Debug.Log("Wizard health: " + wizardHealth);
 		if(wizardHealth <= 0){
+			gameManager.DecreaseBossCount();
 			//End of game?
+			Instantiate(explosionEffect, NormalFace.transform.position, Quaternion.identity);
+			Destroy(NormalFace);
+			Destroy(AngerFace);
 		}
 
 	}
