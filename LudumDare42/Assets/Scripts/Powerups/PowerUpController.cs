@@ -7,10 +7,10 @@ public class PowerUpController : MonoBehaviour {
 	public GameObject[] powerupArray;
 
 	private int arrayLength;
-	private AudioSource audio;
+	private AudioSource AS;
 
 	private void Awake() {
-		audio = GetComponent<AudioSource>();
+		AS = GetComponent<AudioSource>();
 		arrayLength = powerupArray.Length - 1;
 	}
 
@@ -26,7 +26,14 @@ public class PowerUpController : MonoBehaviour {
 		return Instantiate(powerupArray[powerupIndex], new Vector2(x, y), Quaternion.identity);
 	}
 
-	public void PlayPickupSound(AudioClip clip) {
-		audio.PlayOneShot(clip, 1);
+	public void PlayPickupSound(AudioClip[] clips) {
+		if(clips.Length > 0) {
+			int clipToPlay = Random.Range(0, clips.Length-1);
+			if(!AS.isPlaying) {
+				AS.clip = clips[clipToPlay];
+				AS.Play();
+			}
+		}
+		//AS.PlayOneShot(clip, 1);
 	}
 }

@@ -55,6 +55,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 				currentHealth = 0f;
 			}
 			float healthPercentage = currentHealth/health;
+			Debug.Log("SPRITE RENDERER");
+			Debug.Log(spriteRenderer);
 			spriteRenderer.color = new Color(1f, healthPercentage, healthPercentage);
 		}
 	}

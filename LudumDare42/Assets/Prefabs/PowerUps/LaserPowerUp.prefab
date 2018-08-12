@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61405764856813166}
   - component: {fileID: 82771414605457586}
   - component: {fileID: 50791963880992632}
+  - component: {fileID: 114480841323076940}
   m_Layer: 0
   m_Name: LaserPowerUp
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1418502714045242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.3757, y: 2.267588, z: 0}
+  m_LocalPosition: {x: 57.78443, y: -2.5391388, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,7 +98,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 68b526217fbd1004bad31476096ece1f, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -183,6 +184,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114480841323076940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418502714045242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13e8361cae563c44a2349c146705956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 7e034c73453dfc049af1d23d0ee273b6, type: 3}
+  - {fileID: 8300000, guid: 22c5ed5904e864b4a8035ac42d9aeee2, type: 3}
+  - {fileID: 8300000, guid: 8177f99c7402c924d983f51f065c92fb, type: 3}
 --- !u!212 &212735528123219764
 SpriteRenderer:
   m_ObjectHideFlags: 1

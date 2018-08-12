@@ -5,11 +5,13 @@ using UnityEngine;
 public abstract class PowerUp : MonoBehaviour {
 
 	protected PlayerController controller;
+	public AudioClip[] clips;
 
 	private AudioSource audio;
 	private PowerUpController p_controller;
 
 	private Rigidbody2D RB;
+
 
 	private void Awake() {
 		audio = GetComponent<AudioSource>();
@@ -35,7 +37,7 @@ public abstract class PowerUp : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player") {
 			controller = other.gameObject.GetComponent<PlayerController>();
-			p_controller.PlayPickupSound(audio.clip);
+			p_controller.PlayPickupSound(clips);
 			GivePowerUp();
 			DestroyPowerUp();
 		}
