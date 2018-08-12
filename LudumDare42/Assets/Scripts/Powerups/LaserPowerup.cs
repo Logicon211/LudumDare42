@@ -5,6 +5,6 @@ using UnityEngine;
 public class LaserPowerUp : PowerUp {
 
 	public override void GivePowerUp() {
-		controller.SetPowerUp(1);
+		controller.PickupLazer();
 	}
 }

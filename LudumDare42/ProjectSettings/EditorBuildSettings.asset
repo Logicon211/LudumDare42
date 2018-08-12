@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 341d782ee9704674c8d0df66362204bf
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 29fa33508c859ed40a0a8b8fd79f36fe
   - enabled: 1
     path: Assets/Scenes/Finished Levels/GameOverScreen.unity
     guid: 24969f6a209ffd34d96f73042b6a625d
