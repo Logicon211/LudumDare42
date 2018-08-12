@@ -58,8 +58,14 @@ public class EnemySpawnController : MonoBehaviour {
 	}
 
 	public Vector2 PickSpawnPointNotOnPlayer() {
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag("Player");
+		}
 		Transform closestPoint = null;
 		foreach(Transform point in spawnLocations) {
+			Debug.Log ("point: " + point);
+			Debug.Log ("closestpoint: " + closestPoint);
+			Debug.Log ("player: " + player);
 			if(closestPoint == null || Vector2.Distance(point.position, player.transform.position) < Vector2.Distance(closestPoint.position, player.transform.position)) {
 				closestPoint = point;
 			}
