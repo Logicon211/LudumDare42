@@ -284,8 +284,6 @@ public class WasteWizard : MonoBehaviour {
 					transform.position = Vector3.Lerp(transform.position, new Vector3(0,14.4f,0), 2 *Time.deltaTime); 
 					wizardHandsHolder.transform.position = Vector3.Lerp(wizardHandsHolder.transform.position, new Vector3(0.25f, 14.45f, 0.2109375f), 2 *Time.deltaTime);
 
-					Debug.Log("wizard position: " + transform.position);
-					Debug.Log("Hands position: " + wizardHandsHolder.transform.position);
 					movementCooldown -= Time.fixedDeltaTime;
 					if(movementCooldown < 0){
 						SpellStage=1;
@@ -414,7 +412,7 @@ public class WasteWizard : MonoBehaviour {
 										RightHandHalf.sortingOrder = 3;
 										vulnMode = true;
 										SpellStage=0;
-										movementCooldown = 5;
+										movementCooldown = 4;
 									}
 									else{								
 										wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
@@ -443,6 +441,8 @@ public class WasteWizard : MonoBehaviour {
 						else if(SpellStage ==2){
 							if(wizardHandsHolder.transform.position.y < 20){
 								Camera.main.GetComponent<Camera_controller>().CameraShake();
+								
+								garbageSpawner.SpawnAtLocation(1,playerX,playerY,true);
 								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
 								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
 								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
