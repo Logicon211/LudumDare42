@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	private WaveSpawnManager spawnManager;
 
 	private bool paused = false;
+	
 
 	private int enemyCount = 0;
 	private int currentLevel = 0;
@@ -88,8 +89,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void CheckGameOver() {
-		if (playerController.GetHealth() <= 0f)
-			SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
+		if (SceneManager.GetActiveScene().name != "GameOverScreen"){
+			if (playerController.GetHealth() <= 0f)
+				SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
+		}
 	}
 
 	public void Victory() {

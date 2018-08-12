@@ -236,6 +236,10 @@ private int LAZER_ANIMATION_LAYER = 2;
         AS.PlayOneShot(hurtSound);
     }
 
+    public float GetHealth() {
+        return health;
+    }
+
     public void RunOutOfPickupEnergy() {
         animator.SetLayerWeight(BASE_ANIMATION_LAYER, 100f);
         animator.SetLayerWeight(SHOTGUN_ANIMATION_LAYER, 0f);
