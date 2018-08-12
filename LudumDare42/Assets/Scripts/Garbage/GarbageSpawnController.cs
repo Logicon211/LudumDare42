@@ -45,7 +45,7 @@ public class GarbageSpawnController : MonoBehaviour {
 		SpawnAtLocation (garbageArray [garbageIndex], xPos, yPos, dropFromSky);
 	}
 
-	private void SpawnAtLocation (GameObject garbageToSpawn, float xPos, float yPos, bool dropFromSky = true) {
+	public void SpawnAtLocation (GameObject garbageToSpawn, float xPos, float yPos, bool dropFromSky = true) {
 		//Make sure x and y are within the bounds of the level
 		xPos = Mathf.Clamp(xPos, xMin, xMax);
 		yPos = Mathf.Clamp (yPos, yMin, yMax);
