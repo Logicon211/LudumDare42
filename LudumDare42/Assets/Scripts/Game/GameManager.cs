@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour {
 	public void CheckGameOver() {
 		if (SceneManager.GetActiveScene().name != "GameOverScreen" && !victory){
 			if (playerController.GetHealth() <= 0f){
-				Debug.Log("ASDFASDFASDF");
 				loss = true;
 				SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
 			}
@@ -174,7 +173,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void LoadScene(int sceneIndex) {
-		if (sceneIndex == 0 || sceneIndex == 1) {
+		if (sceneIndex == 0) {
 			SceneManager.LoadScene(sceneIndex);
 			Destroy(gameObject);
 		}

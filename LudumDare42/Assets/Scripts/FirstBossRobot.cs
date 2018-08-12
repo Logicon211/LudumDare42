@@ -35,6 +35,7 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 	Rigidbody2D RB;
 	Animator animator;
 	SpriteRenderer spriteRenderer;
+	private GameManager gameManager;
 
 	// Use this for initialization
 
@@ -48,6 +49,7 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 		RB = GetComponent<Rigidbody2D>();
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 		// groundCheck1 = transform.Find ("groundCheck1");
 		leftArm = transform.Find("LeftArm").gameObject;
 		rightArm = transform.Find("RightArm").gameObject;
@@ -159,7 +161,8 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 			isDead = true;
 			GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
 			explosionEffect.transform.localScale = new Vector3(explosionEffect.transform.localScale.x*2,explosionEffect.transform.localScale.y*2,explosionEffect.transform.localScale.z*2);
-			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);
+			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
+			gameManager.DecreaseEnemyCount();
 			Destroy(leftSpikeBall);
 			Destroy(rightSpikeBall);
 			Destroy(gameObject);

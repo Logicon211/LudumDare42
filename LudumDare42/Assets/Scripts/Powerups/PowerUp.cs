@@ -34,7 +34,7 @@ public abstract class PowerUp : MonoBehaviour {
 		var x = Random.Range(-1f, 1f);
 		var y = Random.Range(-1f, 1f);
 		var direction = new Vector2(x, y);
-		direction = direction.normalized * 40f;
+		direction = direction.normalized * 10f;
 		
 		RB.velocity = direction;
 	}

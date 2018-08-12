@@ -17,9 +17,13 @@ public class EnemySpawnController : MonoBehaviour {
 
 	public GameObject[] robotArray;
 
+	public Transform [] spawnLocations;
+
+	private GameObject player;
+
 	// Use this for initialization
 	void Start () {
-		
+		player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
 	// Update is called once per frame
@@ -27,11 +31,12 @@ public class EnemySpawnController : MonoBehaviour {
 		
 	}
 
-	public void SpawnAtRandomLocation (int garbageIndex, bool dropFromSky = true) {
-		SpawnAtLocation (robotArray[garbageIndex], Random.Range (xMin, xMax), Random.Range (yMin, yMax), dropFromSky);
+	public void SpawnAtRandomLocation (int enemyIndex) {
+		Vector2 spawnLocation = PickSpawnPointNotOnPlayer();
+		SpawnAtLocation (robotArray[enemyIndex], spawnLocation.x, spawnLocation.y);
 	}
 
-	private void SpawnAtLocation (GameObject garbageToSpawn, float xPos, float yPos, bool dropFromSky = true) {
+	private void SpawnAtLocation (GameObject enemyToSpawn, float xPos, float yPos) {
 		//Make sure x and y are within the bounds of the level
 		xPos = Mathf.Clamp(xPos, xMin, xMax);
 		yPos = Mathf.Clamp (yPos, yMin, yMax);
@@ -41,6 +46,35 @@ public class EnemySpawnController : MonoBehaviour {
 		//garbageToSpawn.GetComponent<GarbageController> ().dropFromSky = dropFromSky; 
 		//Debug.Log ("drop from sky: " + dropFromSky);
 		//Debug.Log ("garbageToSpawn dropFromSky: " + garbageToSpawn.GetComponent<GarbageController> ().dropFromSky);
-		Instantiate (garbageToSpawn, position, rotation);
+		Instantiate (enemyToSpawn, position, rotation);
+	}
+
+	public void SpawnBoss (int enemyIndex) {
+		//SpawnAtLocation(robotArray[enemyIndex], spawnLocation.position.x, spawnLocation.position.y);
+	}
+
+	public void FinalBossActivate() {
+		//Activate
+	}
+
+	public Vector2 PickSpawnPointNotOnPlayer() {
+		Transform closestPoint = null;
+		foreach(Transform point in spawnLocations) {
+			if(closestPoint == null || Vector2.Distance(point.position, player.transform.position) < Vector2.Distance(closestPoint.position, player.transform.position)) {
+				closestPoint = point;
+			}
+		}
+
+		Vector2 chosenPosition;
+		bool spawnPointChosen = false;
+		while (!spawnPointChosen) {
+			chosenPosition = spawnLocations[Random.Range(0, spawnLocations.Length)].position;
+
+			if(!chosenPosition.Equals(closestPoint.position)) {
+				return chosenPosition;
+			}
+		}
+
+		return new Vector2();
 	}
 }

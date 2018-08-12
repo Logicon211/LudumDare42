@@ -21,12 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Finished Levels/VictoryScene.unity
     guid: 5bc1ed12e7f08d14fa251f33f6fe273c
   - enabled: 1
-    path: Assets/Scenes/DontTouchTheseScenesPleaseMyCousinMadeThemAndHeWorkedReallyHardOnThem/ChadsCoolSceneDontTouchPleaseMyDadWillHitMeAgain.unity
-    guid: a496418f93344934e846a291e7102a8b
-  - enabled: 1
-    path: Assets/Scenes/DontTouchTheseScenesPleaseMyCousinMadeThemAndHeWorkedReallyHardOnThem/ChadsSceneForTestingSceneTransitionWithoutLosingShit.unity
-    guid: c24b39cfd22cbde44b945ca1a5ff869d
-  - enabled: 1
     path: Assets/Scenes/Finished Levels/InGameCutScenes/Pre-BossScene.unity
     guid: 61d51b07bb886cc479d466944a1b6761
   - enabled: 1

@@ -7,7 +7,7 @@ public class WaveSpawnManager : MonoBehaviour {
 
 
 	//This is the spawn list we will use. each array in the array will be 
-	public int[,] spawnList = {{1, 1}, {2, 1}, {-1, 0}, {1, 1}, {-2, 0}};
+	public int[,] spawnList = {{1, 1, 0}, {2, 1, 0}, {-1, 0, 0}, {0, 0, 1}, {1, 1, 0}, {0, 0, 2}, {-2, 0, 0}};
 	public int test;
 	
 	int numOfLevels;
@@ -34,15 +34,28 @@ public class WaveSpawnManager : MonoBehaviour {
 	}
 	
 	public int GetNumOfEnemiesOnLevel(int level) {
-		return spawnList[level, 0] + spawnList[level, 1];
+		int total = spawnList[level, 0] + spawnList[level, 1];
+		if(spawnList[level, 2] > 0) {
+			total++;
+		}
+		return total;
 	}
 
 	public void SpawnWave(int level) {
 		for (int i = 0; i < spawnList[level, 0]; i++) {
-			spawnController.SpawnAtRandomLocation(0, false);
+			spawnController.SpawnAtRandomLocation(0);
 		}
 		for (int i = 0; i < spawnList[level, 1]; i++) {
-			spawnController.SpawnAtRandomLocation(1, false);
+			spawnController.SpawnAtRandomLocation(1);
+		}
+
+		if(spawnList[level, 2] == 1) {
+			//Senator Swill
+			spawnController.SpawnAtRandomLocation(EnemySpawnController.FIRST_BOSS_INDEX);
+
+		} else if (spawnList[level, 2] == 2) {
+			//Waste Wizard boss mode
+			Debug.Log("START BOSS");
 		}
 	}
 }

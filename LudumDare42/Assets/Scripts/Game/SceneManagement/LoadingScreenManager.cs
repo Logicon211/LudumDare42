@@ -35,6 +35,8 @@ public class LoadingScreenManager : MonoBehaviour {
 	AsyncOperation operation;
 	Scene currentScene;
 
+	static GameManager gameManager;
+
 	public static int sceneToLoad = -1;
 	// IMPORTANT! This is the build index of your loading scene. You need to change this to match your actual scene index
 	static int loadingSceneIndex = 1;
@@ -42,10 +44,17 @@ public class LoadingScreenManager : MonoBehaviour {
 	public static void LoadScene(int levelNum) {				
 		Application.backgroundLoadingPriority = ThreadPriority.High;
 		sceneToLoad = levelNum;
-		SceneManager.LoadScene(loadingSceneIndex);
+
+	if (gameManager != null)
+			gameManager.LoadScene(loadingSceneIndex);
+		else
+			SceneManager.LoadScene(loadingSceneIndex);
 	}
 
 	void Start() {
+		if (GameObject.FindWithTag("GameController") != null)
+			gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+
 		if (sceneToLoad < 0)
 			return;
 
