@@ -11,6 +11,8 @@ public class EnemySpawnController : MonoBehaviour {
 
 	public const int MELEE_ROBOT_INDEX = 0;
 	public const int RANGED_ROBOT_INDEX = 1;
+	public const int FIRST_BOSS_INDEX = 2;
+	public const int SECOND_BOSS_INDEX = 3;
 
 
 	public GameObject[] robotArray;

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-	public bool spawn = true;
-
 	public float cooldownBetweenSpawns = 4f;
 	private float currentTimeBetweenSpawns;
 
@@ -19,11 +17,13 @@ public class GameManager : MonoBehaviour {
 	private WaveSpawnManager spawnManager;
 
 	private bool paused = false;
-	
+	private bool inCutScene = false;
 
 	private int enemyCount = 0;
 	private int currentLevel = 0;
 	private int maxLevel = 0;
+
+	private string[] cutscenes = {"Pre-BossScene", "SecondBossScene"};
 
 	private void Awake() {
 		//Check if instance already exists
@@ -52,45 +52,53 @@ public class GameManager : MonoBehaviour {
 		listener = cameraObject.GetComponent<AudioListener>();
 		playerController = player.GetComponent<PlayerController>();
 
-
-		if(spawn) {
-			enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
-			spawnManager.SpawnWave(currentLevel);
-		}
+		enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+		spawnManager.SpawnWave(currentLevel);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		CheckForWaveChange();
 		CheckGameOver();
-		if (Input.GetKeyDown(KeyCode.Z) && !paused)
-        {
-            SceneManager.LoadScene("ChadsSceneForTestingSceneTransitionWithoutLosingShit", LoadSceneMode.Additive);
-			listener.enabled = false; // Disabling the main cameras audio listener so that we have exactly one listener
-			PauseGame();
-        }
-		if (Input.GetKeyDown(KeyCode.X) && paused)
-        {
-    		SceneManager.UnloadSceneAsync("ChadsSceneForTestingSceneTransitionWithoutLosingShit");
-			listener.enabled = true;
-			UnPauseGame();
-        }
 	}
 
 	// Logic for checking for a wave change
 	private void CheckForWaveChange() {
-		if (enemyCount == 0 && spawn) {
+		if (enemyCount == 0) {
 			currentTimeBetweenSpawns -= Time.deltaTime;
 			if (currentTimeBetweenSpawns <= 0f) {
 				currentLevel++;
+
 				if (currentLevel <= maxLevel) {
 					enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
-					spawnManager.SpawnWave(currentLevel);
-					currentTimeBetweenSpawns = cooldownBetweenSpawns;
+					// Enemy count under 0 indicates a cutscene
+					if (enemyCount < 0) {
+						StartCutScene();
+					}
+					else {
+						SpawnWave(currentLevel);
+						currentTimeBetweenSpawns = cooldownBetweenSpawns;
+					}
 				}
 			}
 		}
+	}
+
+	private void SpawnWave(int currentLevel) {
+		spawnManager.SpawnWave(currentLevel);
+	}
+
+	public void StartCutScene() {
+		SceneManager.LoadScene(cutscenes[(enemyCount * -1) - 1], LoadSceneMode.Additive);
+		listener.enabled = false; // Disabling the main cameras audio listener so that we have exactly one listener
+		PauseGame();
+	}
+
+	public void StopCutScene() {
+		SceneManager.UnloadSceneAsync(cutscenes[(enemyCount * -1) - 1]);
+		listener.enabled = true;
+		SetEnemyCountToZero();
+		UnPauseGame();
 	}
 
 	public void CheckGameOver() {
@@ -119,4 +127,19 @@ public class GameManager : MonoBehaviour {
 			enemyCount--;
 	}
 
+	//Used By cutscenes to indicate they are done
+	public void SetEnemyCountToZero() {
+		enemyCount = 0;
+	}
+	
+	//Utility Methods
+	
+	// -1 indicates the integer is not in the array
+	private int FindInArray(int[] arr, int find) {
+		for (int i = 0; i < arr.Length; i++) {
+			if (find == arr[i])
+				return i;
+		}
+		return -1;
+	}
 }

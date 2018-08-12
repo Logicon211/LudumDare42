@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DontTouchTheseScenesPleaseMyCousinMadeThemAndHeWorkedReallyHardOnThem/ChadsSceneForTestingSceneTransitionWithoutLosingShit.unity
     guid: c24b39cfd22cbde44b945ca1a5ff869d
+  - enabled: 1
+    path: Assets/Scenes/Finished Levels/InGameCutScenes/Pre-BossScene.unity
+    guid: 61d51b07bb886cc479d466944a1b6761
+  - enabled: 1
+    path: Assets/Scenes/Finished Levels/InGameCutScenes/SecondBossScene.unity
+    guid: 6ba777b6b41e8124a9c6fedb4af76ee9
   m_configObjects: {}
