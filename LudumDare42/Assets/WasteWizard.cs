@@ -148,6 +148,7 @@ public class WasteWizard : MonoBehaviour {
 			}
 			else if(SpellStage ==5){
 				if(wizardHandsHolder.transform.position.y < 20){
+					Camera.main.GetComponent<Camera_controller>().CameraShake();
 					wizardHands.velocity = new Vector2(0,3);
 					SpellStage =6;
 					
