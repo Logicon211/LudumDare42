@@ -259,7 +259,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 07eb448fd031ec7408de0956d90e699d,
+      objectReference: {fileID: 21300000, guid: 8e1ae673aacc9c94d9db37a54bf98fb9,
         type: 3}
     - target: {fileID: 212719801417337934, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
@@ -333,7 +333,7 @@ Prefab:
         type: 2}
       propertyPath: sprite.Array.data[18]
       value: 
-      objectReference: {fileID: 21300000, guid: 968762a8e7d4f9546ad053451277c561,
+      objectReference: {fileID: 21300000, guid: 8e1ae673aacc9c94d9db37a54bf98fb9,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
