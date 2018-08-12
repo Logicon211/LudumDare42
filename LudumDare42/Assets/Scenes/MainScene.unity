@@ -2475,7 +2475,7 @@ Prefab:
     - target: {fileID: 224139444281702154, guid: 45d70fa73f3abec42ae93f87a7183493,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224139444281702154, guid: 45d70fa73f3abec42ae93f87a7183493,
         type: 2}
@@ -2639,7 +2639,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4784661110567854, guid: efe30090d881811478a8e571525223f6, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114474624200521592, guid: efe30090d881811478a8e571525223f6,
         type: 2}
@@ -2893,7 +2893,7 @@ GameObject:
   - component: {fileID: 1180729895}
   - component: {fileID: 1180729894}
   - component: {fileID: 1180729893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap_walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
