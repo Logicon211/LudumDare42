@@ -12,6 +12,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	public Animator animator;
 
 	public GameObject explosion;
+	public GameObject poofEffect;
 	
 	private AudioSource audio;
 	private Rigidbody2D enemyBody;
@@ -26,6 +27,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 
 	private bool isDead = false;
 
+	private Transform shootPosition;
+
 	void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
 		audio = GetComponent<AudioSource>();
@@ -37,7 +40,10 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		garbageScript = garbageController.GetComponent<GarbageSpawnController>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+		shootPosition = transform.Find("ShootPosition");
 		currentHealth = health;
+
+		Instantiate(poofEffect, transform.position, Quaternion.identity);
 	}
 	
 	// Update is called once per frame
@@ -83,7 +89,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		if (!hasShot) {
 			animator.SetTrigger("shootTrigger");
 			audio.Play(0);
-			GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
+			GameObject bullet = Instantiate(projectile, shootPosition.position, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(tarX * 10f, tarY * 10f);
 			hasShot = true;
 		}
@@ -95,7 +101,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 		if (currentHealth <= 0f && !isDead) {
 			isDead = true;
 			Instantiate(explosion, transform.position, Quaternion.identity);
-			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
+			garbageScript.SpawnAtLocation(GarbageSpawnController.CIRCLE_GARBAGE_INDEX, transform.position.x, transform.position.y, false);
 			gameManager.DecreaseEnemyCount();
 			Destroy(gameObject);
 		}

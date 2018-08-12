@@ -13,6 +13,7 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	public AudioClip punchSound;
 	public GameObject hitEffect;
 	public GameObject explosion;
+	public GameObject poofEffect;
 	public GameObject garbageController;
 
 	private float attacking = 0f;
@@ -40,6 +41,8 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		currentHealth = health;
+
+		Instantiate(poofEffect, transform.position, Quaternion.identity);
 		// groundCheck1 = transform.Find ("groundCheck1");
 		
 	}

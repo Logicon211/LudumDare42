@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public float cooldownBetweenSpawns = 4f;
+
+	public bool spawn = true;
 	private float currentTimeBetweenSpawns;
 
 	private GameObject player;
@@ -43,8 +45,10 @@ public class GameManager : MonoBehaviour {
 		//Call the InitGame function to initialize the first level 
 		//InitGame();
 		spawnManager = GetComponent<WaveSpawnManager>();
-		maxLevel = spawnManager.GetNumOfLevels();
-		currentTimeBetweenSpawns = cooldownBetweenSpawns;
+		if(spawn){
+			maxLevel = spawnManager.GetNumOfLevels();
+			currentTimeBetweenSpawns = cooldownBetweenSpawns;
+		}
 	}
 
 	// Use this for initialization
@@ -54,8 +58,10 @@ public class GameManager : MonoBehaviour {
 		listener = cameraObject.GetComponent<AudioListener>();
 		playerController = player.GetComponent<PlayerController>();
 
-		enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
-		spawnManager.SpawnWave(currentLevel);
+		if(spawn){
+			enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+			spawnManager.SpawnWave(currentLevel);
+		}
 	}
 	
 	// Update is called once per frame
@@ -67,7 +73,7 @@ public class GameManager : MonoBehaviour {
 
 	// Logic for checking for a wave change
 	private void CheckForWaveChange() {
-		if (enemyCount == 0) {
+		if (enemyCount == 0 && spawn) {
 			currentTimeBetweenSpawns -= Time.deltaTime;
 			if (currentTimeBetweenSpawns <= 0f) {
 				currentLevel++;

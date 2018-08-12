@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114167957792231420}
   - component: {fileID: 82208492855000368}
   - component: {fileID: 50775747299299130}
+  - component: {fileID: 95705150530372076}
   m_Layer: 0
   m_Name: ShieldPowerUp
   m_TagString: Untagged
@@ -80,14 +81,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!82 &82208492855000368
 AudioSource:
@@ -184,6 +185,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &95705150530372076
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1418502714045242}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40adab1481366ed40a65a97679a05039, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114167957792231420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,8 +253,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300890, guid: 9f633cb667c9a9f4fbebe9a7cdaff77a, type: 3}
-  m_Color: {r: 0.13253403, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d135f2999a5bf76448f89e7129c6e76c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

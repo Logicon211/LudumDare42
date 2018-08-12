@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class RangeRobotBullet : MonoBehaviour {
 
-	public float damage = 25f;
+	public float damage = 15f;
+
+	public GarbageSpawnController garbageController;
 
 	// Update is called once per frame
 	void Update () {
@@ -14,6 +16,9 @@ public class RangeRobotBullet : MonoBehaviour {
 	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.tag == "Player" ) {
 			other.gameObject.GetComponent<PlayerController>().Damage(damage);
+			Destroy(gameObject);
+		} else if(other.gameObject.GetComponent<IDamageable<float>>() != null) {
+			garbageController.SpawnAtLocation(GarbageSpawnController.CIRCLE_GARBAGE_INDEX, transform.position.x, transform.position.y, false);
 			Destroy(gameObject);
 		}
 	}
