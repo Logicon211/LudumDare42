@@ -46,6 +46,8 @@ public class WasteWizard : MonoBehaviour {
 	public GameObject leftHandHalfGameObject;
 	public GameObject rightHandHalfGameObject;
 
+	private GameManager gameManager;
+
 	// Use this for initialization
 	void Start () {
 		MoveUp = 1f;
@@ -65,6 +67,7 @@ public class WasteWizard : MonoBehaviour {
 		wizardHealth=100;
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 		NumSpellsCast=0;
 
 	}
@@ -612,6 +615,7 @@ public class WasteWizard : MonoBehaviour {
 
 		Debug.Log("Wizard health: " + wizardHealth);
 		if(wizardHealth <= 0){
+			gameManager.DecreaseBossCount();
 			//End of game?
 		}
 
