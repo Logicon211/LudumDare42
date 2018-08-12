@@ -49,7 +49,9 @@ public class WasteWizard : MonoBehaviour {
 	public AudioClip CastGarbageBall;
 	public GameObject leftHandHalfGameObject;
 	public GameObject rightHandHalfGameObject;
-
+	public AudioClip DeathClip;
+	public AudioClip[] Ouch;
+	
 	private GameManager gameManager;
 	private float healthLoseLimit;
 
@@ -102,7 +104,7 @@ public class WasteWizard : MonoBehaviour {
 		if(firstphase){
 		if(castTimer < 0){
 			CastSpell();
-			castTimer = TimerReset;
+			castTimer -= TimerReset;
 			TimerReset -= 0.5f;
 		}
 
@@ -275,7 +277,7 @@ public class WasteWizard : MonoBehaviour {
 
 			if(castTimer < 0){
 				CastBossSpell();
-				castTimer = TimerReset;
+				castTimer -= TimerReset;
 				TimerReset -= 0.5f;
 			}
 
@@ -628,8 +630,19 @@ public class WasteWizard : MonoBehaviour {
 	public void damageWizard(float damageIn){
 		wizardHealth-=damageIn;
 
+		if(!audiosource.isPlaying){
+			int ClipToPlay = Random.Range(0,3);
+			
+			audiosource.clip=Ouch[ClipToPlay];
+			audiosource.Play();
+		}
+
 		Debug.Log("Wizard health: " + wizardHealth);
 		if(wizardHealth <= 0){
+			leftHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(false);
+						rightHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(false);
+						NormalFace.GetComponent<WizardFaceDamageable>().SwitchCollider(false);
+			audiosource.PlayOneShot(DeathClip, 1);
 			gameManager.DecreaseBossCount();
 			//End of game?
 			wizardBody.velocity = new Vector2(0,-10);
@@ -678,6 +691,8 @@ public class WasteWizard : MonoBehaviour {
 			LeftHandHalf.enabled = false;
 			LeftHandHalf.sortingOrder = 0;
 			RightHandHalf.sortingOrder = 0;
+			
+			NormalFaceSprite.sortingOrder=0;
 		}
 
 	}

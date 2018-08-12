@@ -28,9 +28,14 @@ public class GameManager : MonoBehaviour {
 	private int currentLevel = 0;
 	private int maxLevel = 0;
 
+	private bool bossMessageDone;
+	private int bossMessageCount;
 	private string[] cutscenes = {"Pre-BossScene", "SecondBossScene"};
 
 	private int nextCutsceneIndex = 0;
+	public AudioSource AS;
+	public AudioClip AC1;
+
 
 	private void Awake() {
 		//Check if instance already exists
@@ -66,6 +71,8 @@ public class GameManager : MonoBehaviour {
 			bossCount = spawnManager.GetNumOfBossesOnLevel(currentLevel);
 			spawnManager.SpawnWave(currentLevel);
 		}
+		bossMessageDone=false;
+		bossMessageCount=0;
 	}
 	
 	// Update is called once per frame
@@ -75,19 +82,42 @@ public class GameManager : MonoBehaviour {
 			CheckGameOver();
 	}
 
+	
+	
 	// Logic for checking for a wave change
 	private void CheckForWaveChange() {
 		if (enemyCount <= 0 && bossCount <= 0 && spawn) {
 			currentTimeBetweenSpawns -= Time.deltaTime;
+			
+			if(!bossMessageDone && bossMessageCount <2){
+				if(spawnManager.GetNumOfBossesOnLevel(currentLevel+2) >0){
+				
+					bossMessageDone = true;
+					if(bossMessageCount ==0){
+						bossMessageCount++;
+						AS.Play();
+						Debug.Log("playing AC1");
+					
+					}
+					else if(bossMessageCount ==1){
+						AS.clip = AC1;
+						AS.Play();
+						bossMessageCount++;
+						Debug.Log("playing AC2");
+					}
+				}
+
+			}	
 			if (currentTimeBetweenSpawns <= 0f) {
 				currentLevel++;
-
 				if (currentLevel <= maxLevel) {
 					enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
 					bossCount = spawnManager.GetNumOfBossesOnLevel(currentLevel);
 					
 					// Enemy count under 0 indicates a cutscene
 					if (enemyCount < 0) {
+						
+						bossMessageDone =false;
 						StartCutScene();
 					}
 					else {

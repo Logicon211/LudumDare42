@@ -19,16 +19,6 @@ public class WaveSpawnManager : MonoBehaviour {
 		spawnController = gameObject.GetComponent<EnemySpawnController>();
 	}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public int GetNumOfLevels() {
 		return numOfLevels;
 	}

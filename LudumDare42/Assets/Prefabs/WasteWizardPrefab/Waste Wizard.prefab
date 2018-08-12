@@ -1697,6 +1697,11 @@ MonoBehaviour:
   CastGarbageBall: {fileID: 8300000, guid: f2e016486a5b3ed47b3f87a3b6009612, type: 3}
   leftHandHalfGameObject: {fileID: 1122287440846230}
   rightHandHalfGameObject: {fileID: 1852431513353492}
+  DeathClip: {fileID: 8300000, guid: b11769d2db03c6f41a4384522a6ae02e, type: 3}
+  Ouch:
+  - {fileID: 8300000, guid: 01024f132f6f3de4380fb5185b312806, type: 3}
+  - {fileID: 8300000, guid: d7f7b4ce384a57e4ebb0317b4655fb2f, type: 3}
+  - {fileID: 8300000, guid: 502070c6eb9de5346abd5cd446e8f29e, type: 3}
 --- !u!114 &114506731297400670
 MonoBehaviour:
   m_ObjectHideFlags: 1
