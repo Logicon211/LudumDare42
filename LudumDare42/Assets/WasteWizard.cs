@@ -36,7 +36,15 @@ public class WasteWizard : MonoBehaviour {
 	private float VulnerableCooldown;
 	private bool vulnMode;
 	private float movementCooldown;
-
+	private bool handSwitch;
+	public GameObject LeftHandSmash;
+	public GameObject RightHandSmash;
+	private float wizardHealth;
+	public AudioClip CastFist;
+	public AudioClip CastHailOfTrash;
+	public AudioClip CastGarbageBall;
+	public GameObject leftHandHalfGameObject;
+	public GameObject rightHandHalfGameObject;
 
 	// Use this for initialization
 	void Start () {
@@ -54,6 +62,7 @@ public class WasteWizard : MonoBehaviour {
 		fistCounter =0;
 		garbageBall.SetActive(false);
 		vulnMode = false;
+		wizardHealth=100;
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		NumSpellsCast=0;
@@ -153,6 +162,7 @@ public class WasteWizard : MonoBehaviour {
 					wizardHands.velocity = new Vector2(0,5);
 					//wizardBody.velocity = new Vector2(0,7);
 					Debug.Log("SpellStage 4");
+					audiosource.Play();
 				}
 
 			}
@@ -263,6 +273,9 @@ public class WasteWizard : MonoBehaviour {
 						SpellStage=1;
 						VulnerableCooldown = 8f;
 						Debug.Log("Moved into vuln area");
+						leftHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
+						rightHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
+						NormalFace.GetComponent<WizardFaceDamageable>().SwitchCollider(true);
 						//Make wizard and hands able to be hurt
 					}
 				}
@@ -274,15 +287,18 @@ public class WasteWizard : MonoBehaviour {
 						SpellStage =2;
 						NumSpellsCast=0;
 
-					RightHandFist.enabled = true;
-					RightHandFull.enabled = false;
-					RightHandHalf.enabled = false;
-					LeftHandFist.enabled = true;
-					LeftHandFull.enabled = false;
-					LeftHandHalf.enabled = false;
-					LeftHandHalf.sortingOrder = 0;
-					RightHandHalf.sortingOrder = 0;
-					vulnMode =false;
+						RightHandFist.enabled = true;
+						RightHandFull.enabled = false;
+						RightHandHalf.enabled = false;
+						LeftHandFist.enabled = true;
+						LeftHandFull.enabled = false;
+						LeftHandHalf.enabled = false;
+						LeftHandHalf.sortingOrder = 0;
+						RightHandHalf.sortingOrder = 0;
+						vulnMode =false;
+						leftHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(false);
+						rightHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(false);
+						NormalFace.GetComponent<WizardFaceDamageable>().SwitchCollider(false);
 					}
 				}
 			}
@@ -329,6 +345,8 @@ public class WasteWizard : MonoBehaviour {
 								wizardHands.velocity = new Vector2(0,25);
 								Debug.Log("SpellStage 2");
 								SpellStage =2;
+								audiosource.clip = CastGarbageBall;
+								audiosource.Play();
 							}
 						}
 							else if(SpellStage ==2){
@@ -400,6 +418,8 @@ public class WasteWizard : MonoBehaviour {
 								wizardHands.velocity = new Vector2(0,-20);
 								Debug.Log("SpellStage 2");
 								SpellStage =2;
+								audiosource.clip = CastHailOfTrash;
+								audiosource.Play();
 							}
 						}
 						else if(SpellStage ==2){
@@ -465,12 +485,14 @@ public class WasteWizard : MonoBehaviour {
 						}
 						else if (SpellStage ==1){
 							if(wizardHandsHolder.transform.position.y > 40){
+								audiosource.clip = CastFist;
+								audiosource.Play();
 								Debug.Log("SpellStage 2");
 								SpellStage =2;
 								fistCounter =0;
 								StartCoroutine("Fist", 1);
-								StartCoroutine("Fist", 2);
 								StartCoroutine("Fist", 3);
+								StartCoroutine("Fist", 5);
 								wizardHands.velocity = new Vector2(0,0);
 							}
 						}
@@ -583,14 +605,32 @@ public class WasteWizard : MonoBehaviour {
 		Vector2 NewPos = new Vector2(wizardSpeedHori*MoveRight, wizardSpeedVert*MoveUp);
         wizardBody.velocity = NewPos;
 		wizardHands.velocity = NewPos;
+	}
 
+	public void damageWizard(float damageIn){
+		wizardHealth-=damageIn;
 
+		Debug.Log("Wizard health: " + wizardHealth);
+		if(wizardHealth <= 0){
+			//End of game?
+		}
 
 	}
 
+
 	IEnumerator Fist(int waitTime) {			
 		yield return new  WaitForSeconds(waitTime);  // or however long you want it to wait
+			float playerX = PlayerTransform.position.x;
+			float playerY = PlayerTransform.position.y;
 
+			if(handSwitch){
+				LeftHandSmash.GetComponent<WizardFistController>().DropFistAtLocation(playerX,playerY);
+				handSwitch = false;
+			}
+			else{
+				RightHandSmash.GetComponent<WizardFistController>().DropFistAtLocation(playerX,playerY);
+				handSwitch = true;
+			}
 
 			garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
 			garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);

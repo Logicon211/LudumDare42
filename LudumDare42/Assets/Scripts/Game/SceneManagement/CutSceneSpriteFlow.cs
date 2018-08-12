@@ -5,6 +5,8 @@ public class CutSceneSpriteFlow : MonoBehaviour
 {
 	public float fadeSpeed = 1.5f;          // Speed that the screen fades to and from black.
 	public Sprite[] sprite;
+
+	public float disableInputForSeconds = 1f;
 	
 	private bool sceneStarting = true;      // Whether or not the scene is still fading in.
 	private int sceneEnding = 0;
@@ -36,11 +38,14 @@ public class CutSceneSpriteFlow : MonoBehaviour
 	
 	void Update ()
 	{
+		disableInputForSeconds -= 0.01f;
 		foreach (Touch touch in Input.touches) {
 			sceneEnding++;
 		}
 
-		if (Input.anyKeyDown) {//.GetKeyDown(KeyCode.RightArrow)) {
+		Debug.Log (disableInputForSeconds);
+
+		if (Input.anyKeyDown && disableInputForSeconds <= 0f) {//.GetKeyDown(KeyCode.RightArrow)) {
 			if(sceneEnding < sprite.Length){
 				sceneEnding++;
 				//Stop music and play jingle;

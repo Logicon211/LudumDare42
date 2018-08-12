@@ -162,7 +162,7 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 			GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
 			explosionEffect.transform.localScale = new Vector3(explosionEffect.transform.localScale.x*2,explosionEffect.transform.localScale.y*2,explosionEffect.transform.localScale.z*2);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
-			gameManager.DecreaseEnemyCount();
+			gameManager.DecreaseBossCount();
 			Destroy(leftSpikeBall);
 			Destroy(rightSpikeBall);
 			Destroy(gameObject);

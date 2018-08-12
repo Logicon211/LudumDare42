@@ -50,6 +50,8 @@ public class EnemySpawnController : MonoBehaviour {
 	}
 
 	public void SpawnBoss (int enemyIndex) {
+		Vector2 spawnLocation = PickSpawnPointFurthestFromPlayer();
+		SpawnAtLocation (robotArray[enemyIndex], spawnLocation.x, spawnLocation.y);
 		//SpawnAtLocation(robotArray[enemyIndex], spawnLocation.position.x, spawnLocation.position.y);
 	}
 
@@ -58,6 +60,9 @@ public class EnemySpawnController : MonoBehaviour {
 	}
 
 	public Vector2 PickSpawnPointNotOnPlayer() {
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag("Player");
+		}
 		Transform closestPoint = null;
 		foreach(Transform point in spawnLocations) {
 			if(closestPoint == null || Vector2.Distance(point.position, player.transform.position) < Vector2.Distance(closestPoint.position, player.transform.position)) {
@@ -76,5 +81,19 @@ public class EnemySpawnController : MonoBehaviour {
 		}
 
 		return new Vector2();
+	}
+
+	public Vector2 PickSpawnPointFurthestFromPlayer() {
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag("Player");
+		}
+		Transform furthestPoint = null;
+		foreach(Transform point in spawnLocations) {
+			if(furthestPoint == null || Vector2.Distance(point.position, player.transform.position) > Vector2.Distance(furthestPoint.position, player.transform.position)) {
+				furthestPoint = point;
+			}
+		}
+
+		return new Vector2(furthestPoint.position.x, furthestPoint.position.y);
 	}
 }

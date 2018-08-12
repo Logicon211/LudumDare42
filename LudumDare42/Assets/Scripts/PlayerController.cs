@@ -35,6 +35,8 @@ public AudioClip hurtSound;
 public AudioClip shotgunSound;
 
 public bool Dashing;
+public GameObject gameControllerObject;
+private GameManager gameManager;
 
 private bool LeftClickDown;
 private bool LeftClick;
@@ -77,6 +79,10 @@ private int LAZER_ANIMATION_LAYER = 2;
 
 	// Use this for initialization
 	void Start () {
+		if (gameControllerObject == null) {
+			gameControllerObject = GameObject.FindGameObjectWithTag ("GameController");
+		}
+		gameManager = gameControllerObject.GetComponent<GameManager> ();
         PlayerRigidBody = this.GetComponent<Rigidbody2D>();
         punchCharge =0f;
         Dashing = false;
@@ -113,13 +119,13 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         if(speedBoostTime > 0f) {
             speedBoostTime -= Time.deltaTime;
-            if(RightClick) {
+			if(RightClick) {
                 playerspeed = playerChargeSpeed + (speedBoostAmount/2);
             } else {
                 playerspeed = defaultPlayerSpeed + speedBoostAmount;
             }
         } else {
-            if(RightClick) {
+			if(RightClick) {
                 playerspeed = playerChargeSpeed;
             } else {
                 playerspeed = defaultPlayerSpeed;
@@ -195,7 +201,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         }
 
 
-        if(LeftClickDown && !RightClick && !Dashing){
+		if(LeftClickDown && !RightClick && !Dashing  && !gameManager.IsPaused()){
             if(usingShotgun) {
                 ShootShotgun();
                 animator.SetTrigger("ShootGun");
@@ -207,7 +213,7 @@ private int LAZER_ANIMATION_LAYER = 2;
             }
         }
 
-        if(LeftClick && !RightClick && !Dashing && usingLazer) {
+		if(LeftClick && !RightClick && !Dashing && usingLazer  && !gameManager.IsPaused()) {
             lazer.SetActive(true);
             energy -= lazerDrain;
 
