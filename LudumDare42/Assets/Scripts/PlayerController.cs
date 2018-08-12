@@ -60,6 +60,7 @@ private Vector2 punchDirecion;
 private bool usingShotgun = false;
 private bool usingLazer = false;
 private bool isShielded = false;
+private bool usingWrench = false;
 public float speedBoostTime = 0f;
 
 private GameObject punchCollider;
@@ -305,6 +306,7 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         usingShotgun = false;
         usingLazer = false;
+        usingWrench = false;
     }
 
     public void PickupShotgun() {
@@ -314,6 +316,7 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         usingShotgun = true;
         usingLazer = false;
+        usingWrench = false;
 
         energySlider.maxValue = 3;
         energy = 3;
@@ -326,6 +329,7 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         usingShotgun = false;
         usingLazer = true;
+        usingWrench = false;
 
         energySlider.maxValue = 100f;
         energy = 100f;
@@ -345,7 +349,16 @@ private int LAZER_ANIMATION_LAYER = 2;
     }
 
     public void PickupWrench() {
+        animator.SetLayerWeight(BASE_ANIMATION_LAYER, 0f);
+        animator.SetLayerWeight(SHOTGUN_ANIMATION_LAYER, 0f);
+        animator.SetLayerWeight(LAZER_ANIMATION_LAYER, 100f);
 
+        usingShotgun = false;
+        usingLazer = false;
+        usingWrench = true;
+
+        energySlider.maxValue = 100f;
+        energy = 100f;
     }
 
     public void ShootShotgun() {
