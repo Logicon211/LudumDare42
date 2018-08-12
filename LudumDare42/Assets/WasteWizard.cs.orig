@@ -52,8 +52,12 @@ public class WasteWizard : MonoBehaviour {
 		LeftHandFist.enabled = false;
 		firstphase = true;
 		fistCounter =0;
+<<<<<<< HEAD
+		//garbageBall.SetActive(false);
+=======
 		garbageBall.SetActive(false);
 		vulnMode = false;
+>>>>>>> Wizard updates
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		NumSpellsCast=0;
@@ -325,15 +329,15 @@ public class WasteWizard : MonoBehaviour {
 						}
 						else if (SpellStage ==1){
 							if(wizardHandsHolder.transform.position.y < -6){
-								garbageBall.SetActive(true);
-								wizardHands.velocity = new Vector2(0,25);
+								//garbageBall.SetActive(true);
+								wizardHands.velocity = new Vector2(0,20);
 								Debug.Log("SpellStage 2");
 								SpellStage =2;
 							}
 						}
 							else if(SpellStage ==2){
-								if(wizardHandsHolder.transform.position.y > 50){
-									garbageBall.SetActive(false);
+								if(wizardHandsHolder.transform.position.y > 40){
+									//garbageBall.SetActive(false);
 									wizardHands.velocity = new Vector2(0,0);
 									SpellStage =3;
 									Debug.Log("SpellStage 3, garbage ball cast complete");
