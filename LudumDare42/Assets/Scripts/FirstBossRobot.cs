@@ -41,6 +41,8 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 	GameObject leftArm, rightArm, leftSpikeBall, rightSpikeBall;
 	GarbageSpawnController garbageScript;
 
+	private bool isDead = false;
+
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
 		RB = GetComponent<Rigidbody2D>();
@@ -153,7 +155,8 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
 		currentHealth -= damageTaken;
-		if (currentHealth <= 0f) {
+		if (currentHealth <= 0f && !isDead) {
+			isDead = true;
 			GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
 			explosionEffect.transform.localScale = new Vector3(explosionEffect.transform.localScale.x*2,explosionEffect.transform.localScale.y*2,explosionEffect.transform.localScale.z*2);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y);

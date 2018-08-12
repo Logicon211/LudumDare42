@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	public bool spawn = true;
+
 	public float cooldownBetweenSpawns = 4f;
 	private float currentTimeBetweenSpawns;
 
@@ -50,8 +52,11 @@ public class GameManager : MonoBehaviour {
 		listener = cameraObject.GetComponent<AudioListener>();
 		playerController = player.GetComponent<PlayerController>();
 
-		enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
-		spawnManager.SpawnWave(currentLevel);
+
+		if(spawn) {
+			enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+			spawnManager.SpawnWave(currentLevel);
+		}
 	}
 	
 	// Update is called once per frame
@@ -75,7 +80,7 @@ public class GameManager : MonoBehaviour {
 
 	// Logic for checking for a wave change
 	private void CheckForWaveChange() {
-		if (enemyCount == 0) {
+		if (enemyCount == 0 && spawn) {
 			currentTimeBetweenSpawns -= Time.deltaTime;
 			if (currentTimeBetweenSpawns <= 0f) {
 				currentLevel++;

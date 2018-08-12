@@ -20,6 +20,8 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 
 	private GameManager gameManager;
 
+	private bool isDead = false;
+
 	GameObject player;
 
 	Rigidbody2D RB;
@@ -97,7 +99,8 @@ public class MeleeRobot : MonoBehaviour, IDamageable<float> {
 	public void Damage(float damageTaken) {
 		// Damages enemy and handles death shit
 		currentHealth -= damageTaken;
-		if (currentHealth <= 0f) {
+		if (currentHealth <= 0f && !isDead) {
+			isDead = true;
 			Instantiate(explosion, transform.position, Quaternion.identity);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
 			gameManager.DecreaseEnemyCount();

@@ -123,7 +123,7 @@ Prefab:
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.size
-      value: 27
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4253692315625382, guid: d5aebe7870488f946853beed4c5d3d95, type: 2}
       propertyPath: m_LocalPosition.x
@@ -176,7 +176,7 @@ Prefab:
         type: 2}
       propertyPath: sprite.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 3b59669b659411d4fa725dae78d7c265,
+      objectReference: {fileID: 21300000, guid: af9ce95808d7dd54890d08282d3ccbcd,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
@@ -187,73 +187,73 @@ Prefab:
         type: 2}
       propertyPath: sprite.Array.data[4]
       value: 
-      objectReference: {fileID: 21300000, guid: b44002c3d81e8844a8e1d45f8f97e48a,
+      objectReference: {fileID: 21300000, guid: e54cec49e2e38fd41b25668281ed206e,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[5]
       value: 
-      objectReference: {fileID: 21300000, guid: 0137ef5f3c7578648b90c0a1bc53f625,
+      objectReference: {fileID: 21300000, guid: bca87a5b80828d140b283899b4ad7b0f,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[6]
       value: 
-      objectReference: {fileID: 21300000, guid: 533a90752034d1e4c98ef767281bb555,
+      objectReference: {fileID: 21300000, guid: cd222699855205c419f46bf531833421,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[7]
       value: 
-      objectReference: {fileID: 21300000, guid: 5285d112c2d21364b82b8470c7755db2,
+      objectReference: {fileID: 21300000, guid: 997b9da19001fdc4cbad1a81372b6ca7,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[8]
       value: 
-      objectReference: {fileID: 21300000, guid: 7beecbc31dadbea4d9187f1d6b4a0b2b,
+      objectReference: {fileID: 21300000, guid: 528f4a8c926625a45918938bbbe5ec06,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[9]
       value: 
-      objectReference: {fileID: 21300000, guid: f23e5410807697f4984b5f79dfe468db,
+      objectReference: {fileID: 21300000, guid: 749cd4ff671b1664da3c7524d513867e,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[10]
       value: 
-      objectReference: {fileID: 21300000, guid: 383bba2201440a640b626ce752381a6f,
+      objectReference: {fileID: 21300000, guid: d4b97f9a92866d84f97e1604c8732141,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 0fdc7579117c1174798a65f720b6fe90,
+      objectReference: {fileID: 21300000, guid: 06fb6e82826c0074db127fe06aead561,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: 7eaf77842d0e52d4f946ea3e24edcb5c,
+      objectReference: {fileID: 21300000, guid: 10654b84b641a8e49a5433f15fc68a83,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 754d693feb6365d4db65f2e50f037da5,
+      objectReference: {fileID: 21300000, guid: d3901d7b764e75a49b56111671941423,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[11]
       value: 
-      objectReference: {fileID: 21300000, guid: 53b11f16332dcad4fb61baa5fbd089d3,
+      objectReference: {fileID: 21300000, guid: 024bf46c6e324e0459b901ee75ab06ea,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[12]
       value: 
-      objectReference: {fileID: 21300000, guid: 00b7052fd60ca224d872860f632d22f5,
+      objectReference: {fileID: 21300000, guid: 300022dfd81f28e478bae77f33ba29cd,
         type: 3}
     - target: {fileID: 212719801417337934, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
@@ -293,53 +293,53 @@ Prefab:
         type: 2}
       propertyPath: jingle
       value: 
-      objectReference: {fileID: 8300000, guid: f1404e8fdd2a65b479aa31ee6a133259, type: 3}
+      objectReference: {fileID: 8300000, guid: 31ae4f34396dcf04fa89a2c8a1714ff9, type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: slideToStopMusicAndJingle
-      value: 25
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[13]
       value: 
-      objectReference: {fileID: 21300000, guid: 3886fe780b763144b8f68d4375358bdd,
+      objectReference: {fileID: 21300000, guid: 4fa9919c6c461b341b247e70a06104b7,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[14]
       value: 
-      objectReference: {fileID: 21300000, guid: f4c365835f561a64994d1c471c33eaa3,
+      objectReference: {fileID: 21300000, guid: 20e2483ac4067be438092b81583548bf,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[15]
       value: 
-      objectReference: {fileID: 21300000, guid: de149546eaefbb248a6df354ad0f282f,
+      objectReference: {fileID: 21300000, guid: 835318d8ef93fc1429350824dd5e3ab1,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[16]
       value: 
-      objectReference: {fileID: 21300000, guid: a2b4fa9406db88143ac536361d69e2dd,
+      objectReference: {fileID: 21300000, guid: 8d716239c0963dc449e30e35d1194165,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[17]
       value: 
-      objectReference: {fileID: 21300000, guid: f3ef1eeb20bf48e4da0a7a5c8fa67fa7,
+      objectReference: {fileID: 21300000, guid: 570cc370976b8d048b53696354190055,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[18]
       value: 
-      objectReference: {fileID: 21300000, guid: 654978c306002d54a960037f28a35338,
+      objectReference: {fileID: 21300000, guid: 968762a8e7d4f9546ad053451277c561,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
       propertyPath: sprite.Array.data[19]
       value: 
-      objectReference: {fileID: 21300000, guid: 5cef2d17e99f7fe408a42bbcc8ca452e,
+      objectReference: {fileID: 21300000, guid: c36bf6f92a9cb8c449cd304492ec8cd8,
         type: 3}
     - target: {fileID: 114275543527505588, guid: d5aebe7870488f946853beed4c5d3d95,
         type: 2}
@@ -1631,7 +1631,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6afb5d874d88ce242824fedaf2fe775b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9711cc51380056e4caff2ff9b1683692, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.52
   m_Pitch: 1

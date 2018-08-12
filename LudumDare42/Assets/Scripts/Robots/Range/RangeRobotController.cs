@@ -24,6 +24,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	private float currentHealth;
 	SpriteRenderer spriteRenderer;
 
+	private bool isDead = false;
+
 	void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
 		audio = GetComponent<AudioSource>();
@@ -90,7 +92,8 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
 		currentHealth -= damageTaken;
-		if (currentHealth <= 0f) {
+		if (currentHealth <= 0f && !isDead) {
+			isDead = true;
 			Instantiate(explosion, transform.position, Quaternion.identity);
 			garbageScript.SpawnAtLocation(1, transform.position.x, transform.position.y, false);
 			gameManager.DecreaseEnemyCount();
