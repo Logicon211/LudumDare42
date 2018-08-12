@@ -23,6 +23,10 @@ public class WasteWizard : MonoBehaviour {
 	public SpriteRenderer LeftHandHalf;
 	public SpriteRenderer RightHandFist;
 	public SpriteRenderer LeftHandFist;
+	public GarbageSpawnController garbageSpawner;
+	public bool firstphase;
+	private float ChosenSpell;
+	private int fistCounter;
 
 
 	// Use this for initialization
@@ -37,15 +41,22 @@ public class WasteWizard : MonoBehaviour {
 		AngerFace.SetActive(false);
 		RightHandFist.enabled = false;
 		LeftHandFist.enabled = false;
+		firstphase = true;
+		fistCounter =0;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            ChangePhase();
+        }
 	}
 
 	void FixedUpdate() {
+		if(firstphase){
 		if(castTimer < 0){
 			CastSpell();
 			castTimer -= TimerReset;
@@ -75,8 +86,8 @@ public class WasteWizard : MonoBehaviour {
 			if(SpellStage ==0){
 				if(transform.position.y < -2){
 					transform.position = new Vector2(0,-2);
-					wizardBody.velocity = new Vector2(0,7);
-					wizardHands.velocity = new Vector2(0,7);
+					wizardBody.velocity = new Vector2(0,8);
+					wizardHands.velocity = new Vector2(0,8);
 					NormalFace.SetActive(false);
 					AngerFace.SetActive(true);
 					SpellStage =1;
@@ -149,6 +160,27 @@ public class WasteWizard : MonoBehaviour {
 			else if(SpellStage ==5){
 				if(wizardHandsHolder.transform.position.y < 20){
 					Camera.main.GetComponent<Camera_controller>().CameraShake();
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+					
 					wizardHands.velocity = new Vector2(0,3);
 					SpellStage =6;
 					
@@ -181,28 +213,223 @@ public class WasteWizard : MonoBehaviour {
 					LeftHandFull.enabled = true;
 					LeftHandHalf.enabled = true;
 					DuringCast = false;
-					
+					NormalFace.SetActive(true);
+					AngerFace.SetActive(false);					
 					Debug.Log("Spell done");
 				}
 			}
 
 		}
+		}
+		//FINAL PHASE
+		else{
+
+			if(castTimer < 0){
+				CastBossSpell();
+				castTimer -= TimerReset;
+				TimerReset -= 0.5f;
+		}
 
 
-	}
+
+			if(transform.position.x > 12){
+				MoveRight = -1f;
+			}
+			else if(transform.position.x < -12){
+				MoveRight = 1f;
+			}
+			
+			if(transform.position.y > 34){
+				MoveUp = -1f;
+			}
+			else if(transform.position.y < 29){
+				MoveUp = 1f;
+			}
+
+			if(!DuringCast){
+			
+				castTimer -= Time.fixedDeltaTime;
+				Move();
+			}
+
+			if(DuringCast){
+				
+				float ChosenSpell = Random.Range(1f, 20f);
+				
+					//garbage ball
+					if(ChosenSpell <7){
+
+					}
+
+					//Hail of trash
+					else if(ChosenSpell < 14){
+						if(SpellStage==0){
+							wizardHands.velocity = new Vector2(0,5);
+							SpellStage=1;
+						}
+						else if (SpellStage ==1){
+							if(wizardHandsHolder.transform.position.y > 30){
+								wizardHands.velocity = new Vector2(0,-20);
+								Debug.Log("SpellStage 2");
+								SpellStage =2;
+							}
+						}
+						else if(SpellStage ==2){
+							if(wizardHandsHolder.transform.position.y < 20){
+								Camera.main.GetComponent<Camera_controller>().CameraShake();
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+								
+								wizardHands.velocity = new Vector2(0,0);
+								SpellStage =3;
+								wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+								Debug.Log("SpellStage 3, hail of trash complete");
+								
+								DuringCast = false;
+								NormalFace.SetActive(true);
+								AngerFace.SetActive(false);		
+							}
+						}
+
+					}//Hail of trash end
+
+					//Fist
+					else if(ChosenSpell < 20){
+
+						if(SpellStage==0){
+							wizardHands.velocity = new Vector2(0,10);
+							SpellStage=1;
+						}
+						else if (SpellStage ==1){
+							if(wizardHandsHolder.transform.position.y > 40){
+								Debug.Log("SpellStage 2");
+								SpellStage =2;
+								fistCounter =0;
+								StartCoroutine("Fist", 1);
+								StartCoroutine("Fist", 2);
+								StartCoroutine("Fist", 3);
+								wizardHands.velocity = new Vector2(0,0);
+							}
+						}
+						else if(SpellStage ==2){
+							if(fistCounter==3){
+								SpellStage =3;
+								wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+								Debug.Log("SpellStage 3, fist spell complete");
+								
+								DuringCast = false;
+								NormalFace.SetActive(true);
+								AngerFace.SetActive(false);		
+							}
+							
+						}
+
+					}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					}
+
+				if(SpellStage ==0){
+					if(transform.position.y < -2){
+						transform.position = new Vector2(0,-2);
+						wizardBody.velocity = new Vector2(0,8);
+						wizardHands.velocity = new Vector2(0,8);
+						NormalFace.SetActive(false);
+						AngerFace.SetActive(true);
+						SpellStage =1;
+						Debug.Log("SpellStage 1");
+					}	
+				}
+			}
+
+		}//Else for final phase
+
+
+
+	
+
+	public void ChangePhase(){
+		firstphase=false;
+		castTimer=10f;
+		TimerReset = 10f;
+		RightHandFist.enabled = true;
+		RightHandFull.enabled = false;
+		RightHandHalf.enabled = false;
+		LeftHandFist.enabled = true;
+		LeftHandFull.enabled = false;
+		LeftHandHalf.enabled = false;
+		RightHandFist.sortingOrder=3;
+		LeftHandFist.sortingOrder=3;
+		DuringCast =false;
+}
 
 	void CastSpell(){
 		DuringCast = true;
 		wizardBody.velocity = new Vector2(0f, -10f);
 		SpellStage = 0;
+		
+	}
+
+	void CastBossSpell(){
+		DuringCast = true;
+		wizardBody.velocity = new Vector2(0f, 0f);
+		SpellStage = 0;
+		ChosenSpell = Random.Range(1f, 20f);
+		NormalFace.SetActive(false);
+		AngerFace.SetActive(true);	
 	}
 
 	void Move(){
 		Vector2 NewPos = new Vector2(wizardSpeedHori*MoveRight, wizardSpeedVert*MoveUp);
         wizardBody.velocity = NewPos;
+		wizardHands.velocity = NewPos;
 
 
 
 	}
 
+	IEnumerator Fist(int waitTime) {			
+		yield return new  WaitForSeconds(waitTime);  // or however long you want it to wait
+
+
+			garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+			garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
+			Camera.main.GetComponent<Camera_controller>().CameraShake();
+			fistCounter++;
+		
+	}
 }
