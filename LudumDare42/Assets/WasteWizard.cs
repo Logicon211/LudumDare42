@@ -43,6 +43,8 @@ public class WasteWizard : MonoBehaviour {
 	public AudioClip CastFist;
 	public AudioClip CastHailOfTrash;
 	public AudioClip CastGarbageBall;
+	public GameObject leftHandHalfGameObject;
+	public GameObject rightHandHalfGameObject;
 
 	// Use this for initialization
 	void Start () {
@@ -271,6 +273,9 @@ public class WasteWizard : MonoBehaviour {
 						SpellStage=1;
 						VulnerableCooldown = 8f;
 						Debug.Log("Moved into vuln area");
+						leftHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
+						rightHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
+						NormalFace.GetComponent<WizardFaceDamageable>().SwitchCollider(true);
 						//Make wizard and hands able to be hurt
 					}
 				}
@@ -282,15 +287,18 @@ public class WasteWizard : MonoBehaviour {
 						SpellStage =2;
 						NumSpellsCast=0;
 
-					RightHandFist.enabled = true;
-					RightHandFull.enabled = false;
-					RightHandHalf.enabled = false;
-					LeftHandFist.enabled = true;
-					LeftHandFull.enabled = false;
-					LeftHandHalf.enabled = false;
-					LeftHandHalf.sortingOrder = 0;
-					RightHandHalf.sortingOrder = 0;
-					vulnMode =false;
+						RightHandFist.enabled = true;
+						RightHandFull.enabled = false;
+						RightHandHalf.enabled = false;
+						LeftHandFist.enabled = true;
+						LeftHandFull.enabled = false;
+						LeftHandHalf.enabled = false;
+						LeftHandHalf.sortingOrder = 0;
+						RightHandHalf.sortingOrder = 0;
+						vulnMode =false;
+						leftHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(false);
+						rightHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(false);
+						NormalFace.GetComponent<WizardFaceDamageable>().SwitchCollider(false);
 					}
 				}
 			}
@@ -599,9 +607,10 @@ public class WasteWizard : MonoBehaviour {
 		wizardHands.velocity = NewPos;
 	}
 
-	public void damageWizard(int damageIn){
+	public void damageWizard(float damageIn){
 		wizardHealth-=damageIn;
 
+		Debug.Log("Wizard health: " + wizardHealth);
 		if(wizardHealth <= 0){
 			//End of game?
 		}
