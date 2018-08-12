@@ -12,6 +12,7 @@ private float verticalMove;
 
 public float defaultPlayerSpeed = 4f;
 public float playerspeed = 4f;
+public float playerChargeSpeed = 1.4f;
 
 public GameObject hitEffect;
 
@@ -24,6 +25,7 @@ public float dashDamage = 0f;
 public float dashCooldownTime = 0.3f;
 public float bulletVelocity = 10f;
 public float lazerDrain = 0.5f;
+public float speedBoostAmount = 1f;
 
 public Slider healthSlider;
 public Slider energySlider;
@@ -58,6 +60,7 @@ private Vector2 punchDirecion;
 private bool usingShotgun = false;
 private bool usingLazer = false;
 private bool isShielded = false;
+public float speedBoostTime = 0f;
 
 private GameObject punchCollider;
 private AudioSource AS;
@@ -105,6 +108,22 @@ private int LAZER_ANIMATION_LAYER = 2;
 		direction = Camera.main.ScreenToWorldPoint (mousePos) - transform.position;
 		direction.Normalize ();
 
+        if(speedBoostTime > 0f) {
+            speedBoostTime -= Time.deltaTime;
+            if(RightClick) {
+                playerspeed = playerChargeSpeed + (speedBoostAmount/2);
+            } else {
+                playerspeed = defaultPlayerSpeed + speedBoostAmount;
+            }
+        } else {
+            if(RightClick) {
+                playerspeed = playerChargeSpeed;
+            } else {
+                playerspeed = defaultPlayerSpeed;
+            }
+            speedBoostTime = 0f;
+        }
+
 
     
 
@@ -135,8 +154,9 @@ private int LAZER_ANIMATION_LAYER = 2;
         }
 	
         //PlaYer movement
+        Debug.Log("SPEED: " + playerspeed);
         if(!Dashing && !Dodging){
-            NewPos = new Vector2(horizontalMove*playerspeed, verticalMove*playerspeed);
+            NewPos = Vector3.Normalize(new Vector2(horizontalMove*playerspeed, verticalMove*playerspeed));
             PlayerRigidBody.velocity = playerspeed * NewPos;
             if(horizontalMove != 0f || verticalMove != 0f){
                 animator.SetBool("isWalking", true);
@@ -154,7 +174,7 @@ private int LAZER_ANIMATION_LAYER = 2;
                 PlayerRigidBody.mass = 1;
                 punchCharge=0;
                 Dashing=false;
-                playerspeed=defaultPlayerSpeed;
+                //playerspeed=defaultPlayerSpeed;
                 animator.SetBool("PunchCharge", false);
                 animator.SetBool("PunchUnleashed", false);
                 dashDamage = 0;
@@ -171,7 +191,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         }
 
 
-        if(LeftClickDown == true){
+        if(LeftClickDown && !RightClick && !Dashing){
             if(usingShotgun) {
                 ShootShotgun();
                 animator.SetTrigger("ShootGun");
@@ -183,7 +203,7 @@ private int LAZER_ANIMATION_LAYER = 2;
             }
         }
 
-        if(LeftClick == true && usingLazer) {
+        if(LeftClick && !RightClick && !Dashing && usingLazer) {
             lazer.SetActive(true);
             energy -= lazerDrain;
 
@@ -203,7 +223,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         if(RightClick){
             //charge punch attack
 			punchCharge += 2*Time.fixedDeltaTime;
-            playerspeed = 1.2f;
+            //playerspeed = 1.2f;
             animator.SetBool("PunchCharge", true);
 
             if(punchCharge > maxPunchCharge){
@@ -318,7 +338,7 @@ private int LAZER_ANIMATION_LAYER = 2;
     }
 
     public void PickupSpeedBoost() {
-
+        speedBoostTime = 5f;
     }
 
     public void PickupWrench() {

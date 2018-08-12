@@ -99,7 +99,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4124278580372810
 Transform:
   m_ObjectHideFlags: 1
@@ -481,8 +481,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c80c0c75b20eb804287279ab19f90456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultPlayerSpeed: 4
-  playerspeed: 4
+  defaultPlayerSpeed: 15
+  playerspeed: 15
+  playerChargeSpeed: 1.4
   hitEffect: {fileID: 1410727943527182, guid: fd5f37cdce8bb924ca437ea0068f84af, type: 2}
   health: 100
   energy: 0
@@ -493,6 +494,7 @@ MonoBehaviour:
   dashCooldownTime: 0.3
   bulletVelocity: 50
   lazerDrain: 0.5
+  speedBoostAmount: 20
   healthSlider: {fileID: 0}
   energySlider: {fileID: 0}
   chargeSlider: {fileID: 0}
@@ -500,6 +502,7 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: 9db353efa1d3b204d9a85da5ed7adc24, type: 3}
   shotgunSound: {fileID: 8300000, guid: 6956159d013e8a141b082f7eeef70e73, type: 3}
   Dashing: 0
+  speedBoostTime: 0
 --- !u!114 &114776843055095384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -602,8 +605,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -7950841
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300014, guid: a35da262c9a72d84089968f746c52eaf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.48235294}

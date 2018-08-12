@@ -256,9 +256,10 @@ Prefab:
       propertyPath: chargeSlider
       value: 
       objectReference: {fileID: 780650037}
-    - target: {fileID: 1948825268804008, guid: de2ce347350fac245bd1f127f88d29bb, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
+        type: 2}
+      propertyPath: speedBoostAmount
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2ce347350fac245bd1f127f88d29bb, type: 2}
@@ -2360,11 +2361,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4055618782627546, guid: 668c8e058881408498094e344d1e0fa9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 59.84
+      value: 59.89
       objectReference: {fileID: 0}
     - target: {fileID: 4055618782627546, guid: 668c8e058881408498094e344d1e0fa9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.41
+      value: 1.092
       objectReference: {fileID: 0}
     - target: {fileID: 4055618782627546, guid: 668c8e058881408498094e344d1e0fa9, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2596,11 +2597,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4055618782627546, guid: 75afca46dd0a4bd4183de3e00273c904, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 64.94
+      value: 65.199
       objectReference: {fileID: 0}
     - target: {fileID: 4055618782627546, guid: 75afca46dd0a4bd4183de3e00273c904, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.2
+      value: -2.941
       objectReference: {fileID: 0}
     - target: {fileID: 4055618782627546, guid: 75afca46dd0a4bd4183de3e00273c904, type: 2}
       propertyPath: m_LocalPosition.z

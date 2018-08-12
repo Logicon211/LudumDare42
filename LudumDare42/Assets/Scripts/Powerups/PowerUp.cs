@@ -29,7 +29,7 @@ public abstract class PowerUp : MonoBehaviour {
 		powerupCollider = GetComponent<BoxCollider2D>();
 		powerupCollider.enabled = false;
 
-		Invoke("EnableCollider", 2);
+		Invoke("EnableCollider", 1.4f);
 
 		var x = Random.Range(-1f, 1f);
 		var y = Random.Range(-1f, 1f);
