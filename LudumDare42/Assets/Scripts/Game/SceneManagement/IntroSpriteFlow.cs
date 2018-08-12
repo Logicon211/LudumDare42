@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class IntroSpriteFlow : MonoBehaviour
 {
@@ -17,11 +18,14 @@ public class IntroSpriteFlow : MonoBehaviour
 	public int levelToLoadIndex;
 	public int slideToStopMusicAndJingle = 0;
 
+	private GameManager gameManager;
+
 	void Start ()
 	{
 		//Screen.SetResolution (1400, 900, true);
-
 		spriteRenderer = GetComponent<SpriteRenderer>(); // we are accessing the SpriteRenderer that is attached to the Gameobject
+		if (GameObject.FindWithTag("GameController") != null)
+			gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
 	}
 
 	void Awake ()
@@ -123,7 +127,11 @@ public class IntroSpriteFlow : MonoBehaviour
 		if(GetComponent<GUITexture>().color.a >= 0.95f) {
 			// ... reload the level.
 			//Application.LoadLevel(levelToLoad);
-			LoadingScreenManager.LoadScene(levelToLoadIndex);
+			if (gameManager != null)
+				gameManager.LoadScene(levelToLoadIndex);
+			else
+				SceneManager.LoadScene(levelToLoadIndex);
+			
 		}
 	}
 }

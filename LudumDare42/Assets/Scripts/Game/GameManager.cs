@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
 
 	private bool paused = false;
 	private bool inCutScene = false;
+	private bool victory = false;
+	private bool loss = false;
 
 	private int enemyCount = 0;
 	private int currentLevel = 0;
@@ -59,7 +61,8 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		CheckForWaveChange();
-		CheckGameOver();
+		if (player != null)
+			CheckGameOver();
 	}
 
 	// Logic for checking for a wave change
@@ -79,6 +82,9 @@ public class GameManager : MonoBehaviour {
 						SpawnWave(currentLevel);
 						currentTimeBetweenSpawns = cooldownBetweenSpawns;
 					}
+				}
+				else if (currentLevel > maxLevel) {
+					Victory();
 				}
 			}
 		}
@@ -102,14 +108,21 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void CheckGameOver() {
-		if (SceneManager.GetActiveScene().name != "GameOverScreen"){
-			if (playerController.GetHealth() <= 0f)
+		if (SceneManager.GetActiveScene().name != "GameOverScreen" && !victory){
+			if (playerController.GetHealth() <= 0f){
+				Debug.Log("ASDFASDFASDF");
+				loss = true;
 				SceneManager.LoadScene("GameOverScreen", LoadSceneMode.Single);
+			}
 		}
 	}
 
 	public void Victory() {
-		SceneManager.LoadScene("VictoryScene", LoadSceneMode.Single);
+		if (SceneManager.GetActiveScene().name != "VictoryScene" && !loss) {
+			victory = true;
+			SceneManager.LoadScene("VictoryScene", LoadSceneMode.Single);
+		}
+
 	}
 
 	public void PauseGame() {
@@ -141,5 +154,29 @@ public class GameManager : MonoBehaviour {
 				return i;
 		}
 		return -1;
+	}
+
+	// 1 - intro screen
+	// 2 - start of gameplay
+	public void Reset() {
+		victory = false;
+		loss = false;
+		SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+		currentLevel = 0;
+		enemyCount = spawnManager.GetNumOfEnemiesOnLevel(currentLevel);
+		spawnManager.SpawnWave(currentLevel);
+	}
+
+	public void LoadScene(int sceneIndex) {
+		if (sceneIndex == 0 || sceneIndex == 1) {
+			SceneManager.LoadScene(sceneIndex);
+			Destroy(gameObject);
+		}
+		else if (sceneIndex == 2) {
+			Reset();
+		}
+		else {
+			SceneManager.LoadScene(sceneIndex);
+		}
 	}
 }
