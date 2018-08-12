@@ -171,7 +171,7 @@ private int LAZER_ANIMATION_LAYER = 2;
         }
 
 
-        if(LeftClickDown == true){
+        if(LeftClickDown && !RightClick && !Dashing){
             if(usingShotgun) {
                 ShootShotgun();
                 animator.SetTrigger("ShootGun");
@@ -183,7 +183,7 @@ private int LAZER_ANIMATION_LAYER = 2;
             }
         }
 
-        if(LeftClick == true && usingLazer) {
+        if(LeftClick && !RightClick && !Dashing && usingLazer) {
             lazer.SetActive(true);
             energy -= lazerDrain;
 
