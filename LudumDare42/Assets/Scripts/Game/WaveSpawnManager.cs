@@ -56,7 +56,7 @@ public class WaveSpawnManager : MonoBehaviour {
 
 		if(spawnList[level, 2] == 1) {
 			//Senator Swill
-			spawnController.SpawnAtRandomLocation(EnemySpawnController.FIRST_BOSS_INDEX);
+			spawnController.SpawnBoss(EnemySpawnController.FIRST_BOSS_INDEX);
 
 		} else if (spawnList[level, 2] == 2) {
 			//Waste Wizard boss mode
