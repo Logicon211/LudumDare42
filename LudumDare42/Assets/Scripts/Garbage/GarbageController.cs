@@ -106,11 +106,17 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 		currentHealth -= damageTaken;
 		if (currentHealth <= 0f && !isDead) {
 			isDead = true;
+
 			Instantiate(explosion, transform.position, Quaternion.identity);
 
 			float randomRoll = Random.Range(1f, 100f);
 			if(randomRoll <= powerupSpawnChance) {
+				try{
 				powerUpController.SpawnRandomPowerUpAtLocation (transform.position.x, transform.position.y);
+				}
+				catch(System.NullReferenceException e){
+					//Catching exception that happens if you try to spawn a powerup on a dead object
+				}
 			}
 			Destroy(gameObject);
 		}

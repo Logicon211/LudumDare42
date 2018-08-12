@@ -23,12 +23,19 @@ public class WasteWizard : MonoBehaviour {
 	public SpriteRenderer LeftHandHalf;
 	public SpriteRenderer RightHandFist;
 	public SpriteRenderer LeftHandFist;
+	
+	public SpriteRenderer NormalFaceSprite;
+	public SpriteRenderer AngerFaceSprite;
 	public GarbageSpawnController garbageSpawner;
 	public GameObject garbageBall;
 	public bool firstphase;
 	private float ChosenSpell;
 	private int fistCounter;
 	private Transform PlayerTransform;
+	private int NumSpellsCast;
+	private float VulnerableCooldown;
+	private bool vulnMode;
+	private float movementCooldown;
 
 
 	// Use this for initialization
@@ -46,8 +53,10 @@ public class WasteWizard : MonoBehaviour {
 		firstphase = true;
 		fistCounter =0;
 		//garbageBall.SetActive(false);
+		vulnMode = false;
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		NumSpellsCast=0;
 
 	}
 	
@@ -165,6 +174,10 @@ public class WasteWizard : MonoBehaviour {
 			else if(SpellStage ==5){
 				if(wizardHandsHolder.transform.position.y < 20){
 					Camera.main.GetComponent<Camera_controller>().CameraShake();
+					
+					float playerX = PlayerTransform.position.x;
+					float playerY = PlayerTransform.position.y;
+					garbageSpawner.SpawnRandomGarbageAtLocation(playerX,playerY,true);
 					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
 					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
 					garbageSpawner.SpawnRandomGarbageAtRandomLocation(true);
@@ -236,22 +249,63 @@ public class WasteWizard : MonoBehaviour {
 		}
 
 
+			if(NumSpellsCast ==2){
 
-			if(transform.position.x > 12){
-				MoveRight = -1f;
+				if(SpellStage==0){
+					Debug.Log("into SpellStage 0");
+					transform.position = Vector3.Lerp(transform.position, new Vector3(0,14.4f,0), 2 *Time.deltaTime); 
+					wizardHandsHolder.transform.position = Vector3.Lerp(wizardHandsHolder.transform.position, new Vector3(0.25f, 14.45f, 0.2109375f), 2 *Time.deltaTime);
+
+					Debug.Log("wizard position: " + transform.position);
+					Debug.Log("Hands position: " + wizardHandsHolder.transform.position);
+					movementCooldown -= Time.fixedDeltaTime;
+					if(movementCooldown < 0){
+						SpellStage=1;
+						VulnerableCooldown = 8f;
+						Debug.Log("Moved into vuln area");
+						//Make wizard and hands able to be hurt
+					}
+				}
+				else if (SpellStage ==1){
+					VulnerableCooldown-=Time.fixedDeltaTime;
+					if(VulnerableCooldown < 0){
+						wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+						Debug.Log("vulnerability complete");
+						SpellStage =2;
+						NumSpellsCast=0;
+
+					RightHandFist.enabled = true;
+					RightHandFull.enabled = false;
+					RightHandHalf.enabled = false;
+					LeftHandFist.enabled = true;
+					LeftHandFull.enabled = false;
+					LeftHandHalf.enabled = false;
+					LeftHandHalf.sortingOrder = 0;
+					RightHandHalf.sortingOrder = 0;
+					vulnMode =false;
+					}
+				}
 			}
-			else if(transform.position.x < -12){
-				MoveRight = 1f;
-			}
+				
+
 			
-			if(transform.position.y > 34){
-				MoveUp = -1f;
-			}
-			else if(transform.position.y < 29){
-				MoveUp = 1f;
-			}
+			
 
-			if(!DuringCast){
+			if(!DuringCast && !vulnMode){
+
+				if(transform.position.x > 12){
+				MoveRight = -1f;
+				}
+				else if(transform.position.x < -12){
+					MoveRight = 1f;
+				}
+				
+				if(transform.position.y > 34){
+					MoveUp = -1f;
+				}
+				else if(transform.position.y < 29){
+					MoveUp = 1f;
+				}
 			
 				castTimer -= Time.fixedDeltaTime;
 				Move();
@@ -259,7 +313,6 @@ public class WasteWizard : MonoBehaviour {
 
 			if(DuringCast){
 				
-				//float ChosenSpell = Random.Range(1f, 20f);
 				
 					//garbage ball
 					if(ChosenSpell <7){
@@ -283,7 +336,6 @@ public class WasteWizard : MonoBehaviour {
 									//garbageBall.SetActive(false);
 									wizardHands.velocity = new Vector2(0,0);
 									SpellStage =3;
-									wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
 									Debug.Log("SpellStage 3, garbage ball cast complete");
 
 									float playerX = PlayerTransform.position.x;
@@ -314,6 +366,24 @@ public class WasteWizard : MonoBehaviour {
 									DuringCast = false;
 									NormalFace.SetActive(true);
 									AngerFace.SetActive(false);		
+									NumSpellsCast++;
+									if(NumSpellsCast==2){
+										RightHandFist.enabled = false;
+										RightHandFull.enabled = true;
+										RightHandHalf.enabled = true;
+										LeftHandFist.enabled = false;
+										LeftHandFull.enabled = true;
+										LeftHandHalf.enabled = true;
+										LeftHandHalf.sortingOrder = 3;
+										RightHandHalf.sortingOrder = 3;
+										vulnMode = true;
+										SpellStage=0;
+										movementCooldown = 5;
+									}
+									else{								
+										wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+									}
+								
 								}
 						}
 
@@ -358,12 +428,29 @@ public class WasteWizard : MonoBehaviour {
 								
 								wizardHands.velocity = new Vector2(0,0);
 								SpellStage =3;
-								wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+								//wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
 								Debug.Log("SpellStage 3, hail of trash complete");
 								
 								DuringCast = false;
 								NormalFace.SetActive(true);
-								AngerFace.SetActive(false);		
+								AngerFace.SetActive(false);	
+								NumSpellsCast++;	
+									if(NumSpellsCast==2){
+										RightHandFist.enabled = false;
+										RightHandFull.enabled = true;
+										RightHandHalf.enabled = true;
+										LeftHandFist.enabled = false;
+										LeftHandFull.enabled = true;
+										LeftHandHalf.enabled = true;
+										LeftHandHalf.sortingOrder = 3;
+										RightHandHalf.sortingOrder = 3;
+										vulnMode =true;
+										SpellStage=0;
+										movementCooldown = 5;
+									}
+									else{								
+										wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+									}
 							}
 						}
 
@@ -390,12 +477,29 @@ public class WasteWizard : MonoBehaviour {
 						else if(SpellStage ==2){
 							if(fistCounter==3){
 								SpellStage =3;
-								wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+								//wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
 								Debug.Log("SpellStage 3, fist spell complete");
 								
 								DuringCast = false;
 								NormalFace.SetActive(true);
-								AngerFace.SetActive(false);		
+								AngerFace.SetActive(false);	
+								NumSpellsCast++;
+								if(NumSpellsCast==2){
+									RightHandFist.enabled = false;
+									RightHandFull.enabled = true;
+									RightHandHalf.enabled = true;
+									LeftHandFist.enabled = false;
+									LeftHandFull.enabled = true;
+									LeftHandHalf.enabled = true;
+									LeftHandHalf.sortingOrder = 3;
+									RightHandHalf.sortingOrder = 3;
+									vulnMode =true;
+									SpellStage=0;
+									movementCooldown = 5;
+								}
+								else{
+									wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
+								}
 							}
 							
 						}
@@ -453,6 +557,8 @@ public class WasteWizard : MonoBehaviour {
 		RightHandFist.sortingOrder=3;
 		LeftHandFist.sortingOrder=3;
 		DuringCast =false;
+		AngerFaceSprite.sortingOrder=3;
+		NormalFaceSprite.sortingOrder=3;
 }
 
 	void CastSpell(){
@@ -466,8 +572,9 @@ public class WasteWizard : MonoBehaviour {
 		DuringCast = true;
 		wizardBody.velocity = new Vector2(0f, 0f);
 		SpellStage = 0;
-	//	ChosenSpell = Random.Range(1f, 20f);
-		ChosenSpell = 5;
+		Random.seed = System.DateTime.Now.Millisecond;
+		ChosenSpell = Random.Range(1f, 20f);
+		//ChosenSpell = 5;
 		NormalFace.SetActive(false);
 		AngerFace.SetActive(true);	
 	}
