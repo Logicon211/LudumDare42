@@ -59,8 +59,8 @@ public class WasteWizard : MonoBehaviour {
 	void Start () {
 		MoveUp = 1f;
 		MoveRight = 1f;
-		castTimer = 10f;
-		TimerReset = 10f;
+		castTimer = 3f;
+		TimerReset = 3f;
 		wizardSpeedHori = 2f;
 		wizardSpeedVert = 1f;
 		SpellStage = 0;
@@ -287,7 +287,7 @@ public class WasteWizard : MonoBehaviour {
 				if(SpellStage==0){
 					Debug.Log("into SpellStage 0");
 					transform.position = Vector3.Lerp(transform.position, new Vector3(0,14.4f,0), 2 *Time.deltaTime); 
-					wizardHandsHolder.transform.position = Vector3.Lerp(wizardHandsHolder.transform.position, new Vector3(0.25f, 14.45f, 0.2109375f), 2 *Time.deltaTime);
+					wizardHandsHolder.transform.position = Vector3.Lerp(wizardHandsHolder.transform.position, new Vector3(0.25f, 14.45f, 0.2109375f), 4 *Time.deltaTime);
 
 					movementCooldown -= Time.fixedDeltaTime;
 					if(movementCooldown < 0){
@@ -418,7 +418,7 @@ public class WasteWizard : MonoBehaviour {
 										RightHandHalf.sortingOrder = 3;
 										vulnMode = true;
 										SpellStage=0;
-										movementCooldown = 4;
+										movementCooldown = 3;
 									}
 									else{								
 										wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
@@ -543,7 +543,7 @@ public class WasteWizard : MonoBehaviour {
 									RightHandHalf.sortingOrder = 3;
 									vulnMode =true;
 									SpellStage=0;
-									movementCooldown = 5;
+									movementCooldown = 3;
 								}
 								else{
 									wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
@@ -594,8 +594,8 @@ public class WasteWizard : MonoBehaviour {
 
 	public void ChangePhase(){
 		firstphase=false;
-		castTimer=10f;
-		TimerReset = 10f;
+		castTimer=3f;
+		TimerReset = 3f;
 
 		DuringCast =false;
 		StartCoroutine("VisibleHands");
