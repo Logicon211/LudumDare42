@@ -2746,11 +2746,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114474624200521592, guid: efe30090d881811478a8e571525223f6,
-        type: 2}
-      propertyPath: spawnLocations.Array.size
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4784661110567854, guid: efe30090d881811478a8e571525223f6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.5273182
@@ -2783,11 +2778,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114474624200521592, guid: efe30090d881811478a8e571525223f6,
-        type: 2}
-      propertyPath: bossSpawnLocation
-      value: 
-      objectReference: {fileID: 1448620412}
     - target: {fileID: 114474624200521592, guid: efe30090d881811478a8e571525223f6,
         type: 2}
       propertyPath: spawnLocations.Array.data[0]

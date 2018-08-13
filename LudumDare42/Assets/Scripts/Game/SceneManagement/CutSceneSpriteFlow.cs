@@ -43,8 +43,6 @@ public class CutSceneSpriteFlow : MonoBehaviour
 			sceneEnding++;
 		}
 
-		Debug.Log (disableInputForSeconds);
-
 		if (Input.anyKeyDown && disableInputForSeconds <= 0f) {//.GetKeyDown(KeyCode.RightArrow)) {
 			if(sceneEnding < sprite.Length){
 				sceneEnding++;

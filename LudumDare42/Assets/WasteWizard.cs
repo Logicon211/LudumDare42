@@ -55,6 +55,10 @@ public class WasteWizard : MonoBehaviour {
 	private GameManager gameManager;
 	private float healthLoseLimit;
 
+	public EnemySpawnController enemySpawnController;
+	public float enemySpawnTime;
+	private float currentEnemySpawnTime;
+
 	// Use this for initialization
 	void Start () {
 		MoveUp = 1f;
