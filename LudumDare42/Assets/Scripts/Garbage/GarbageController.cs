@@ -30,6 +30,8 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 	private float currentHealth;
 	private bool isDead = false;
 
+	public float landingDamage = 10f;
+
 	// Use this for initialization
 	void Start () {
 		casterRenderer = GetComponent<SpriteRenderer> ();
@@ -132,7 +134,7 @@ public class GarbageController : MonoBehaviour, IDamageable<float> {
 			if (collision != null) {
 				PlayerController playerController = collision.gameObject.GetComponent<PlayerController> ();
 				if (playerController != null) {
-					playerController.Damage (20f);
+					playerController.Damage (landingDamage);
 					return;
 				}
 			}

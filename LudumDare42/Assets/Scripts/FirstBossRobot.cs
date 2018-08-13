@@ -20,6 +20,7 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 	public GameObject garbageController;
 
 	public GameObject explosion;
+	public GameObject teleportEffect;
 
 	
 	public AudioClip itsGarbageDay;
@@ -49,6 +50,10 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 	GarbageSpawnController garbageScript;
 
 	private bool isDead = false;
+
+	private int currentPhase = 0;
+	private float[] phaseHealth = {100, 66, 33, -999};
+	private bool isTeleporting;
 
 	void Start () {
 		AS = GetComponent<AudioSource>();
@@ -168,7 +173,21 @@ public class FirstBossRobot : MonoBehaviour, IDamageable<float> {
 
 	// Damages enemy and handles death shit
 	public void Damage(float damageTaken) {
-		currentHealth -= damageTaken;
+		if (!isTeleporting) {
+			currentHealth -= damageTaken;
+			if(currentHealth <= phaseHealth[currentPhase+1]) {
+				isTeleporting = true;
+				currentHealth = phaseHealth[currentPhase+1];
+
+				Instantiate(teleportEffect, transform.position, Quaternion.identity);
+				EnemySpawnController spawnController = gameManager.GetComponent<EnemySpawnController>();
+				transform.position = spawnController.PickSpawnPointFurthestFromPlayer();
+				Instantiate(teleportEffect, transform.position, Quaternion.identity);
+				
+				currentPhase++;
+				isTeleporting = false;
+			}
+		}
 		if (currentHealth <= 0f && !isDead) {
 			isDead = true;
 			GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);

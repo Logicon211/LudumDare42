@@ -7,7 +7,7 @@ public class WaveSpawnManager : MonoBehaviour {
 
 
 	//This is the spawn list we will use. each array in the array will be 
-	public int[,] spawnList = {{1, 1, 0}, {2, 1, 0}, {-1, 0, 0}, {0, 0, 1}, {1, 1, 0}, {-2, 0, 0}, {0, 0, 2}};
+	public int[,] spawnList = {{2, 0, 0}, {1, 1, 0}, {2, 1, 0}, {-1, 0, 0}, {2, 0, 1}, {2, 2, 0}, {-2, 0, 0}, {2, 1, 2}};
 	public int test;
 	
 	int numOfLevels;

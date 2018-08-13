@@ -5,6 +5,8 @@ using UnityEngine;
 public class LazerController : MonoBehaviour {
 
 	public float damagePerFrame = 2f;
+	public float damageToGarbagePerFrame = 0.5f;
+	public GameObject hitEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +27,12 @@ public class LazerController : MonoBehaviour {
 	{
 		IDamageable<float> damageable = other.gameObject.GetComponent<IDamageable<float>>();
 		if(damageable != null) {
-			damageable.Damage(damagePerFrame);
+			if(other.gameObject.layer == LayerMask.NameToLayer("Terrain")) {
+				damageable.Damage(damageToGarbagePerFrame);
+			} else {
+				damageable.Damage(damagePerFrame);
+			}
+			Instantiate(hitEffect, other.transform.position, Quaternion.identity);
 		}
 	}
 }

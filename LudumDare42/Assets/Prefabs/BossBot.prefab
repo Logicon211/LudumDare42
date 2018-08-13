@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336681766880086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.450874, y: -29.085976, z: 4.3164062}
+  m_LocalPosition: {x: 23.075453, y: -30.695908, z: 4.3164062}
   m_LocalScale: {x: 2.7188363, y: 2.7188363, z: 2.7188363}
   m_Children:
   - {fileID: 4095629858451508}
@@ -258,7 +258,7 @@ MonoBehaviour:
   extendCooldown: 5
   extendRange: 12
   ballRadius: 15
-  ballSpinSpeed: 200
+  ballSpinSpeed: 120
   rightBallSpinOffset: 100
   ballExtendSpeed: 20
   spikeBall: {fileID: 1396573463121552, guid: 4902ec218ef23df46948ae3b6f73b2d7, type: 2}
@@ -266,6 +266,7 @@ MonoBehaviour:
   garbageController: {fileID: 1958027917742884, guid: ef47ab27ddb472b4897cbc3134a1b41a,
     type: 2}
   explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
+  teleportEffect: {fileID: 156964, guid: 55d9dca6fda674649b3dc9a1089b5ebc, type: 2}
   itsGarbageDay: {fileID: 8300000, guid: 3e85270a0ddf68b47a94878aa8f5d0c1, type: 3}
   quipTimer: 0.5
   timeBetweenExtending: 0

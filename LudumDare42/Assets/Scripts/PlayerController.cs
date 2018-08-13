@@ -119,6 +119,7 @@ private int LAZER_ANIMATION_LAYER = 2;
 		direction.Normalize ();
 
         if(speedBoostTime > 0f) {
+            PlayerRigidBody.mass = 100;
             speedBoostTime -= Time.deltaTime;
 			if(RightClick) {
                 playerspeed = playerChargeSpeed + (speedBoostAmount/2);
@@ -126,6 +127,7 @@ private int LAZER_ANIMATION_LAYER = 2;
                 playerspeed = defaultPlayerSpeed + speedBoostAmount;
             }
         } else {
+            PlayerRigidBody.mass = 1;
 			if(RightClick) {
                 playerspeed = playerChargeSpeed;
             } else {

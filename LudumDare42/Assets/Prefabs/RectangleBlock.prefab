@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1893990355607914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.470436, y: -10.8847065, z: 0}
+  m_LocalPosition: {x: 58.033344, y: -13.885157, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shadowMaterial: {fileID: 2100000, guid: 2f591858c727ed642bd4f36d4f6d741e, type: 2}
   dropFromSky: 1
-  health: 30
+  health: 15
   explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
-  powerupSpawnChance: 25
+  powerupSpawnChance: 20
 --- !u!212 &212651689837199176
 SpriteRenderer:
   m_ObjectHideFlags: 1

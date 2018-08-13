@@ -18,7 +18,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	private Rigidbody2D enemyBody;
 	private Vector3 velocity = Vector3.zero;
 	private float currentCooldown;
-	private bool hasShot = false;
+	private bool hasShot = true;
 	private GarbageSpawnController garbageScript;
 	private GameManager gameManager;
 
@@ -32,7 +32,7 @@ public class RangeRobotController : MonoBehaviour, IDamageable<float> {
 	void Awake() {
 		enemyBody = GetComponent<Rigidbody2D>();
 		audio = GetComponent<AudioSource>();
-		currentCooldown = shootCooldown;
+		currentCooldown = 2f;
 	}
 
 	// Use this for initialization

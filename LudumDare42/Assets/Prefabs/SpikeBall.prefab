@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1396573463121552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -47.45389, y: -11.582632, z: -0.9525561}
+  m_LocalPosition: {x: 23.750088, y: -33.739143, z: -0.9525561}
   m_LocalScale: {x: 5.094208, y: 5.094208, z: 5.094208}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defa33c59bccc7d4c92f837004cfe8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spikeBallDamage: 10
 --- !u!120 &120250605907247872
 LineRenderer:
   m_ObjectHideFlags: 1
