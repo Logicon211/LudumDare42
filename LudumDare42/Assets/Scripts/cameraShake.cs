@@ -18,10 +18,10 @@ public class cameraShake : MonoBehaviour {
 	}
 	void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            shake = shakeStrength;
-        }
+        // if(Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     shake = shakeStrength;
+        // }
        
         Camera.main.transform.localPosition = (Random.insideUnitSphere * shake);
        

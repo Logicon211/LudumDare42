@@ -12,13 +12,13 @@ public class SceneChange : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Z))
-        {
-            SceneManager.LoadScene ("ChadsSceneForTestingSceneTransitionWithoutLosingShit", LoadSceneMode.Additive);
-        }
-		if (Input.GetKeyDown(KeyCode.X))
-        {
-            print("space key was pressed");
-        }
+		// if (Input.GetKeyDown(KeyCode.Z))
+        // {
+        //     SceneManager.LoadScene ("ChadsSceneForTestingSceneTransitionWithoutLosingShit", LoadSceneMode.Additive);
+        // }
+		// if (Input.GetKeyDown(KeyCode.X))
+        // {
+        //     print("space key was pressed");
+        // }
 	}
 }

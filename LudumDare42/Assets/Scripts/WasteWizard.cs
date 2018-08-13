@@ -107,10 +107,10 @@ public class WasteWizard : MonoBehaviour {
 			HUDWarning.SetActive(false);
 		}
 
-         if(Input.GetKeyDown(KeyCode.Q))
-         {
-             ChangePhase();
-         }
+        //  if(Input.GetKeyDown(KeyCode.Q))
+        //  {
+        //      ChangePhase();
+        //  }
 
 		if (wizardHealth < maxHealth) {
 			if(wizardHealth < 0f) {

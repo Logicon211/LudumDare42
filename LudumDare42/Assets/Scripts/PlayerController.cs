@@ -273,7 +273,7 @@ private int LAZER_ANIMATION_LAYER = 2;
     }
 
     public void Punch() {
-        Collider2D[] contacts = new Collider2D[2];
+        Collider2D[] contacts = new Collider2D[5];
         ContactFilter2D filter = new ContactFilter2D();
         punchCollider.GetComponent<Collider2D>().OverlapCollider(filter.NoFilter(), contacts);
 

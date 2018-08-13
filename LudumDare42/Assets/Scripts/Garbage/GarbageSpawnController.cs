@@ -22,9 +22,9 @@ public class GarbageSpawnController : MonoBehaviour {
 
 	void Update () {
 		//TODO: remove after debugging
-		if (Input.GetKeyDown (KeyCode.P)) {
-			SpawnRandomGarbageAtRandomLocation ();
-		}
+		// if (Input.GetKeyDown (KeyCode.P)) {
+		// 	SpawnRandomGarbageAtRandomLocation ();
+		// }
 	}
 
 	public void SpawnRandomGarbageAtLocation (float xPos, float yPos, bool dropFromSky = true) {
