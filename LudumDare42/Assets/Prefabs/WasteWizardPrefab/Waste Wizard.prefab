@@ -1688,6 +1688,7 @@ MonoBehaviour:
   NormalFaceSprite: {fileID: 212418908591297420}
   AngerFaceSprite: {fileID: 212569625447124534}
   garbageSpawner: {fileID: 0}
+  powerUpController: {fileID: 0}
   garbageBall: {fileID: 1200724822182788}
   firstphase: 0
   LeftHandSmash: {fileID: 0}
@@ -1702,6 +1703,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 01024f132f6f3de4380fb5185b312806, type: 3}
   - {fileID: 8300000, guid: d7f7b4ce384a57e4ebb0317b4655fb2f, type: 3}
   - {fileID: 8300000, guid: 502070c6eb9de5346abd5cd446e8f29e, type: 3}
+  enemySpawnController: {fileID: 0}
+  enemySpawnTime: 0
 --- !u!114 &114506731297400670
 MonoBehaviour:
   m_ObjectHideFlags: 1

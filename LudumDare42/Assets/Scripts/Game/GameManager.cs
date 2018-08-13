@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour {
 					}
 				}
 				else if (currentLevel > maxLevel) {
+					Debug.Log("VICTORY");
 					Victory();
 				}
 			}
