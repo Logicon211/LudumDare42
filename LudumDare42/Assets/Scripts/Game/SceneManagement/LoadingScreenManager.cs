@@ -40,19 +40,23 @@ public class LoadingScreenManager : MonoBehaviour {
 	static int loadingSceneIndex = 1;
 
 	public static void LoadScene(int levelNum) {				
+		// Application.backgroundLoadingPriority = ThreadPriority.High;
+		// sceneToLoad = levelNum;
+
+		// GameManager gameManager = null;
+		// if (GameObject.FindWithTag("GameController") != null)
+		// 	gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+		// if (gameManager != null) {
+		// 	Debug.Log("GAME MANAGER LOAD");
+		// 	gameManager.LoadScene(sceneToLoad);
+		// } else { 
+		// 	Debug.Log("SCENE MANAGER LOAD");
+		// 	SceneManager.LoadScene(sceneToLoad);
+
+		// }
 		Application.backgroundLoadingPriority = ThreadPriority.High;
 		sceneToLoad = levelNum;
-
-		GameManager gameManager = null;
-		if (GameObject.FindWithTag("GameController") != null)
-			gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
-		if (gameManager != null) {
-			Debug.Log("GAME MANAGER LOAD");
-			gameManager.LoadScene(sceneToLoad);
-		} else { 
-			Debug.Log("SCENE MANAGER LOAD");
-			SceneManager.LoadScene(sceneToLoad);
-		}
+		SceneManager.LoadScene(loadingSceneIndex);
 	}
 
 	void Start() {

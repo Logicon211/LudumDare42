@@ -127,10 +127,10 @@ public class IntroSpriteFlow : MonoBehaviour
 		if(GetComponent<GUITexture>().color.a >= 0.95f) {
 			// ... reload the level.
 			//Application.LoadLevel(levelToLoad);
-			if (gameManager != null)
-				gameManager.LoadScene(levelToLoadIndex);
-			else
-				SceneManager.LoadScene(levelToLoadIndex);
+			// if (gameManager != null)
+			// 	gameManager.LoadScene(levelToLoadIndex);
+			// else
+				LoadingScreenManager.LoadScene(levelToLoadIndex);
 			
 		}
 	}

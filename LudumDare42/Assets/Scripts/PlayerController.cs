@@ -16,6 +16,7 @@ public float playerChargeSpeed = 1.4f;
 
 public GameObject hitEffect;
 
+public float maxHealth = 100f;
 public float health = 100f;
 public float energy = 0f;
 public float maxPunchCharge = 3f;
@@ -120,6 +121,7 @@ private int LAZER_ANIMATION_LAYER = 2;
 
         if(speedBoostTime > 0f) {
             PlayerRigidBody.mass = 100;
+            particles.SetActive(true);
             speedBoostTime -= Time.deltaTime;
 			if(RightClick) {
                 playerspeed = playerChargeSpeed + (speedBoostAmount/2);
@@ -128,7 +130,10 @@ private int LAZER_ANIMATION_LAYER = 2;
             }
         } else {
             PlayerRigidBody.mass = 1;
-			if(RightClick) {
+            if(!Dashing) {
+                particles.SetActive(false);
+            }
+            if(RightClick) {
                 playerspeed = playerChargeSpeed;
             } else {
                 playerspeed = defaultPlayerSpeed;
@@ -179,7 +184,11 @@ private int LAZER_ANIMATION_LAYER = 2;
         }
         if(Dashing){
             particles.SetActive(true);
-            PlayerRigidBody.velocity = 30*punchCharge * dashDirection;
+            if(speedBoostTime <= 0) {
+                PlayerRigidBody.velocity = 30*punchCharge * dashDirection;
+            } else {
+                PlayerRigidBody.velocity = 38*punchCharge * dashDirection;
+            }
 			dashCooldown -= Time.fixedDeltaTime;
             PlayerRigidBody.mass = 100;
             if(dashCooldown <= 0){
@@ -347,6 +356,9 @@ private int LAZER_ANIMATION_LAYER = 2;
 
     public void PickupHealth() {
         health += 20f;
+        if(health > maxHealth) {
+            health = maxHealth;
+        }
     }
 
     public void PickupShield() {
