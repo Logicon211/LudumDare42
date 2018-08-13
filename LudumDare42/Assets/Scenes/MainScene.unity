@@ -334,16 +334,6 @@ Prefab:
       propertyPath: chargeSlider
       value: 
       objectReference: {fileID: 780650037}
-    - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
-        type: 2}
-      propertyPath: maxHealth
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 114692075978091928, guid: de2ce347350fac245bd1f127f88d29bb,
-        type: 2}
-      propertyPath: health
-      value: 120
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2ce347350fac245bd1f127f88d29bb, type: 2}
   m_IsPrefabAsset: 0
@@ -2726,90 +2716,6 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 650637359}
-    - target: {fileID: 1364063793249080, guid: 45d70fa73f3abec42ae93f87a7183493, type: 2}
-      propertyPath: m_Name
-      value: Arrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 114710666744757472, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: cdc0df3d29d3a13458fea28bf57c1877,
-        type: 3}
-    - target: {fileID: 224418298570762224, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: -6.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 224418298570762224, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -116.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 224418298570762224, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: -23.38
-      objectReference: {fileID: 0}
-    - target: {fileID: 224418298570762224, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 53.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 114710666744757472, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114710666744757472, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114710666744757472, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114710666744757472, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224418298570762224, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.70710576
-      objectReference: {fileID: 0}
-    - target: {fileID: 224418298570762224, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.70710784
-      objectReference: {fileID: 0}
-    - target: {fileID: 224418298570762224, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90.00001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1620112020889038, guid: 45d70fa73f3abec42ae93f87a7183493, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114668153404649152, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_MaxValue
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 114668153404649152, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224234353911955568, guid: 45d70fa73f3abec42ae93f87a7183493,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.008333334
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45d70fa73f3abec42ae93f87a7183493, type: 2}
   m_IsPrefabAsset: 0
