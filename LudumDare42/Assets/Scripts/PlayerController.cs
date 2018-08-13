@@ -355,7 +355,7 @@ private int LAZER_ANIMATION_LAYER = 2;
     }
 
     public void PickupHealth() {
-        health += 20f;
+        health += 15f;
         if(health > maxHealth) {
             health = maxHealth;
         }

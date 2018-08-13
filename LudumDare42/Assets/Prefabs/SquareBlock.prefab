@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1109124763923004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 57.11, y: -15.47, z: 0}
+  m_LocalPosition: {x: 64.83983, y: -25.241795, z: 0}
   m_LocalScale: {x: 3.2499597, y: 3.2499597, z: 1.6249799}
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,7 +103,8 @@ MonoBehaviour:
   dropFromSky: 0
   health: 25
   explosion: {fileID: 156964, guid: 15ff87b027731ae4cbf07bb092fba046, type: 2}
-  powerupSpawnChance: 40
+  powerupSpawnChance: 35
+  landingDamage: 10
 --- !u!212 &212184558284505932
 SpriteRenderer:
   m_ObjectHideFlags: 1

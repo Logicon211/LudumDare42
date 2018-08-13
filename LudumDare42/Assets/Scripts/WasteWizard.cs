@@ -25,6 +25,7 @@ public class WasteWizard : MonoBehaviour {
 	public SpriteRenderer LeftHandFist;
 
 	public GameObject explosionEffect;
+	public GameObject HUDWarning;
 	
 	public SpriteRenderer NormalFaceSprite;
 	public SpriteRenderer AngerFaceSprite;
@@ -59,6 +60,8 @@ public class WasteWizard : MonoBehaviour {
 	public float enemySpawnTime;
 	private float currentEnemySpawnTime;
 
+	private bool isVulnerable = false;
+
 	// Use this for initialization
 	void Start () {
 		MoveUp = 1f;
@@ -77,6 +80,7 @@ public class WasteWizard : MonoBehaviour {
 		vulnMode = false;
 		maxHealth=100;
 		wizardHealth=100;
+		currentEnemySpawnTime = enemySpawnTime;
 		
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
@@ -87,6 +91,22 @@ public class WasteWizard : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		//spawn enemies in second phase:
+		if(!firstphase) {
+			currentEnemySpawnTime -= Time.deltaTime;
+			if(currentEnemySpawnTime <= 0) {
+				currentEnemySpawnTime = enemySpawnTime;
+				enemySpawnController.SpawnAtRandomLocation(0);
+				enemySpawnController.SpawnAtRandomLocation(1);
+			}
+		}
+
+		if(isVulnerable && wizardHealth == maxHealth) {
+			HUDWarning.SetActive(true);
+		} else {
+			HUDWarning.SetActive(false);
+		}
+
          if(Input.GetKeyDown(KeyCode.Q))
          {
              ChangePhase();
@@ -299,6 +319,7 @@ public class WasteWizard : MonoBehaviour {
 						VulnerableCooldown = 8f;
 						healthLoseLimit = wizardHealth - 35;
 						Debug.Log("Moved into vuln area");
+						isVulnerable = true;
 						leftHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
 						rightHandHalfGameObject.GetComponent<WizardHandDamageable>().SwitchCollider(true);
 						NormalFace.GetComponent<WizardFaceDamageable>().SwitchCollider(true);
@@ -310,6 +331,7 @@ public class WasteWizard : MonoBehaviour {
 					if(VulnerableCooldown < 0 || wizardHealth < healthLoseLimit){
 						wizardHandsHolder.transform.localPosition = new Vector3(0.25f, -6.4f, 0.2109375f);
 						Debug.Log("vulnerability complete");
+						isVulnerable = false;
 						SpellStage =2;
 						NumSpellsCast=0;
 
