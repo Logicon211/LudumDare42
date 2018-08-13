@@ -1705,7 +1705,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d7f7b4ce384a57e4ebb0317b4655fb2f, type: 3}
   - {fileID: 8300000, guid: 502070c6eb9de5346abd5cd446e8f29e, type: 3}
   enemySpawnController: {fileID: 0}
-  enemySpawnTime: 10
+  enemySpawnTime: 14
 --- !u!114 &114506731297400670
 MonoBehaviour:
   m_ObjectHideFlags: 1

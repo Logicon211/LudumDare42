@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b086054b8c4e263478f27cf78bb08d45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 12
   garbageController: {fileID: 114641992390476428, guid: ef47ab27ddb472b4897cbc3134a1b41a,
     type: 2}
 --- !u!212 &212057783586565262
