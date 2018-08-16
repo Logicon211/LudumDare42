@@ -142,7 +142,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.26
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2932,10 +2932,6 @@ Prefab:
       propertyPath: enemySpawnController
       value: 
       objectReference: {fileID: 1595098721}
-    - target: {fileID: 1799850475371406, guid: 76a6d3f37766faa498231ac9b516173b, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76a6d3f37766faa498231ac9b516173b, type: 2}
   m_IsPrefabAsset: 0
